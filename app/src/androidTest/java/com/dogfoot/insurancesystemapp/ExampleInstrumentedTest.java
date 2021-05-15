@@ -1,4 +1,4 @@
-package com.example.insurancesystemapp;
+package com.dogfoot.insurancesystemapp;
 
 import android.content.Context;
 
