@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InsuranceSystemApp">
-        <activity android:name="com.dogfoot.insurancesystemapp.MainActivity">
+        <activity android:name=".JungWoo"></activity>
+        <activity android:name=".DongWook" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
