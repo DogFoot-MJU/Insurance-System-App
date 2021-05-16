@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.dogfoot.insurancesystemapp.databinding.ActivityDongWookBinding;
 import com.dogfoot.insurancesystemapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
