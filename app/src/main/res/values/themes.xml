@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.InsuranceSystemApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.InsuranceSystemApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/typo_ssangmundongb</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,6 +13,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="Theme.InsuranceSystemApp.NoActionBar">
@@ -22,4 +24,7 @@
     <style name="Theme.InsuranceSystemApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.InsuranceSystemApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>
