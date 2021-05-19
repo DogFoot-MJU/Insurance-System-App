@@ -1,14 +1,15 @@
-package com.dogfoot.insurancesystemapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view;
 
 import android.os.Bundle;
 
-public class DongWook extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dong_wook);
+
     }
 }

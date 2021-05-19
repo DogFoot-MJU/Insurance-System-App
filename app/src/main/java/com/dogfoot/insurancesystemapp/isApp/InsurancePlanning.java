@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp;
+package com.dogfoot.insurancesystemapp.isApp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

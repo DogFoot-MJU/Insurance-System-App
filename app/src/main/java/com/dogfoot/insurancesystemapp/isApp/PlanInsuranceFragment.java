@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp;
+package com.dogfoot.insurancesystemapp.isApp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

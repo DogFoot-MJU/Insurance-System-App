@@ -22,4 +22,31 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="loadingDialog_textView_text">Loading...</string>
+
+
+
+    <!-- 동욱 액티비티 !-->
+    <string name="dongWook_title">동욱 기능 테스트</string>
+    <string name="dongWook_btn_login">로그인</string>
+    <string name="dongWook_btn_signup">회원 가입</string>
+
+    <!-- 로그인 프래그먼트 !-->
+    <string name="id_hint">아이디 입력</string>
+    <string name="pw_hint">비밀번호 입력</string>
+    <string name="login_button">로그인</string>
+    <string name="id_auto_save_checkbox">아이디 저장</string>
+    <string name="auto_login_checkbox">자동 로그인</string>
+    <string name="find_id_button">아이디 찾기</string>
+    <string name="find_pw_button">비밀번호 찾기</string>
+    <string name="singup_button">회원가입</string>
+    <string name="button_ok">확인</string>
+    <string name="login_already_signed_dialog">이미 로그인 되어 있습니다.</string>
+    <string name="login_already_signed_content_dialog">로그인 되어 있습니다.</string>
+    <string name="login_success_dialog">성공적으로 로그인하였습니다.</string>
+    <string name="login_success_content_dialog">성공적으로 로그인되었습니다.</string>
+    <string name="login_failed_dialog">해당하는 유저가 없습니다.</string>
+    <string name="login_failed_content_dialog">잘못 입력하였거나 해당하는 유저를 찾을 수 없습니다.</string>
+    <string name="title_activity_log_out">LogOutActivity</string>
+
 </resources>

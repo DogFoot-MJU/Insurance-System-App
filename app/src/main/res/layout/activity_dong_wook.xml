@@ -4,19 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DongWook">
+    tools:context=".dongwook.DongWookActivity">
 
     <TextView
-        android:id="@+id/tv_dongWook"
+        android:id="@+id/DongWookActivity_TitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
-        android:layout_marginTop="109dp"
-        android:layout_marginEnd="257dp"
-        android:layout_marginRight="257dp"
-        android:text="동욱"
+        android:layout_marginTop="44dp"
+        android:text="@string/dongWook_title"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/dongWookActivity_loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/dongWook_btn_login"
+        android:backgroundTint="#e9e49e"
+        app:layout_constraintTop_toBottomOf="@+id/DongWookActivity_TitleTextView"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/dongWookActivity_signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/dongWook_btn_signup"
+        android:backgroundTint="#e9e49e"
+        app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_loginButton"
+        tools:layout_editor_absoluteX="0dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp;
+package com.dogfoot.insurancesystemapp.isApp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityDrawerBinding;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

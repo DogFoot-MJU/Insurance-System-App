@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp;
+package com.dogfoot.insurancesystemapp.isApp;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.dogfoot.insurancesystemapp.R;
 
 import java.util.ArrayList;
 
