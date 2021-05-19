@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
 
 
 public class MainActivity extends DogFootViewModelActivity {

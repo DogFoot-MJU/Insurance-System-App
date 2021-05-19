@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceFirstBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
@@ -76,8 +77,8 @@ public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
-        RetrofitTool.getAPIWithNullConverter().carPlanInsurance().enqueue(new Callback<List<CarPlanInsuranceResponse>>() {
+        String token = this.dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).carPlanInsurance().enqueue(new Callback<List<CarPlanInsuranceResponse>>() {
             @Override
             public void onResponse(Call<List<CarPlanInsuranceResponse>> call, Response<List<CarPlanInsuranceResponse>> response) {
                 if(response.isSuccessful()){

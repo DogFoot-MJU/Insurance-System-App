@@ -15,6 +15,7 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitCallback;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitTool;
 
@@ -77,7 +78,7 @@ public class LoginFragment extends DogFootViewModelFragment {
         }
     }
 
-    public void startMainActivity() { this.startActivity(new Intent(this.getContext(), DongWookActivity.class)); }
+    public void startMainActivity() { this.startActivity(new Intent(this.getContext(), JungWoo.class)); }
 
 
 }
