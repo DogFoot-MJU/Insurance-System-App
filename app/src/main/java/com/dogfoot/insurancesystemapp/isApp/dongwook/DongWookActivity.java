@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.view.LoginActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.SignUpActivity;
 
 
 public class DongWookActivity extends DogFootViewModelActivity {
@@ -20,7 +21,7 @@ public class DongWookActivity extends DogFootViewModelActivity {
     @Override
     protected void initializeView() {
         this.findViewById(R.id.dongWookActivity_loginButton).setOnClickListener(v -> this.startActivity(LoginActivity.class));
-        this.findViewById(R.id.dongWookActivity_signUpButton).setOnClickListener(v -> this.startActivity(LoginActivity.class));
+        this.findViewById(R.id.dongWookActivity_signUpButton).setOnClickListener(v -> this.startActivity(SignUpActivity.class));
 
     }
 

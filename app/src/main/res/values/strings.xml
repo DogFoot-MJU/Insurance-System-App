@@ -49,4 +49,29 @@
     <string name="login_failed_content_dialog">잘못 입력하였거나 해당하는 유저를 찾을 수 없습니다.</string>
     <string name="title_activity_log_out">LogOutActivity</string>
 
+
+
+    <!-- 회원가입 프래그먼트 !-->
+    <string name="register_email_maintext">이메일을 입력해주세요</string>
+    <string name="register_email_hint">example@plim.com</string>
+
+    <string name="welcome_start">환영합니다</string>
+    <string name="welcome_end">님!</string>
+    <string name="register_finish_subtext">메일을 확인하면 가입 절차가 끝납니다!</string>
+
+    <string name="register_name_maintext">이름을 알려주세요</string>
+    <string name="register_name_hint">당신의 닉네임을 알려주세요!</string>
+
+    <string name="register_password_maintext">비밀번호를 입력해주세요</string>
+    <string name="register_password_hint">6자리 이상, 숫자+알파벳 조합</string>
+
+    <string name="register_phone_maintext">연락처를 알려주세요</string>
+    <string name="register_phone_hint">당신의 연락처를 알려주세요!</string>
+
+    <string name="register_address_maintext">주소를 알려주세요</string>
+    <string name="register_address_hint">당신의 주소를 알려주세요!</string>
+
+    <string name="register_resident_maintext">주민등록번호를 알려주세요</string>
+    <string name="register_resident_hint">당신의 주민등록번호를 알려주세요!</string>
+
 </resources>
