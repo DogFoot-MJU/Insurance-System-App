@@ -1,8 +1,7 @@
-package com.dogfoot.insurancesystemapp.isApp;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,7 +11,10 @@ import lombok.ToString;
 @AllArgsConstructor
 public class InsurancePlanning {
 
-    private String InsuranceName;
-    private String InsuranceType;
+    private int id;
+    private String name;
+    private String payment;
+    private String state;
+    private String type;
     
 }

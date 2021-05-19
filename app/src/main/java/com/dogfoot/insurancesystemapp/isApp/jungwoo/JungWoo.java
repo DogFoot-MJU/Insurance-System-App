@@ -1,11 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,27 +6,30 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.ActivityDrawerBinding;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 public class JungWoo extends AppCompatActivity{
 
     private ActivityJungWooBinding mBinding;
-    //private ActivityDrawerBinding drawerBinding;
-    private PlanInsuranceFragment planInsuranceFragment;
-    private Fragment1 fragment;
+    private PlanInsuranceFirstFragment planInsuranceFirstFragment;
+    private HomeFragment mainFragment;
     private FragmentManager fm;
     private FragmentTransaction ft;
 
+    // drawer Attributes
     private DrawerLayout drawerLayout;
     private View drawerView;
     private Button btn_close;
-
     private TextView tv_insuranceDevInfo, tv_insuranceInitInfo, tv_insuranceDesignInfo, tv_insuranceSendInfo;
     private TextView tv_uwInfo, tv_uwLossLateInfo, tv_uwAcquisitionPolicyInfo, tv_uwAppropriateExaminationInfo;
     private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo;
@@ -42,8 +38,150 @@ public class JungWoo extends AppCompatActivity{
     private TextView tv_compensationInfo, tv_incidentReceptionInfo, tv_damageSituationInfo, tv_damageInvestigationInfo, tv_compensationPaidInfo,
             tv_compensationManagementInfo, tv_compensationEvaluationManagementInfo;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // set Binding
+        mBinding = ActivityJungWooBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
+        mainFragment = new HomeFragment();
+
+        //initToolbar();
+        mainInit();
+        drawerInit();
+        navigationBottomInit();
+
+    }
+
+
+//    private void initToolbar() {
+//
+//        setSupportActionBar(mBinding.tbMainToolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayShowCustomEnabled(true);
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.actionbar, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case android.R.id.home:
+//                finish();
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
+    private void mainInit() {
+
+    }
+
+    private void navigationBottomInit() {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.fl_main, HomeFragment.newInstance()).commit();
+        mBinding.bottomNavi.setSelectedItemId(R.id.action_home);
+
+        mBinding.bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.action_menu:
+                        openDrawerLayout();
+                        break;
+                    case R.id.action_search:
+                        setFrag(1);
+                        break;
+                    case R.id.action_home:
+                        setFrag(2);
+                        break;
+                    case R.id.action_myPage:
+                        setFrag(3);
+                        break;
+                    case R.id.action_setting:
+                        setFrag(4);
+                        break;
+                }
+                return true;
+            }
+        });
+
+    }
+
+
+    private void openDrawerLayout() {
+        drawerLayout.openDrawer(drawerView);
+    }
+
+    private void setFrag(int n) {
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        switch (n) {
+            case 0:
+                break;
+            case 1:
+                replaceFragment(SearchFragment.newInstance());
+                break;
+            case 2:
+                replaceFragment(HomeFragment.newInstance());
+                break;
+            case 3:
+                replaceFragment(MyPageFragment.newInstance());
+                break;
+            case 4:
+//                ft.replace(R.id.fl_main, planInsuranceFragment);
+//                ft.commit();
+                break;
+        }
+    }
+
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_main, fragment).commit();
+    }
 
     private void drawerInit() {
+        drawerLayout = mBinding.drawerLayout;
+        drawerView = findViewById(R.id.drawer);
+        btn_close = findViewById(R.id.btn_close);
+
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+            }
+        });
+        DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) { }
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) { }
+            @Override
+            public void onDrawerStateChanged(int newState) { }
+        };
+
+        drawerLayout.setDrawerListener(listener);
+        drawerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
         tv_insuranceDevInfo = findViewById(R.id.tv_insuranceDevInfo);
         tv_insuranceInitInfo = findViewById(R.id.tv_insuranceInitInfo);
         tv_insuranceDesignInfo = findViewById(R.id.tv_insuranceDesignInfo);
@@ -169,118 +307,36 @@ public class JungWoo extends AppCompatActivity{
             }
         });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // set Binding
-        mBinding = ActivityJungWooBinding.inflate(getLayoutInflater());
-        View view = mBinding.getRoot();
-        setContentView(view);
-
-
-        fragment = new Fragment1();
-        drawerLayout = mBinding.drawerLayout;
-        drawerView = findViewById(R.id.drawer);
-        btn_close = findViewById(R.id.btn_close);
-
-        drawerInit();
-
-
-        mBinding.btnPlanInsurance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                PlanInsuranceFragment planInsuranceFragment = new PlanInsuranceFragment();
-                transaction.replace(R.id.fl_main, planInsuranceFragment);
-                transaction.commit(); //새로고침
-            }
-        });
-
-        btn_close.setOnClickListener(new View.OnClickListener() {
+        tv_insuranceInitInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawerLayout.closeDrawers();
-            }
-        });
-        DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) { }
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) { }
-            @Override
-            public void onDrawerStateChanged(int newState) { }
-        };
-
-        drawerLayout.setDrawerListener(listener);
-        drawerView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fl_main, planInsuranceFirstFragment.newInstance());
+                transaction.commit();
             }
         });
 
-        mBinding.bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        tv_insuranceDesignInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.action_menu:
-                      openDrawerLayout();
-                        break;
-                    case R.id.action_search:
-                        //setFrag(1);
-                        break;
-                    case R.id.action_home:
-                        //setFrag(2);
-                        break;
-                    case R.id.action_myPage:
-                        //setFrag(3);
-                        break;
-                    case R.id.action_setting:
-                        //setFrag(4);
-                        break;
-                }
-                return true;
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fl_main, planInsuranceFirstFragment.newInstance());
+                transaction.commit();
             }
         });
-        setFrag(2); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택
-    }
 
+        tv_insuranceSendInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fl_main, planInsuranceFirstFragment.newInstance());
+                transaction.commit();
+            }
+        });
 
-    private void openDrawerLayout() {
-        drawerLayout.openDrawer(drawerView);
-    }
-
-    private void setFrag(int n) {
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-        switch (n) {
-            case 0:
-                ft.replace(R.id.fl_main, planInsuranceFragment);
-                ft.commit();
-                break;
-            case 1:
-                ft.replace(R.id.fl_main, planInsuranceFragment);
-                ft.commit();
-                break;
-            case 2:
-                ft.replace(R.id.fl_main, fragment);
-                ft.commit();
-                break;
-            case 3:
-                ft.replace(R.id.fl_main, planInsuranceFragment);
-                ft.commit();
-                break;
-            case 4:
-                ft.replace(R.id.fl_main, planInsuranceFragment);
-                ft.commit();
-                break;
-        }
     }
 
 }

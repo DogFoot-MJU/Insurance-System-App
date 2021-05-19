@@ -40,7 +40,6 @@ public class LoginFragment extends DogFootViewModelFragment {
     }
     @Override
     protected void initializeView() {
-        this.signInButton.setOnClickListener(v->this.startMainActivity());
         this.loginButton.setOnClickListener(v->this.login());
     }
 
