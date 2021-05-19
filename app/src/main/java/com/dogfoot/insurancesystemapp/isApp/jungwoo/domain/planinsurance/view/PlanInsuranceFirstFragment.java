@@ -1,8 +1,9 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,10 +24,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceFirstBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.InsuracncePlanningAdapter;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.InsurancePlanning;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Vector;
 
-public class PlanInsuranceFirstFragment extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
 
     private FragmentPlanInsuranceFirstBinding mBinding;
     private InsuracncePlanningAdapter insuracncePlanningAdapter;
@@ -36,6 +51,7 @@ public class PlanInsuranceFirstFragment extends Fragment {
     private FragmentActivity fragmentContext;
 
     private Vector<InsurancePlanning> insuarancePlanningList;
+    Vector<CarPlanInsuranceResponse> items;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -60,20 +76,57 @@ public class PlanInsuranceFirstFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+
+        RetrofitTool.getAPIWithNullConverter().carPlanInsurance().enqueue(new Callback<List<CarPlanInsuranceResponse>>() {
+            @Override
+            public void onResponse(Call<List<CarPlanInsuranceResponse>> call, Response<List<CarPlanInsuranceResponse>> response) {
+                if(response.isSuccessful()){
+                    items = new Vector<CarPlanInsuranceResponse>(response.body());
+                } else{
+                    Log.e("서버오류", "오류");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CarPlanInsuranceResponse>> call, Throwable t) {
+
+            }
+        });
+
         // 서버에서 ArrayList로 값을 가져오면 insuarancePlanningList에 넣으면 됨
-        InsurancePlanning insurancePlanning = new InsurancePlanning(1, "자동차보험1", "1000", "state", "Fire");
-        InsurancePlanning insurancePlanning2 = new InsurancePlanning(2, "운전자보험2", "3000", "state", "car");
-        for(int i=0; i<10; i++) {
-            insuarancePlanningList.add(insurancePlanning);
-            insuarancePlanningList.add(insurancePlanning2);
-        }
+//        InsurancePlanning insurancePlanning = new InsurancePlanning(1, "자동차보험1", "1000", "state", "Fire");
+//        InsurancePlanning insurancePlanning2 = new InsurancePlanning(2, "운전자보험2", "3000", "state", "car");
+//        for(int i=0; i<10; i++) {
+//            insuarancePlanningList.add(insurancePlanning);
+//            insuarancePlanningList.add(insurancePlanning2);
+//        }
+        //insuarancePlanningList = items;
 
-
-        insuracncePlanningAdapter = new InsuracncePlanningAdapter(insuarancePlanningList, context, fragmentContext);
+        insuracncePlanningAdapter = new InsuracncePlanningAdapter(items, context, fragmentContext);
         insuracncePlanningAdapter.notifyDataSetChanged(); // 새로고침 해준다. add나 modify후 새로고침을 해야함
         recyclerView.setAdapter(insuracncePlanningAdapter);
 
         return view;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void associateView(View view) {
+
+    }
+
+    @Override
+    protected void initializeView() {
+
+    }
+
+    @Override
+    protected void dogFootEntityUpdated() {
+
     }
 
     private void init() {

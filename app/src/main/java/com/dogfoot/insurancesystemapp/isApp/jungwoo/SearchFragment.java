@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.dogfoot.insurancesystemapp.databinding.ActivitySearchFragmentBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends DogFootViewModelFragment {
 
     private ActivitySearchFragmentBinding mBinding;
     private Context context;
@@ -25,6 +25,26 @@ public class SearchFragment extends Fragment {
         View view = mBinding.getRoot();
 
         return view;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void associateView(View view) {
+
+    }
+
+    @Override
+    protected void initializeView() {
+
+    }
+
+    @Override
+    protected void dogFootEntityUpdated() {
+
     }
 
     public static SearchFragment newInstance() {

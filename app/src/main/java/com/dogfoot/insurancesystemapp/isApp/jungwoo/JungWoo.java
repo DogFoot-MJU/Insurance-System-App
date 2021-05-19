@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,9 +15,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class JungWoo extends AppCompatActivity{
+public class JungWoo extends DogFootViewModelActivity {
 
     private ActivityJungWooBinding mBinding;
     private PlanInsuranceFirstFragment planInsuranceFirstFragment;
@@ -339,4 +340,18 @@ public class JungWoo extends AppCompatActivity{
 
     }
 
+    @Override
+    protected void associateView() {
+
+    }
+
+    @Override
+    protected void initializeView() {
+
+    }
+
+    @Override
+    public void dogFootEntityUpdated() {
+
+    }
 }

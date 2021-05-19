@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DesignInsuranceSecondFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DesignInsuranceSecondFragment extends Fragment {
+public class DesignInsuranceSecondFragment extends DogFootViewModelFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,5 +62,25 @@ public class DesignInsuranceSecondFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_design_insurance_second, container, false);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void associateView(View view) {
+
+    }
+
+    @Override
+    protected void initializeView() {
+
+    }
+
+    @Override
+    protected void dogFootEntityUpdated() {
+
     }
 }

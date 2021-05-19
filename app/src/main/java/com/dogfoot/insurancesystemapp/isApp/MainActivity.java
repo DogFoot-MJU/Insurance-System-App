@@ -1,19 +1,11 @@
 package com.dogfoot.insurancesystemapp.isApp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.ActivityMainBinding;
-import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
-import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.DogFootDialog;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
 
 
 public class MainActivity extends DogFootViewModelActivity {

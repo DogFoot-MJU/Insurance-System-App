@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,8 +20,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceDetailedBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 
-public class PlanInsuranceDetailedFragment extends Fragment {
+public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
 
     private FragmentPlanInsuranceDetailedBinding mBinding;
     private Context context;
@@ -45,6 +46,26 @@ public class PlanInsuranceDetailedFragment extends Fragment {
         initData();
 
         return view;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void associateView(View view) {
+
+    }
+
+    @Override
+    protected void initializeView() {
+
+    }
+
+    @Override
+    protected void dogFootEntityUpdated() {
+
     }
 
     private void initData() {

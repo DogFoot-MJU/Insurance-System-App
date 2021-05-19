@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.dogfoot.insurancesystemapp.databinding.ActivityMyPageFragmentBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 
-public class MyPageFragment extends Fragment {
+public class MyPageFragment extends DogFootViewModelFragment {
 
     private ActivityMyPageFragmentBinding mBinding;
     private Context context;
@@ -25,6 +25,26 @@ public class MyPageFragment extends Fragment {
         View view = mBinding.getRoot();
 
         return view;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected void associateView(View view) {
+
+    }
+
+    @Override
+    protected void initializeView() {
+
+    }
+
+    @Override
+    protected void dogFootEntityUpdated() {
+
     }
 
     public static MyPageFragment newInstance() {

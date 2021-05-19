@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,8 +19,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.InsurancePlanning;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
+import java.util.List;
 import java.util.Vector;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePlanningAdapter.CustomViewHolder>{
 
@@ -38,14 +47,14 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
 
     @NonNull
     @Override
-    public InsuracncePlanningAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_plan_insurance, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final InsuracncePlanningAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
+    public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
         Log.e("만들어질때숫자", Integer.toString(position));
         holder.tv_InsuranceName.setText(arrayList.get(position).getName());
         holder.tv_insurancePayment.setText(arrayList.get(position).getPayment());
@@ -85,6 +94,21 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
             bundle.putString("strPayment", arrayList.get(position).getPayment());
             bundle.putString("strState", arrayList.get(position).getState());
             bundle.putString("strType", arrayList.get(position).getType());
+            //arrayList.get(position).getId();
+
+//            String token;
+//            RetrofitTool.getAPIWithAuthorizationToken(token).getCarInsuracneDetailed(arrayList.get(position).getId()).enqueue(new Callback<CarPlanInsuranceResponse>() {
+//                @Override
+//                public void onResponse(Call<CarPlanInsuranceResponse> call, Response<CarPlanInsuranceResponse> response) {
+//                    response.body();
+//                }
+//
+//                @Override
+//                public void onFailure(Call<CarPlanInsuranceResponse> call, Throwable t) {
+//
+//                }
+//            });
+
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
