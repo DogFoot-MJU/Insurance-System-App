@@ -77,22 +77,22 @@ public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        String token = this.dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token).carPlanInsurance().enqueue(new Callback<List<CarPlanInsuranceResponse>>() {
-            @Override
-            public void onResponse(Call<List<CarPlanInsuranceResponse>> call, Response<List<CarPlanInsuranceResponse>> response) {
-                if(response.isSuccessful()){
-                    items = new Vector<CarPlanInsuranceResponse>(response.body());
-                } else{
-                    Log.e("서버오류", "오류");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<CarPlanInsuranceResponse>> call, Throwable t) {
-
-            }
-        });
+//        String token = this.dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION);
+//        RetrofitTool.getAPIWithAuthorizationToken(token).carPlanInsurance().enqueue(new Callback<List<CarPlanInsuranceResponse>>() {
+//            @Override
+//            public void onResponse(Call<List<CarPlanInsuranceResponse>> call, Response<List<CarPlanInsuranceResponse>> response) {
+//                if(response.isSuccessful()){
+//                    items = new Vector<CarPlanInsuranceResponse>(response.body());
+//                } else{
+//                    Log.e("서버오류", "오류");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<CarPlanInsuranceResponse>> call, Throwable t) {
+//
+//            }
+//        });
 
         // 서버에서 ArrayList로 값을 가져오면 insuarancePlanningList에 넣으면 됨
 //        InsurancePlanning insurancePlanning = new InsurancePlanning(1, "자동차보험1", "1000", "state", "Fire");

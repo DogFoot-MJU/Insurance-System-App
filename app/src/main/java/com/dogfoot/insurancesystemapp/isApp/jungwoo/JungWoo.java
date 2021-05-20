@@ -1,6 +1,7 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,6 +51,7 @@ public class JungWoo extends DogFootViewModelActivity {
         setContentView(view);
 
         mainFragment = new HomeFragment();
+        Log.d("디버그",this.dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
 
         //initToolbar();
         mainInit();

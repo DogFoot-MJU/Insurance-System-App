@@ -3,81 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/register_activity_navigation_graph"
-    app:startDestination="@id/register1Fragment"
-    >
+    app:startDestination="@id/register1Fragment">
     <fragment
         android:id="@+id/register1Fragment"
-        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.SignupFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterEmailFragmentEditText"
 
         android:label="fragment_register1"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/abstract_layout">
 
-                <action
-                    android:id="@+id/action_register1Fragment_to_register2Fragment"
-                    app:destination="@id/registerFinishedFragment" />
-
+        <action
+            android:id="@+id/action_register1Fragment_to_register2Fragment"
+            app:destination="@id/register2Fragment" />
 
 
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/register2Fragment"-->
-<!--        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterPasswordFragmentEditText"-->
+    <fragment
+        android:id="@+id/register2Fragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterPasswordFragmentEditText"
 
-<!--        android:label="fragment_register2"-->
-<!--        tools:layout="@layout/abstract_layout" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_register2Fragment_to_register3Fragment"-->
-<!--            app:destination="@id/register3Fragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/register3Fragment"-->
-<!--        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterNameFragmentEditText"-->
-<!--        android:label="fragment_register3"-->
-<!--        tools:layout="@layout/abstract_layout" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_register3Fragment_to_register4Fragment"-->
-<!--            app:destination="@id/register4Fragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/register4Fragment"-->
-<!--        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterPhoneFragmentEditText"-->
-<!--        android:label="fragment_register4"-->
-<!--        tools:layout="@layout/abstract_layout" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_register4Fragment_to_register5Fragment"-->
-<!--            app:destination="@id/register5Fragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/register5Fragment"-->
-<!--        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterAddressFragmentEditText"-->
-<!--        android:label="fragment_register5"-->
-<!--        tools:layout="@layout/abstract_layout" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_register5Fragment_to_register6Fragment"-->
-<!--            app:destination="@id/register6Fragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/register6Fragment"-->
-<!--        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterResidentFragmentEditText"-->
-<!--        android:label="fragment_register6"-->
-<!--        tools:layout="@layout/abstract_layout" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_register6Fragment_to_registerFinishedFragment"-->
-<!--            app:destination="@id/registerFinishedFragment" />-->
-<!--    </fragment>-->
-
-
-
-
-
-
+        android:label="fragment_register2"
+        tools:layout="@layout/abstract_layout">
+        <action
+            android:id="@+id/action_register2Fragment_to_register3Fragment"
+            app:destination="@id/register3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register3Fragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterNameFragmentEditText"
+        android:label="fragment_register3"
+        tools:layout="@layout/abstract_layout">
+        <action
+            android:id="@+id/action_register3Fragment_to_register4Fragment"
+            app:destination="@id/register4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register4Fragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterPhoneFragmentEditText"
+        android:label="fragment_register4"
+        tools:layout="@layout/abstract_layout">
+        <action
+            android:id="@+id/action_register4Fragment_to_register5Fragment"
+            app:destination="@id/register5Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register5Fragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterAddressFragmentEditText"
+        android:label="fragment_register5"
+        tools:layout="@layout/abstract_layout">
+        <action
+            android:id="@+id/action_register5Fragment_to_register6Fragment"
+            app:destination="@id/register6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register6Fragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterResidentFragmentEditText"
+        android:label="fragment_register6"
+        tools:layout="@layout/abstract_layout">
+        <action
+            android:id="@+id/action_register6Fragment_to_registerFinishedFragment"
+            app:destination="@id/registerFinishedFragment" />
+    </fragment>
 
 
     <fragment
         android:id="@+id/registerFinishedFragment"
         android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.RegisterFinishedFragmentEditText"
         android:label="fragment_register_finished"
-        tools:layout="@layout/abstract_layout" >
+        tools:layout="@layout/abstract_layout">
         <argument
             android:name="userName"
             app:argType="string" />

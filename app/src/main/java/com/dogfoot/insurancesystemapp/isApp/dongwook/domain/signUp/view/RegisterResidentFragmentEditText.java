@@ -1,18 +1,15 @@
 package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view;
 
-
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.navigation.Navigation;
 
 import com.dogfoot.insurancesystemapp.R;
-
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.LoadingDialog;
-import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.AbstractFragment_1EditText;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpResponse;
@@ -23,42 +20,38 @@ import org.json.JSONObject;
 
 import retrofit2.Response;
 
-public class SignupFragment extends DogFootViewModelFragment {
-    private EditText idText, pwText,nameText,phoneText,addressText,residentText;
-    private Button signUpButton;
-    private LoadingDialog loadingDialog;
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_signup;
-    }
+public class RegisterResidentFragmentEditText extends AbstractFragment_1EditText {
 
-    @Override
-    protected void associateView(View view) {
-        this.idText = view.findViewById(R.id.signupActivity_idText);
-        this.pwText = view.findViewById(R.id.signupActivity_pwText);
-        this.nameText = view.findViewById(R.id.signupActivity_nameText);
-        this.phoneText = view.findViewById(R.id.signupActivity_phoneText);
-        this.addressText = view.findViewById(R.id.signupActivity_addressText);
-        this.residentText = view.findViewById(R.id.signupActivity_residentText);
-        this.signUpButton = view.findViewById(R.id.signupActivity_signupButton);
+    // Component
+        // View
+        private LoadingDialog loadingDialog;
 
-    }
-
+    /**
+     * System Life Cycle Callback
+     */
     @Override
     protected void initializeView() {
-        this.signUpButton.setOnClickListener(v->this.signUp());
+        super.initializeView();
+        this.mainTextView.setText(getString(R.string.register_resident_maintext));
+        this.subTextView.setVisibility(View.INVISIBLE);
+        this.editText.setHint(getString(R.string.register_resident_hint));
+        this.button.setText(getString(R.string.button_ok));
     }
 
+
+
+    /**
+     * Callback
+     */
     @Override
-    protected void dogFootEntityUpdated() {
+    protected void buttonClicked() {
+        this.signUp();
 
     }
 
     private class SignUpRequestCallback implements MainRetrofitCallback<SignUpResponse> {
         @Override
         public void onSuccessResponse(Response<SignUpResponse> response) {
-            loadingDialog.hide();
-            Navigation.findNavController(getView()).navigate(R.id.action_register1Fragment_to_register2Fragment);
 
         }
         @Override
@@ -72,7 +65,9 @@ public class SignupFragment extends DogFootViewModelFragment {
         @Override
         public void onConnectionFail(Throwable t) {
             loadingDialog.hide();
-            Log.d("회원가입 실패! : 인터넷 연결을 확인해 주세요", t.getMessage());
+            Navigation.findNavController(getView()).navigate(R.id.action_register6Fragment_to_registerFinishedFragment);
+            Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+
         }
     }
 
@@ -84,15 +79,17 @@ public class SignupFragment extends DogFootViewModelFragment {
      * Method
      */
     private void signUp() {
+        this.dataset.put(DogFootEntity.EDogFootData.RESIDENT, this.editText.getText().toString());
+        this.save();
         this.loadingDialog= new LoadingDialog(this.getContext());
         this.loadingDialog.show();
         SignUpRequest signUpRequest = new SignUpRequest();
-        signUpRequest.setEmail(this.idText.getText().toString());
-        signUpRequest.setPassword(this.pwText.getText().toString());
-        signUpRequest.setName(this.nameText.getText().toString());
-        signUpRequest.setPhone_number(this.phoneText.getText().toString());
-        signUpRequest.setAddress(this.addressText.getText().toString());
-        signUpRequest.setResident_registration_number(this.residentText.getText().toString());
+        signUpRequest.setEmail(this.dataset.get(DogFootEntity.EDogFootData.EMAIL));
+        signUpRequest.setPassword(this.dataset.get(DogFootEntity.EDogFootData.PASSWORD));
+        signUpRequest.setName(this.dataset.get(DogFootEntity.EDogFootData.NAME));
+        signUpRequest.setPhone_number(this.dataset.get(DogFootEntity.EDogFootData.PHONE));
+        signUpRequest.setAddress(this.dataset.get(DogFootEntity.EDogFootData.ADDRESS));
+        signUpRequest.setResident_registration_number(this.dataset.get(DogFootEntity.EDogFootData.RESIDENT));
         RetrofitTool.getAPI().signup(signUpRequest).enqueue(MainRetrofitTool.getCallback(new SignUpRequestCallback()));
     }
 }

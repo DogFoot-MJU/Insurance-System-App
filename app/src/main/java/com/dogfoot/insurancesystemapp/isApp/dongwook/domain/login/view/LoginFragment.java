@@ -28,6 +28,7 @@ public class LoginFragment extends DogFootViewModelFragment {
 
     // Associate
     // View
+
     private EditText idText, pwText;
     private Button loginButton,  signInButton;
     @Override
@@ -58,6 +59,7 @@ public class LoginFragment extends DogFootViewModelFragment {
         @Override
         public void onSuccessResponse(Response<LoginRequest> response) {
             dataset.put(DogFootEntity.EDogFootData.AUTHORIZATION, response.headers().get("Authorization"));
+            Log.d("디버그",dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
             dataset.put(DogFootEntity.EDogFootData.EMAIL, idText.getText().toString());
             dataset.put(DogFootEntity.EDogFootData.PASSWORD, pwText.getText().toString());
             DogFootDialog.simplerAlertDialog(getActivity(),
