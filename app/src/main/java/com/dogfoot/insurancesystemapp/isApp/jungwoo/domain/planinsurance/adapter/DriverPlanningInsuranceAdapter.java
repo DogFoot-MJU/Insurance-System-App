@@ -19,6 +19,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
@@ -26,6 +29,10 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.T
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
 import java.util.Vector;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverPlanningInsuranceAdapter.CustomViewHolder>{
 
@@ -59,7 +66,6 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("확인", Integer.toString(position));
                 deleteDialog(position);
             }
         });
@@ -107,7 +113,7 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // db에서 제거
-                        driverItems.get(position).getId(); //이거 db에 전달해서 삭제
+                        removeByDB(driverItems.get(position).getId());
 
                         // view에서 제거
                         remove(position);
@@ -120,6 +126,24 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
                     }
                 });
         builder.show();
+    }
+
+    private void removeByDB(int id) {
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).deleteDriverInsuracne(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

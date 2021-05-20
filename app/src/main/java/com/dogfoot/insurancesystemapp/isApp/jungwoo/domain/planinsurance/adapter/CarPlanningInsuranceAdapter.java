@@ -19,13 +19,22 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.Pagination;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
+import java.util.List;
 import java.util.Vector;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlanningInsuranceAdapter.CustomViewHolder>{
 
@@ -107,10 +116,10 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // db에서 제거
-                        carItems.get(position).getId(); //이거 db에 전달해서 삭제
-
+                       removeByDB(carItems.get(position).getId());
                         // view에서 제거
                         remove(position);
+
                     }
                 });
         builder.setNegativeButton("아니오",
@@ -120,6 +129,24 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
                     }
                 });
         builder.show();
+    }
+
+    private void removeByDB(int id) {
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

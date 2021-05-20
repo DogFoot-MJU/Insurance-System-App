@@ -27,6 +27,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -58,7 +59,7 @@ public interface RestAPI {
     Call<Pagination<List<DriverPlanInsuranceResponse>>> driverPlanInsurance();
     @GET("api/v1/planner/fire/product/development/list?state=PLAN")
     Call<Pagination<List<FirePlanInsuranceResponse>>> firePlanInsurance();
-    @GET("api/v1/planner/driver/product/development/list?state=PLAN")
+    @GET("api/v1/planner/travel/product/development/list?state=PLAN")
     Call<Pagination<List<TravelPlanInsuranceResponse>>> travelPlanInsurance();
 
     // 보험 상품을 상세히 보여준다.
@@ -72,6 +73,15 @@ public interface RestAPI {
     Call<TravelPlanInsuranceResponse> getTravelInsuracneDetailed(@Path("id") int id);
 
     // 기획된 보험 상품을 삭제한다.
+    @DELETE("api/v1/planner/car/product/development/{id}")
+    Call<Void> deleteCarInsuracne(@Path("id") int id);
+
+    @DELETE("api/v1/planner/driver/product/development/{id}")
+    Call<Void> deleteDriverInsuracne(@Path("id") int id);
+    @DELETE("api/v1/planner/fire/product/development/{id}")
+    Call<Void> deleteFireInsurance(@Path("id") int id);
+    @DELETE("api/v1/planner/travel/product/development/{id}")
+    Call<Void> deleteTravelInsuracne(@Path("id") int id);
 
     // 설계된 보험 상품 리스트를 보여준다.
     @GET("api/v1/planner/car/product/development/list?page=0&state=DESIGN")
@@ -80,7 +90,7 @@ public interface RestAPI {
     Call<Pagination<List<DriverDesignInsuranceResponse>>> driverDesignInsurance();
     @GET("api/v1/planner/fire/product/development/list?state=DESIGN")
     Call<Pagination<List<FireDesignInsuranceResponse>>> fireDesignInsurance();
-    @GET("api/v1/planner/driver/product/development/list?state=DESIGN")
+    @GET("api/v1/planner/travel/product/development/list?state=DESIGN")
     Call<Pagination<List<TravelDesignInsuranceResponse>>> travelDesignInsurance();
 
 

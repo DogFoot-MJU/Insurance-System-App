@@ -77,7 +77,7 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
         mBinding.tvDesignPayment2.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState2.setText(bundle.getString("strState"));
         mBinding.tvDesignAcquisition2.setText(bundle.getString("strAcquisition"));
-        mBinding.tvDesignLicense2.setText(bundle.getString("strAcquisition"));
+        mBinding.tvDesignLicense2.setText(bundle.getString("strDriver"));
     }
 
     // ToolBar Settings

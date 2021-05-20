@@ -56,6 +56,9 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
         mBinding.tvDesignName.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState.setText(bundle.getString("strState"));
+        mBinding.tvDesignPrice.setText(bundle.getString("strPrice"));
+        mBinding.tvDesignRelease.setText(bundle.getString("strRelease"));
+        mBinding.tvDesignDistance.setText(bundle.getString("strDistance"));
     }
 
     @Override

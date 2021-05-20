@@ -52,17 +52,17 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_driverInsurancePlanning"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_fireInsurancePlanning"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_travelInsurancePlanning"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/button_insurancePlan"
