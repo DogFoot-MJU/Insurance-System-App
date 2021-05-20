@@ -15,6 +15,7 @@
         android:hardwareAccelerated="true"
         android:theme="@style/Theme.InsuranceSystemApp">
 
+        <activity android:name=".isApp.jungwoo.JungWoo" />
         <activity android:name=".isApp.dongwook.DongWookActivity" />
         <activity android:name=".isApp.dongwook.domain.login.view.LoginActivity"/>
         <activity android:name=".isApp.dongwook.domain.signUp.view.SignUpActivity"/>

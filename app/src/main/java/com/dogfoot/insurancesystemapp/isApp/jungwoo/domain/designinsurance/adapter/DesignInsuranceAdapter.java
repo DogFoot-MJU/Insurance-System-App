@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +18,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.InsurancePlanning;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
 import java.util.Vector;
 
-public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePlanningAdapter.CustomViewHolder>{
+public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsuranceAdapter.CustomViewHolder>{
 
     private Vector<CarPlanInsuranceResponse> arrayList;
     private Context context;
@@ -33,7 +31,7 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
     private long btnPressTime = 0;
 
 
-    public InsuracncePlanningAdapter(Vector<CarPlanInsuranceResponse> arrayList, Context context, FragmentActivity fragmentContext) {
+    public DesignInsuranceAdapter(Vector<CarPlanInsuranceResponse> arrayList, Context context, FragmentActivity fragmentContext) {
         this.arrayList = arrayList;
         this.context = context;
         this.fragmentContext = fragmentContext;
@@ -50,8 +48,9 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
     @Override
     public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
         Log.e("만들어질때숫자", Integer.toString(position));
+        holder.tv_id.setText(arrayList.get(position).getId());
         holder.tv_InsuranceName.setText(arrayList.get(position).getName());
-        holder.tv_insurancePayment.setText(arrayList.get(position).getPayment());
+        holder.tv_InsurancePayment.setText(arrayList.get(position).getPayment());
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +83,10 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
 
             Bundle bundle = new Bundle();
+            bundle.putString("strId", Integer.toString(arrayList.get(position).getId()));
             bundle.putString("strName", arrayList.get(position).getName());
             bundle.putString("strPayment", arrayList.get(position).getPayment());
             bundle.putString("strState", arrayList.get(position).getState());
-            //bundle.putString("strType", arrayList.get(position).getType());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
@@ -138,14 +137,16 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
+        TextView tv_id;
         TextView tv_InsuranceName;
-        TextView tv_insurancePayment;
-        ImageButton ib_clear;
+        TextView tv_InsurancePayment;
+        TextView ib_clear;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_InsuranceName = itemView.findViewById(R.id.tv_insuranceName);
-            this.tv_insurancePayment = itemView.findViewById(R.id.tv_insurancePayment);
+            this.tv_id = itemView.findViewById(R.id.tv_planInsuranceId);
+            this.tv_InsuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
+            this.tv_InsurancePayment = itemView.findViewById(R.id.tv_planInsurancePayment);
             this.ib_clear = itemView.findViewById(R.id.ib_clear);
         }
     }

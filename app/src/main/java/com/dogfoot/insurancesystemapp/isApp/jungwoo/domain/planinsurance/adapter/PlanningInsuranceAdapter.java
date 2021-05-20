@@ -19,28 +19,21 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.InsurancePlanning;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
-import java.util.List;
 import java.util.Vector;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsuranceAdapter.CustomViewHolder>{
 
-public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePlanningAdapter.CustomViewHolder>{
-
-    private Vector<InsurancePlanning> arrayList;
+    private Vector<CarPlanInsuranceResponse> arrayList;
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
 
 
-    public InsuracncePlanningAdapter(Vector<InsurancePlanning> arrayList, Context context, FragmentActivity fragmentContext) {
-        this.arrayList = arrayList;
+    public PlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+        this.arrayList = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
     }
@@ -54,8 +47,8 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        Log.e("만들어질때숫자", Integer.toString(position));
+    public void onBindViewHolder(@NonNull final PlanningInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
+        holder.tv_insuranceId.setText(arrayList.get(position).getId());
         holder.tv_InsuranceName.setText(arrayList.get(position).getName());
         holder.tv_insurancePayment.setText(arrayList.get(position).getPayment());
         holder.itemView.setTag(position);
@@ -88,27 +81,11 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
             return;
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
-
             Bundle bundle = new Bundle();
+            bundle.putString("strId", Integer.toString(arrayList.get(position).getId()));
             bundle.putString("strName", arrayList.get(position).getName());
             bundle.putString("strPayment", arrayList.get(position).getPayment());
             bundle.putString("strState", arrayList.get(position).getState());
-            bundle.putString("strType", arrayList.get(position).getType());
-            //arrayList.get(position).getId();
-
-//            String token;
-//            RetrofitTool.getAPIWithAuthorizationToken(token).getCarInsuracneDetailed(arrayList.get(position).getId()).enqueue(new Callback<CarPlanInsuranceResponse>() {
-//                @Override
-//                public void onResponse(Call<CarPlanInsuranceResponse> call, Response<CarPlanInsuranceResponse> response) {
-//                    response.body();
-//                }
-//
-//                @Override
-//                public void onFailure(Call<CarPlanInsuranceResponse> call, Throwable t) {
-//
-//                }
-//            });
-
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
@@ -159,15 +136,21 @@ public class InsuracncePlanningAdapter extends RecyclerView.Adapter<InsuracncePl
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
+        TextView tv_insuranceId;
         TextView tv_InsuranceName;
         TextView tv_insurancePayment;
         ImageButton ib_clear;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_InsuranceName = itemView.findViewById(R.id.tv_insuranceName);
-            this.tv_insurancePayment = itemView.findViewById(R.id.tv_insurancePayment);
+            this.tv_insuranceId = itemView.findViewById(R.id.tv_planInsuranceId);
+            this.tv_InsuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
+            this.tv_insurancePayment = itemView.findViewById(R.id.tv_planInsurancePayment);
             this.ib_clear = itemView.findViewById(R.id.ib_clear);
         }
+    }
+
+    public void addItem(Vector<CarPlanInsuranceResponse> arrayList){
+        this.arrayList = arrayList;
     }
 }

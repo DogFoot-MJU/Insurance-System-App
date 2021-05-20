@@ -1,74 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/custom_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/ib_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="45dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:src="@drawable/ic_baseline_clear_24"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintStart_toEndOf="@+id/tv_planInsurancePayment"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textColor="#9FA5AA"
             android:text="삭제"
+            android:textColor="#9FA5AA"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_paymentInfo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_number"
+            android:id="@+id/tv_planInsuranceId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:textColor="#9FA5AA"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="24dp"
+            android:textColor="#9FA5AA"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_planInsuranceName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/tv_insuranceName"
+            android:id="@+id/tv_planInsuranceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#9FA5AA"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_insurancePayment"
+            android:textColor="#9FA5AA"
+            app:layout_constraintEnd_toStartOf="@+id/tv_planInsurancePayment"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/tv_insuranceNameInfo" />
 
         <TextView
-            android:id="@+id/tv_insurancePayment"
+            android:id="@+id/tv_planInsurancePayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#9FA5AA"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="120dp"
+            android:textColor="#9FA5AA"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_insuranceName"
+            app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceName"
             app:layout_constraintTop_toBottomOf="@+id/tv_paymentInfo" />
 
         <TextView
@@ -101,12 +105,11 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginEnd="86dp"
             android:text="지불금"
             android:textColor="#9FA5AA"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView6"
             app:layout_constraintStart_toEndOf="@+id/tv_insuranceNameInfo"
             app:layout_constraintTop_toTopOf="parent" />
 
