@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,21 +19,22 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignDriverInsuranceDetailedFragment;
 
 import java.util.Vector;
 
-public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsuranceAdapter.CustomViewHolder>{
+public class DriverDesignInsuranceAdapter extends RecyclerView.Adapter<DriverDesignInsuranceAdapter.CustomViewHolder>{
 
-    private Vector<CarPlanInsuranceResponse> arrayList;
+    Vector<DriverDesignInsuranceResponse> driverItems;
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
 
 
-    public PlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
-        this.arrayList = new Vector<>();
+    public DriverDesignInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+        this.driverItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
     }
@@ -47,10 +48,10 @@ public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsur
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final PlanningInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(arrayList.get(position).getId());
-        holder.tv_InsuranceName.setText(arrayList.get(position).getName());
-        holder.tv_insurancePayment.setText(arrayList.get(position).getPayment());
+    public void onBindViewHolder(@NonNull final DriverDesignInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
+        holder.tv_insuranceId.setText(Integer.toString(driverItems.get(position).getId()));
+        holder.tv_InsuranceName.setText(driverItems.get(position).getName());
+        holder.tv_insurancePayment.setText(driverItems.get(position).getPayment());
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -82,15 +83,17 @@ public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsur
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(arrayList.get(position).getId()));
-            bundle.putString("strName", arrayList.get(position).getName());
-            bundle.putString("strPayment", arrayList.get(position).getPayment());
-            bundle.putString("strState", arrayList.get(position).getState());
+            bundle.putString("strId", Integer.toString(driverItems.get(position).getId()));
+            bundle.putString("strName", driverItems.get(position).getName());
+            bundle.putString("strPayment", driverItems.get(position).getPayment());
+            bundle.putString("strState", driverItems.get(position).getState());
+            bundle.putString("strAcquisition", driverItems.get(position).getDate_of_license_acquisition());
+            bundle.putString("strDriver", driverItems.get(position).getDriver_license());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
-            planInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            DesignDriverInsuranceDetailedFragment designCarInsuranceDetailedFragment = DesignDriverInsuranceDetailedFragment.newInstance();
+            designCarInsuranceDetailedFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, designCarInsuranceDetailedFragment).commit();
 
         }
     }
@@ -104,7 +107,7 @@ public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsur
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // db에서 제거
-                        arrayList.get(position).getId(); //이거 db에 전달해서 삭제
+                        driverItems.get(position).getId(); //이거 db에 전달해서 삭제
 
                         // view에서 제거
                         remove(position);
@@ -121,12 +124,12 @@ public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsur
 
     @Override
     public int getItemCount() {
-        return (null != arrayList ? arrayList.size() : 0);
+        return (null != driverItems ? driverItems.size() : 0);
     }
 
     public void remove(int position){
         try {
-            arrayList.remove(position);
+            driverItems.remove(position);
             notifyItemRemoved(position);
             notifyDataSetChanged();
         } catch (IndexOutOfBoundsException ex) {
@@ -150,7 +153,7 @@ public class PlanningInsuranceAdapter extends RecyclerView.Adapter<PlanningInsur
         }
     }
 
-    public void addItem(Vector<CarPlanInsuranceResponse> arrayList){
-        this.arrayList = arrayList;
+    public void addDriverItems(Vector<DriverDesignInsuranceResponse> driverItems){
+        this.driverItems = driverItems;
     }
 }

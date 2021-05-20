@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,20 +20,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
 import java.util.Vector;
 
-public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsuranceAdapter.CustomViewHolder>{
+public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlanningInsuranceAdapter.CustomViewHolder>{
 
-    private Vector<CarPlanInsuranceResponse> arrayList;
+    private Vector<CarPlanInsuranceResponse> carItems;
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
 
 
-    public DesignInsuranceAdapter(Vector<CarPlanInsuranceResponse> arrayList, Context context, FragmentActivity fragmentContext) {
-        this.arrayList = arrayList;
+    public CarPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+        this.carItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
     }
@@ -46,11 +50,10 @@ public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsurance
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        Log.e("만들어질때숫자", Integer.toString(position));
-        holder.tv_id.setText(arrayList.get(position).getId());
-        holder.tv_InsuranceName.setText(arrayList.get(position).getName());
-        holder.tv_InsurancePayment.setText(arrayList.get(position).getPayment());
+    public void onBindViewHolder(@NonNull final CarPlanningInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
+        holder.tv_insuranceId.setText(Integer.toString(carItems.get(position).getId()));
+        holder.tv_InsuranceName.setText(carItems.get(position).getName());
+        holder.tv_insurancePayment.setText(carItems.get(position).getPayment());
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -81,12 +84,11 @@ public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsurance
             return;
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
-
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(arrayList.get(position).getId()));
-            bundle.putString("strName", arrayList.get(position).getName());
-            bundle.putString("strPayment", arrayList.get(position).getPayment());
-            bundle.putString("strState", arrayList.get(position).getState());
+            bundle.putString("strId", Integer.toString(carItems.get(position).getId()));
+            bundle.putString("strName", carItems.get(position).getName());
+            bundle.putString("strPayment", carItems.get(position).getPayment());
+            bundle.putString("strState", carItems.get(position).getState());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
@@ -105,7 +107,7 @@ public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsurance
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // db에서 제거
-                        arrayList.get(position).getId(); //이거 db에 전달해서 삭제
+                        carItems.get(position).getId(); //이거 db에 전달해서 삭제
 
                         // view에서 제거
                         remove(position);
@@ -122,12 +124,12 @@ public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsurance
 
     @Override
     public int getItemCount() {
-        return (null != arrayList ? arrayList.size() : 0);
+        return (null != carItems ? carItems.size() : 0);
     }
 
     public void remove(int position){
         try {
-            arrayList.remove(position);
+            carItems.remove(position);
             notifyItemRemoved(position);
             notifyDataSetChanged();
         } catch (IndexOutOfBoundsException ex) {
@@ -137,17 +139,21 @@ public class DesignInsuranceAdapter extends RecyclerView.Adapter<DesignInsurance
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_id;
+        TextView tv_insuranceId;
         TextView tv_InsuranceName;
-        TextView tv_InsurancePayment;
-        TextView ib_clear;
+        TextView tv_insurancePayment;
+        ImageButton ib_clear;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_id = itemView.findViewById(R.id.tv_planInsuranceId);
+            this.tv_insuranceId = itemView.findViewById(R.id.tv_planInsuranceId);
             this.tv_InsuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
-            this.tv_InsurancePayment = itemView.findViewById(R.id.tv_planInsurancePayment);
+            this.tv_insurancePayment = itemView.findViewById(R.id.tv_planInsurancePayment);
             this.ib_clear = itemView.findViewById(R.id.ib_clear);
         }
+    }
+
+    public void addCarItems(Vector<CarPlanInsuranceResponse> carItems){
+        this.carItems = carItems;
     }
 }

@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,12 +19,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceFireDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceTravelDetailedBinding;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 
-public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
+public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragment {
 
-    private FragmentPlanInsuranceDetailedBinding mBinding;
+    private FragmentDesignInsuranceTravelDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
 
@@ -37,7 +39,7 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentPlanInsuranceDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentDesignInsuranceTravelDetailedBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
@@ -46,6 +48,14 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
         initData();
 
         return view;
+    }
+
+    private void initData() {
+        Bundle bundle = getArguments();
+        mBinding.tvDesignId4.setText(bundle.getString("strId"));
+        mBinding.tvDesignName4.setText(bundle.getString("strName"));
+        mBinding.tvDesignPayment4.setText(bundle.getString("strPayment"));
+        mBinding.tvDesignState4.setText(bundle.getString("strState"));
     }
 
     @Override
@@ -68,18 +78,9 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
 
     }
 
-    private void initData() {
-        Bundle bundle = getArguments();
-        mBinding.tvPlanInsuranceIdResult.setText(bundle.getString("strId"));
-        mBinding.tvPlanInsuranceNameResult.setText(bundle.getString("strName"));
-        mBinding.tvPlanInsurancePaymentResult.setText(bundle.getString("strPayment"));
-        mBinding.tvPlanInsuranceStateResult.setText(bundle.getString("strState"));
-    }
-
-
     // ToolBar Settings
     private void initToolbar() {
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mBinding.tbPlanInsuranceToolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mBinding.tbDesignTravelInsuranceToolbar);
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
@@ -95,7 +96,7 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                replaceFragment(PlanInsuranceFirstFragment.newInstance());
+                replaceFragment(DesignInsuranceFirstFragment.newInstance());
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -107,7 +108,7 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static PlanInsuranceDetailedFragment newInstance() {
-        return new PlanInsuranceDetailedFragment();
+    public static DesignTravelInsuranceDetailedFragment newInstance() {
+        return new DesignTravelInsuranceDetailedFragment();
     }
 }

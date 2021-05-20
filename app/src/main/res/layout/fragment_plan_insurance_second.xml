@@ -11,9 +11,11 @@
         android:id="@+id/tb_planInsuranceToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="535dp"
         android:background="@drawable/custom_border"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,95 +38,76 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:text="보험이름"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/et_planInsuranceNameResult"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_planInsuranceToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/tv_insuranceNameCar"
+    <EditText
+        android:id="@+id/et_planInsuranceNameWrite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="TextView"
+        android:layout_marginTop="40dp"
+        android:hint="보험이름을 작성해주세요."
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-        app:layout_constraintTop_toBottomOf="@+id/tb_planInsuranceToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/tv_planInsurancePaymentInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
         android:text="지불금"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/et_planInsurancePaymentResult"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceNameInfo" />
 
-    <TextView
-        android:id="@+id/textView10"
+
+    <EditText
+        android:id="@+id/et_planInsurancePaymentWrite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:hint="지불금을 작성해주세요."
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toEndOf="@+id/tv_planInsurancePaymentInfo"
-        app:layout_constraintTop_toBottomOf="@+id/tv_insuranceNameCar" />
+        app:layout_constraintTop_toBottomOf="@+id/et_planInsuranceNameWrite" />
 
     <TextView
-        android:id="@+id/tv_planInsuranceStatusInfo"
+        android:id="@+id/tv_planInsuranceIdInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:text="상태"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_planInsurancePaymentInfo" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceStatusInfo"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/tv_planInsuranceTypeInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:text="보험 종류"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_insuranceSelect"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStatusInfo" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_planInsurancePaymentInfo" />
 
     <Spinner
         android:id="@+id/spinner_insuranceSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:entries="@array/insurance_select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.389"
-        app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceTypeInfo"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceIdInfo"
+        app:layout_constraintTop_toBottomOf="@+id/et_planInsurancePaymentWrite" />
 
     <TextView
         android:id="@+id/textView7"
@@ -132,13 +115,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="기획할 보험의 내용을 작성해주세요."
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tb_planInsuranceToolbar" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_planInsurance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
