@@ -22,7 +22,7 @@ public class MainViewModelTool implements Observer {
         private final ArrayList<MainEntity> mainEntities;
 
     // Constructor
-    public MainViewModelTool(Activity activity, ViewModelToolCallback callback) {
+    public MainViewModelTool(Activity activity, ViewModelStoreOwner viewModelStoreOwner, ViewModelToolCallback callback) {
         // Create Component
         this.mainEntities = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class MainViewModelTool implements Observer {
         this.activity=activity;
 
         // Associate Model
-        this.model = new ViewModelProvider((ViewModelStoreOwner) activity,
+        this.model = new ViewModelProvider(viewModelStoreOwner,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(activity.getApplication())).get(MainViewModel.class);
         this.callback=callback;
     }

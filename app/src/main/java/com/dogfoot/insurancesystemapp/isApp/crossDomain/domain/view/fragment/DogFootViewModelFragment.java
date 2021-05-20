@@ -34,6 +34,9 @@ public abstract class DogFootViewModelFragment extends MainViewModelFragment {
         super.onPause();
         DogFootEntityTool.save(this.viewModelTool, this.entity);
     }
+    public void save(){
+        DogFootEntityTool.save(this.viewModelTool, this.entity);
+    }
     @Override
     public void viewModelDataUpdated() {
         ArrayList<DogFootEntity> dogFootEntityArray = DogFootEntityTool.convertMainEntityArrayToDomainArray(this.viewModelTool.getMainEntities());

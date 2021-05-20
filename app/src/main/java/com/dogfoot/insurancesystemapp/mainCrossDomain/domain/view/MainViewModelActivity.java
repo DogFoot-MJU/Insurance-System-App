@@ -16,7 +16,7 @@ public abstract class MainViewModelActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         // Create Component
-        this.viewModelTool = new MainViewModelTool(this, this);
+        this.viewModelTool = new MainViewModelTool(this,this, this);
     }
     @Override
     protected void onResume() {
