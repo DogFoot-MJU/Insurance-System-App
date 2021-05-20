@@ -33,35 +33,35 @@
         android:id="@+id/tv_planInsuranceNameInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="보험이름"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_insuranceNameCar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_planInsuranceToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceTypeInfo" />
 
     <TextView
         android:id="@+id/tv_insuranceNameCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-        app:layout_constraintTop_toBottomOf="@+id/tb_planInsuranceToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/tv_planInsurancePaymentInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="지불금"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceNameInfo" />
 
@@ -81,11 +81,11 @@
         android:id="@+id/tv_planInsuranceStatusInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="상태"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_planInsurancePaymentInfo" />
 
@@ -104,14 +104,14 @@
     <TextView
         android:id="@+id/tv_planInsuranceTypeInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_height="22dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="보험 종류"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStatusInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView8"
@@ -121,9 +121,8 @@
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceTypeInfo"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView9"

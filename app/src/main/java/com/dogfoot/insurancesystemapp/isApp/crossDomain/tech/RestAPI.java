@@ -9,6 +9,7 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpR
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.Pagination;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelInsuranceResponse;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public interface RestAPI {
     @POST("signup")
     Call<SignUpResponse> signup(@Body SignUpRequest signUpRequest);
 
-    @GET("api/v1/planner/car/product/development/list?state=PLAN")
-    Call<List<CarPlanInsuranceResponse>> carPlanInsurance();
+    @GET("api/v1/planner/car/product/development/list?page=0&state=PLAN")
+    Call<Pagination<List<CarPlanInsuranceResponse>>> carPlanInsurance();
     @GET("api/v1/planner/car/driver/development/list?state=PLAN")
     Call<List<DriverPlanInsuranceResponse>> driverPlanInsurance();
     @GET("api/v1/planner/car/fire/development/list?state=PLAN")

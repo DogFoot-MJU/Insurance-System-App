@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.dogfoot.insurancesystemapp.R;
 
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.DogFootDialog;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
@@ -20,6 +21,7 @@ import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofit
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitTool;
 
 
+import java.util.Map;
 
 import retrofit2.Response;
 
@@ -58,10 +60,18 @@ public class LoginFragment extends DogFootViewModelFragment {
     private class LoginRequestCallback implements MainRetrofitCallback<LoginRequest> {
         @Override
         public void onSuccessResponse(Response<LoginRequest> response) {
+
             dataset.put(DogFootEntity.EDogFootData.AUTHORIZATION, response.headers().get("Authorization"));
             Log.d("디버그",dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
             dataset.put(DogFootEntity.EDogFootData.EMAIL, idText.getText().toString());
             dataset.put(DogFootEntity.EDogFootData.PASSWORD, pwText.getText().toString());
+
+            Constant constant = Constant.getInstance();
+            Map<DogFootEntity.EDogFootData, String> map = constant.getDataset();
+            map.put(DogFootEntity.EDogFootData.AUTHORIZATION, response.headers().get("Authorization"));
+            map.put(DogFootEntity.EDogFootData.EMAIL, idText.getText().toString());
+            map.put(DogFootEntity.EDogFootData.PASSWORD, pwText.getText().toString());
+
             DogFootDialog.simplerAlertDialog(getActivity(),
                     R.string.login_success_dialog, R.string.login_success_content_dialog,
                     (dialog, which) -> startMainActivity()

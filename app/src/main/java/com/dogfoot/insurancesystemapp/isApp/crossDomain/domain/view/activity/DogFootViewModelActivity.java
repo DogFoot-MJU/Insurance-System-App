@@ -15,7 +15,7 @@ public abstract class DogFootViewModelActivity extends MainViewModelActivity {
 
     // Associate
         // Model
-        protected DogFootEntity entity;
+    protected DogFootEntity entity;
         protected Map<DogFootEntity.EDogFootData, String> dataset;
         protected ArrayList<String> searchWords;
 

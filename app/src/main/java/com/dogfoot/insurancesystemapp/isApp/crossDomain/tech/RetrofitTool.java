@@ -12,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitTool {
 
     private static final String BASE_URL = Constant.URL;
-
     public static RestAPI getAPI(){
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)

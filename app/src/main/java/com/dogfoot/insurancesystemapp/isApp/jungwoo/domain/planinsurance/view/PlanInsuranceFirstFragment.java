@@ -3,7 +3,6 @@ package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,18 +23,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceFirstBinding;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.InsuracncePlanningAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.InsurancePlanning;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.PlanningInsuranceAdapter;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.Pagination;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Vector;
 
 import retrofit2.Call;
@@ -45,13 +42,12 @@ import retrofit2.Response;
 public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
 
     private FragmentPlanInsuranceFirstBinding mBinding;
-    private InsuracncePlanningAdapter insuracncePlanningAdapter;
+    private PlanningInsuranceAdapter planningInsuranceAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private Context context;
     private FragmentActivity fragmentContext;
 
-    private Vector<InsurancePlanning> insuarancePlanningList;
     Vector<CarPlanInsuranceResponse> items;
 
     @Override
@@ -73,39 +69,38 @@ public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
         init();
 
         recyclerView = mBinding.rvInsurancePlanning;
-        insuarancePlanningList = new Vector<>();
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
+        planningInsuranceAdapter = new PlanningInsuranceAdapter(context, fragmentContext);
+        planningInsuranceAdapter.notifyDataSetChanged(); // 새로고침 해준다. add나 modify후 새로고침을 해야함
+        recyclerView.setAdapter(planningInsuranceAdapter);
 
-//        String token = this.dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION);
-//        RetrofitTool.getAPIWithAuthorizationToken(token).carPlanInsurance().enqueue(new Callback<List<CarPlanInsuranceResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<CarPlanInsuranceResponse>> call, Response<List<CarPlanInsuranceResponse>> response) {
-//                if(response.isSuccessful()){
-//                    items = new Vector<CarPlanInsuranceResponse>(response.body());
-//                } else{
-//                    Log.e("서버오류", "오류");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<CarPlanInsuranceResponse>> call, Throwable t) {
-//
-//            }
-//        });
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).carPlanInsurance()
+                .enqueue(new Callback<Pagination<List<CarPlanInsuranceResponse>>>() {
+                    @Override
+                    public void onResponse(Call<Pagination<List<CarPlanInsuranceResponse>>> call,
+                                           Response<Pagination<List<CarPlanInsuranceResponse>>> response) {
+                        if(response.isSuccessful()){
+                            items = new Vector<>();
+                            for(CarPlanInsuranceResponse res: response.body().getData()){
+                                items.add(res);
+                            }
+                            planningInsuranceAdapter.addItem(items);
+                            planningInsuranceAdapter.notifyDataSetChanged();
+                        } else{
+                            System.out.println(response);
+                            System.out.println(response.errorBody());
+                            System.out.println(response.body());
+                        }
+                    }
 
-        // 서버에서 ArrayList로 값을 가져오면 insuarancePlanningList에 넣으면 됨
-//        InsurancePlanning insurancePlanning = new InsurancePlanning(1, "자동차보험1", "1000", "state", "Fire");
-//        InsurancePlanning insurancePlanning2 = new InsurancePlanning(2, "운전자보험2", "3000", "state", "car");
-//        for(int i=0; i<10; i++) {
-//            insuarancePlanningList.add(insurancePlanning);
-//            insuarancePlanningList.add(insurancePlanning2);
-//        }
-        //insuarancePlanningList = items;
+                    @Override
+                    public void onFailure(Call<Pagination<List<CarPlanInsuranceResponse>>> call, Throwable t) {
+                    }
+                });
 
-        insuracncePlanningAdapter = new InsuracncePlanningAdapter(items, context, fragmentContext);
-        insuracncePlanningAdapter.notifyDataSetChanged(); // 새로고침 해준다. add나 modify후 새로고침을 해야함
-        recyclerView.setAdapter(insuracncePlanningAdapter);
 
         return view;
     }
