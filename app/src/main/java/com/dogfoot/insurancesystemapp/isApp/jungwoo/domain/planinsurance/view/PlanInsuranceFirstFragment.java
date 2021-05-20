@@ -71,6 +71,7 @@ public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
         recyclerView = mBinding.rvInsurancePlanning;
         linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         planningInsuranceAdapter = new PlanningInsuranceAdapter(context, fragmentContext);
         planningInsuranceAdapter.notifyDataSetChanged(); // 새로고침 해준다. add나 modify후 새로고침을 해야함
         recyclerView.setAdapter(planningInsuranceAdapter);
@@ -100,7 +101,6 @@ public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
                     public void onFailure(Call<Pagination<List<CarPlanInsuranceResponse>>> call, Throwable t) {
                     }
                 });
-
 
         return view;
     }

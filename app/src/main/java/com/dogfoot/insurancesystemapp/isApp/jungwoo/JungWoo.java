@@ -51,7 +51,6 @@ public class JungWoo extends DogFootViewModelActivity {
         setContentView(view);
 
         mainFragment = new HomeFragment();
-        Log.d("디버그",this.dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
 
         //initToolbar();
         mainInit();
@@ -350,6 +349,7 @@ public class JungWoo extends DogFootViewModelActivity {
 
     @Override
     protected void initializeView() {
+        Log.d("디버그",dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
 
     }
 

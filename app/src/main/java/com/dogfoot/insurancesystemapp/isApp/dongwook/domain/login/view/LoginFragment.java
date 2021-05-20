@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.dogfoot.insurancesystemapp.R;
 
+import com.dogfoot.insurancesystemapp.isApp.MainActivity;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.DogFootDialog;
@@ -17,6 +18,7 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginReq
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
+import com.dogfoot.insurancesystemapp.mainCrossDomain.domain.model.room.entity.MainEntity;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitCallback;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitTool;
 
@@ -49,7 +51,16 @@ public class LoginFragment extends DogFootViewModelFragment {
 
     @Override
     protected void dogFootEntityUpdated() {
+        this.checkLogined();
+    }
 
+    private void checkLogined() {
+        if(this.dataset.containsKey(DogFootEntity.EDogFootData.AUTHORIZATION)){
+            DogFootDialog.simplerAlertDialog(this.getActivity(),
+                    R.string.login_already_signed_dialog, R.string.login_already_signed_content_dialog,
+                    (dialog, which) -> startMainActivity()
+            );
+        }
     }
 
     private void login(){
@@ -62,9 +73,12 @@ public class LoginFragment extends DogFootViewModelFragment {
         public void onSuccessResponse(Response<LoginRequest> response) {
 
             dataset.put(DogFootEntity.EDogFootData.AUTHORIZATION, response.headers().get("Authorization"));
+
             Log.d("디버그",dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
             dataset.put(DogFootEntity.EDogFootData.EMAIL, idText.getText().toString());
             dataset.put(DogFootEntity.EDogFootData.PASSWORD, pwText.getText().toString());
+
+
 
             Constant constant = Constant.getInstance();
             Map<DogFootEntity.EDogFootData, String> map = constant.getDataset();
@@ -90,7 +104,9 @@ public class LoginFragment extends DogFootViewModelFragment {
         }
     }
 
-    public void startMainActivity() { this.startActivity(new Intent(this.getContext(), JungWoo.class)); }
+    public void startMainActivity() {
+
+        this.startActivity(new Intent(this.getContext(), MainActivity.class)); }
 
 
 }

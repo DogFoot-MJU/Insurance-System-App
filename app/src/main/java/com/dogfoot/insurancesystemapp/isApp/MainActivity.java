@@ -1,9 +1,11 @@
 package com.dogfoot.insurancesystemapp.isApp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
@@ -23,8 +25,11 @@ public class MainActivity extends DogFootViewModelActivity {
         this.findViewById(R.id.btn_dongWook).setOnClickListener(v -> this.startActivity(DongWookActivity.class));
         this.findViewById(R.id.btn_jungWoo).setOnClickListener(v -> this.startActivity(JungWoo.class));
 
+
+
     }
-    @Override protected void onDestroy() { super.onDestroy();  }
+    @Override protected void onDestroy() { super.onDestroy();
+        dataset.remove(DogFootEntity.EDogFootData.AUTHORIZATION);}
 
     @Override
     public void dogFootEntityUpdated() {
@@ -44,6 +49,7 @@ public class MainActivity extends DogFootViewModelActivity {
 
         // 2초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()(앱 종료)
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            dataset.remove(DogFootEntity.EDogFootData.AUTHORIZATION);
             finish();
         }
     }

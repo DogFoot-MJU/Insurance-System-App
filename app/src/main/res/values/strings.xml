@@ -30,6 +30,7 @@
     <string name="dongWook_title">동욱 기능 테스트</string>
     <string name="dongWook_btn_login">로그인</string>
     <string name="dongWook_btn_signup">회원 가입</string>
+    <string name="dongWook_btn_logout">로그 아웃</string>
 
     <!-- 로그인 프래그먼트 !-->
     <string name="id_hint">아이디 입력</string>
@@ -73,5 +74,12 @@
 
     <string name="register_resident_maintext">주민등록번호를 알려주세요</string>
     <string name="register_resident_hint">당신의 주민등록번호를 알려주세요!</string>
+
+    <!-- 고객 상담 액티비티 !-->
+    <string name="customer_consulting_main">고객 상담</string>
+    <string name="customer_consulting_input">상담 신청</string>
+    <string name="customer_consulting_list">상담 리스트</string>
+    <string name="customer_consulting_result">상담 결과</string>
+
 
 </resources>

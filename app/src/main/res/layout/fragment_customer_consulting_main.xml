@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".isApp.dongwook.DongWookActivity">
+    tools:context=".isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainFragment">
 
     <TextView
-        android:id="@+id/DongWookActivity_TitleTextView"
+        android:id="@+id/customerConsultingMainFragment_TitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="@string/dongWook_title"
+        android:text="@string/customer_consulting_main"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -19,43 +19,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/dongWookActivity_loginButton"
+        android:id="@+id/customerConsultingMainFragment_inputButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="@string/dongWook_btn_login"
+        android:text="@string/customer_consulting_input"
         android:backgroundTint="#e9e49e"
-        app:layout_constraintTop_toBottomOf="@+id/DongWookActivity_TitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/customerConsultingMainFragment_TitleTextView"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/dongWookActivity_signUpButton"
+        android:id="@+id/customerConsultingMainFragment_listButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="@string/dongWook_btn_signup"
+        android:text="@string/customer_consulting_list"
         android:backgroundTint="#e9e49e"
-        app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/customerConsultingMainFragment_inputButton"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/dongWookActivity_logoutButton"
+        android:id="@+id/customerConsultingMainFragment_resultButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="@string/dongWook_btn_logout"
+        android:text="@string/customer_consulting_result"
         android:backgroundTint="#e9e49e"
-        app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_signUpButton"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
-        android:id="@+id/dongWookActivity_customerConsultingButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="@string/customer_consulting_main"
-        android:backgroundTint="#e9e49e"
-        app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_logoutButton"
+        app:layout_constraintTop_toBottomOf="@+id/customerConsultingMainFragment_listButton"
         tools:layout_editor_absoluteX="0dp" />
 
 

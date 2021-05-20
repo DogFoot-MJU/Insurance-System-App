@@ -3,6 +3,9 @@ package com.dogfoot.insurancesystemapp.isApp.crossDomain.tech;
 
 
 
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputRequest;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingInputFragment;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpResponse;
@@ -25,6 +28,9 @@ public interface RestAPI {
     Call<LoginRequest> login(@Body LoginRequest loginRequest);
     @POST("signup")
     Call<SignUpResponse> signup(@Body SignUpRequest signUpRequest);
+    @POST("api/v1/user/consulting")
+    Call<CustomerConsultingInputResponse> customerConsultingInput(@Body CustomerConsultingInputRequest customerConsultingInputRequest);
+
 
     @GET("api/v1/planner/car/product/development/list?page=0&state=PLAN")
     Call<Pagination<List<CarPlanInsuranceResponse>>> carPlanInsurance();

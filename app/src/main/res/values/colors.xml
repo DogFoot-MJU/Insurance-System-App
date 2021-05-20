@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="dogFoot_yellow">#FACE89</color>
+    <color name="dogFoot_gold">#E9E49E</color>
+
 </resources>
