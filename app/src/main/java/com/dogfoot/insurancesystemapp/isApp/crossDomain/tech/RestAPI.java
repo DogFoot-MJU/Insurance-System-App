@@ -9,9 +9,13 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.v
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
@@ -30,6 +34,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RestAPI {
@@ -62,20 +67,9 @@ public interface RestAPI {
     @GET("api/v1/planner/travel/product/development/list?state=PLAN")
     Call<Pagination<List<TravelPlanInsuranceResponse>>> travelPlanInsurance();
 
-    // 보험 상품을 상세히 보여준다.
-    @GET("api/v1/planner/car/product/development/{id}")
-    Call<CarPlanInsuranceResponse> getCarInsuracneDetailed(@Path("id") int id);
-    @GET("api/v1/planner/driver/product/development/{id}")
-    Call<DriverPlanInsuranceResponse> getDriverInsuracneDetailed(@Path("id") int id);
-    @GET("api/v1/planner/fire/product/development/{id}")
-    Call<FirePlanInsuranceResponse> getFireInsuracneDetailed(@Path("id") int id);
-    @GET("api/v1/planner/travel/product/development/{id}")
-    Call<TravelPlanInsuranceResponse> getTravelInsuracneDetailed(@Path("id") int id);
-
     // 기획된 보험 상품을 삭제한다.
     @DELETE("api/v1/planner/car/product/development/{id}")
     Call<Void> deleteCarInsuracne(@Path("id") int id);
-
     @DELETE("api/v1/planner/driver/product/development/{id}")
     Call<Void> deleteDriverInsuracne(@Path("id") int id);
     @DELETE("api/v1/planner/fire/product/development/{id}")
@@ -92,6 +86,26 @@ public interface RestAPI {
     Call<Pagination<List<FireDesignInsuranceResponse>>> fireDesignInsurance();
     @GET("api/v1/planner/travel/product/development/list?state=DESIGN")
     Call<Pagination<List<TravelDesignInsuranceResponse>>> travelDesignInsurance();
+
+    // 보험상품을 설계한다.
+    @PUT("api/v1/planner/car/product/development/design")
+    Call<CarDesignInsuranceResponse> DesignCarInsurance(@Body CarDesignInsuranceRequest CarDesignInsuranceRequest);
+    @PUT("api/v1/planner/driver/product/development/design")
+    Call<DriverDesignInsuranceResponse> DesignDriverInsurance(@Body DriverDesignInsuranceRequest driverDesignInsuranceRequest);
+    @PUT("api/v1/planner/fire/product/development/design")
+    Call<FireDesignInsuranceResponse> DesignFireInsurance(@Body FireDesignInsuranceRequest fireDesignInsuranceRequest);
+    @PUT("api/v1/planner/travel/product/development/design")
+    Call<TravelDesignInsuranceResponse> DesignTravelInsurance(@Body TravelDesignInsuranceRequest travelDesignInsuranceRequest);
+
+    // 보험 상품을 상세히 보여준다.
+    @GET("api/v1/planner/car/product/development/{id}")
+    Call<CarDesignInsuranceResponse> getCarInsuracneDetailed(@Path("id") int id);
+    @GET("api/v1/planner/driver/product/development/{id}")
+    Call<DriverDesignInsuranceResponse> getDriverInsuracneDetailed(@Path("id") int id);
+    @GET("api/v1/planner/fire/product/development/{id}")
+    Call<FireDesignInsuranceResponse> getFireInsuracneDetailed(@Path("id") int id);
+    @GET("api/v1/planner/travel/product/development/{id}")
+    Call<TravelDesignInsuranceResponse> getTravelInsuracneDetailed(@Path("id") int id);
 
 
 

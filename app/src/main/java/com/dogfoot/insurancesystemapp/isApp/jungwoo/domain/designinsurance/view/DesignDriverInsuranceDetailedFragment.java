@@ -21,8 +21,17 @@ import androidx.fragment.app.FragmentTransaction;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceCarDetailedBinding;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceDriverDetailedBinding;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragment {
 
@@ -76,8 +85,23 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
         mBinding.tvDesignName2.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment2.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState2.setText(bundle.getString("strState"));
-        mBinding.tvDesignAcquisition2.setText(bundle.getString("strAcquisition"));
-        mBinding.tvDesignLicense2.setText(bundle.getString("strDriver"));
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token)
+                .getDriverInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<DriverDesignInsuranceResponse>() {
+            @Override
+            public void onResponse(Call<DriverDesignInsuranceResponse> call,
+                                   Response<DriverDesignInsuranceResponse> response) {
+                if(response.isSuccessful()){
+                    mBinding.tvDesignAcquisition2.setText(response.body().getDate_of_license_acquisition());
+                    mBinding.tvDesignLicense2.setText(response.body().getDriver_license());
+                } else{
+                }
+            }
+            @Override
+            public void onFailure(Call<DriverDesignInsuranceResponse> call, Throwable t) {
+            }
+        });
     }
 
     // ToolBar Settings

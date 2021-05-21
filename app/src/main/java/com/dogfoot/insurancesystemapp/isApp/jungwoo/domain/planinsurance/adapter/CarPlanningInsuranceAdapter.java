@@ -22,6 +22,7 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
@@ -42,12 +43,14 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
+    private boolean forDesign = false;
 
 
-    public CarPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+    public CarPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean forDesign) {
         this.carItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
+        this.forDesign = forDesign;
     }
 
     @NonNull
@@ -78,7 +81,7 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
             public void onClick(View view) {
                 // 아이디 서버에 전해줌
                 doubleClickCheck(position);
-//                arrayList.get(position).getInsuranceId();
+
             }
 
         });
@@ -86,26 +89,33 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
     }
 
     private void doubleClickCheck(int position) {
-        if (System.currentTimeMillis() > btnPressTime + 1000) {
-            btnPressTime = System.currentTimeMillis();
-            Toast.makeText(context.getApplicationContext(), "한번 더 터치하면 자세히 볼 수 있습니다.",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (System.currentTimeMillis() <= btnPressTime + 1000) {
-            Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(carItems.get(position).getId()));
-            bundle.putString("strName", carItems.get(position).getName());
-            bundle.putString("strPayment", carItems.get(position).getPayment());
-            bundle.putString("strState", carItems.get(position).getState());
-            FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
-            planInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
 
+            if (System.currentTimeMillis() > btnPressTime + 1000) {
+                btnPressTime = System.currentTimeMillis();
+                Toast.makeText(context.getApplicationContext(), "한번 더 터치하면 자세히 볼 수 있습니다.",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (System.currentTimeMillis() <= btnPressTime + 1000) {
+                Bundle bundle = new Bundle();
+                bundle.putString("strId", Integer.toString(carItems.get(position).getId()));
+                bundle.putString("strName", carItems.get(position).getName());
+                bundle.putString("strPayment", carItems.get(position).getPayment());
+                bundle.putString("strState", carItems.get(position).getState());
+                FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                if(forDesign == false) {
+                    PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
+                    planInsuranceDetailedFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+                } else if(forDesign ==true) {
+                    DesignCarInsuranceFragment designCarInsuranceFragment = DesignCarInsuranceFragment.newInstance();
+                    designCarInsuranceFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.fl_main, designCarInsuranceFragment).commit();
+                }
+
+            }
         }
-    }
 
 
     private void deleteDialog(int position) {

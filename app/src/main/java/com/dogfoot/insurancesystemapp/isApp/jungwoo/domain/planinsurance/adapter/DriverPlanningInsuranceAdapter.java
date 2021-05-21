@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +21,9 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignDriverInsuranceFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceDetailedFragment;
 
 import java.util.Vector;
@@ -40,12 +38,14 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
+    private boolean forDesign = false;
 
 
-    public DriverPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+    public DriverPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean forDesign) {
         this.driverItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
+        this.forDesign = forDesign;
     }
 
     @NonNull
@@ -97,9 +97,15 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
             bundle.putString("strState", driverItems.get(position).getState());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
-            planInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            if(forDesign == false) {
+                PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
+                planInsuranceDetailedFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            } else if(forDesign ==true) {
+                DesignDriverInsuranceFragment designDriverInsuranceFragment = DesignDriverInsuranceFragment.newInstance();
+                designDriverInsuranceFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, designDriverInsuranceFragment).commit();
+            }
 
         }
     }

@@ -1,5 +1,13 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,33 +17,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceFireDetailedBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceTravelDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignCarInsuranceBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignTravelInsuranceBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragment {
+public class DesignTravelInsuranceFragment extends DogFootViewModelFragment {
 
-    private FragmentDesignInsuranceTravelDetailedBinding mBinding;
+    private FragmentDesignTravelInsuranceBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
 
@@ -48,13 +51,14 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentDesignInsuranceTravelDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentDesignTravelInsuranceBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
         setHasOptionsMenu(true);
         initToolbar();
         initData();
+        init();
 
         return view;
     }
@@ -65,24 +69,36 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
         mBinding.tvDesignName4.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment4.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState4.setText(bundle.getString("strState"));
+    }
 
-        Constant constant = Constant.getInstance();
-        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getTravelInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<TravelDesignInsuranceResponse>() {
+    private void init() {
+        mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<TravelDesignInsuranceResponse> call,
-                                   Response<TravelDesignInsuranceResponse> response) {
-                if(response.isSuccessful()){
-                    mBinding.tvDesignSafe4.setText(response.body().getSafety_rank());
-                } else{
-                }
-            }
-            @Override
-            public void onFailure(Call<TravelDesignInsuranceResponse> call, Throwable t) {
+            public void onClick(View view) {
+                String id = mBinding.tvDesignId4.getText().toString();
+                String safe = mBinding.tvDesignSafe4.getText().toString();
+
+                Constant constant = Constant.getInstance();
+                String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+                RetrofitTool.getAPIWithAuthorizationToken(token)
+                        .DesignTravelInsurance(new TravelDesignInsuranceRequest(Integer.parseInt(id), safe))
+                        .enqueue(new Callback<TravelDesignInsuranceResponse>() {
+                            @Override
+                            public void onResponse(Call<TravelDesignInsuranceResponse> call, Response<TravelDesignInsuranceResponse> response) {
+                                if(response.isSuccessful()){
+                                    Toast.makeText(fragmentContext, "보험 설계를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                    replaceFragment(HomeFragment.newInstance());
+                                } else{
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<TravelDesignInsuranceResponse> call, Throwable t) { }
+                        });
             }
         });
+
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -122,7 +138,7 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                replaceFragment(DesignInsuranceFirstFragment.newInstance());
+                replaceFragment(DesignInsuranceSecondFragment.newInstance());
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -134,7 +150,7 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static DesignTravelInsuranceDetailedFragment newInstance() {
-        return new DesignTravelInsuranceDetailedFragment();
+    public static DesignTravelInsuranceFragment newInstance() {
+        return new DesignTravelInsuranceFragment();
     }
 }

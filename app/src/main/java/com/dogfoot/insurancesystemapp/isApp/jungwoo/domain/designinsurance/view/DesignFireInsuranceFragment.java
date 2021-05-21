@@ -1,5 +1,13 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,32 +17,27 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceFireDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignCarInsuranceBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignFireInsuranceBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragment {
+public class DesignFireInsuranceFragment extends DogFootViewModelFragment {
 
-    private FragmentDesignInsuranceFireDetailedBinding mBinding;
+    private FragmentDesignFireInsuranceBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
 
@@ -47,13 +50,14 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentDesignInsuranceFireDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentDesignFireInsuranceBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
         setHasOptionsMenu(true);
         initToolbar();
         initData();
+        init();
 
         return view;
     }
@@ -64,28 +68,38 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
         mBinding.tvDesignName3.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment3.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState3.setText(bundle.getString("strState"));
+    }
 
-        Constant constant = Constant.getInstance();
-        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getFireInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<FireDesignInsuranceResponse>() {
+    private void init() {
+        mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<FireDesignInsuranceResponse> call,
-                                   Response<FireDesignInsuranceResponse> response) {
-                if(response.isSuccessful()){
-                    mBinding.tvDesignPrice3.setText(response.body().getBuilding_price());
-                    mBinding.tvDesignDate3.setText(response.body().getConstruction_date());
-                    mBinding.tvDesignsite3.setText(response.body().getSite_area());
-                    mBinding.tvDesignFloors3.setText(response.body().getNumber_of_floors());
-                } else{
-                }
-            }
-            @Override
-            public void onFailure(Call<FireDesignInsuranceResponse> call, Throwable t) {
+            public void onClick(View view) {
+                String id = mBinding.tvDesignId3.getText().toString();
+                String price = mBinding.tvDesignPrice3.getText().toString();
+                String date = mBinding.tvDesignDate3.getText().toString();
+                String floors = mBinding.tvDesignFloors3.getText().toString();
+                String site = mBinding.tvDesignsite3.getText().toString();
+
+                Constant constant = Constant.getInstance();
+                String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+                RetrofitTool.getAPIWithAuthorizationToken(token)
+                        .DesignFireInsurance(new FireDesignInsuranceRequest(Integer.parseInt(id), price, date, floors, site))
+                        .enqueue(new Callback<FireDesignInsuranceResponse>() {
+                            @Override
+                            public void onResponse(Call<FireDesignInsuranceResponse> call, Response<FireDesignInsuranceResponse> response) {
+                                if(response.isSuccessful()){
+                                    Toast.makeText(fragmentContext, "보험 설계를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                } else{
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<FireDesignInsuranceResponse> call, Throwable t) { }
+                        });
             }
         });
 
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -125,7 +139,7 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                replaceFragment(DesignInsuranceFirstFragment.newInstance());
+                replaceFragment(DesignInsuranceSecondFragment.newInstance());
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -137,7 +151,7 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static DesignFireInsuranceDetailedFragment newInstance() {
-        return new DesignFireInsuranceDetailedFragment();
+    public static DesignFireInsuranceFragment newInstance() {
+        return new DesignFireInsuranceFragment();
     }
 }

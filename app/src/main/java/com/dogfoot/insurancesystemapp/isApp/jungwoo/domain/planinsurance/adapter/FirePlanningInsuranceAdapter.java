@@ -22,6 +22,8 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignDriverInsuranceFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignFireInsuranceFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
@@ -40,12 +42,14 @@ public class FirePlanningInsuranceAdapter extends RecyclerView.Adapter<FirePlann
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
+    private boolean forDesign = false;
 
 
-    public FirePlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+    public FirePlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean forDesign) {
         this.fireItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
+        this.forDesign = forDesign;
     }
 
     @NonNull
@@ -98,9 +102,15 @@ public class FirePlanningInsuranceAdapter extends RecyclerView.Adapter<FirePlann
             bundle.putString("strState", fireItems.get(position).getState());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
-            planInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            if(forDesign == false) {
+                PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
+                planInsuranceDetailedFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            } else if(forDesign ==true) {
+                DesignFireInsuranceFragment designFireInsuranceFragment = DesignFireInsuranceFragment.newInstance();
+                designFireInsuranceFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, designFireInsuranceFragment).commit();
+            }
 
         }
     }

@@ -81,14 +81,14 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
             return;
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
+
+
             Bundle bundle = new Bundle();
             bundle.putString("strId", Integer.toString(carItems.get(position).getId()));
             bundle.putString("strName", carItems.get(position).getName());
             bundle.putString("strPayment", carItems.get(position).getPayment());
             bundle.putString("strState", carItems.get(position).getState());
-            bundle.putString("strPrice", carItems.get(position).getCar_price());
-            bundle.putString("strRelease", carItems.get(position).getCar_release_date());
-            bundle.putString("strDistance", carItems.get(position).getDriving_distance());
+
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             DesignCarInsuranceDetailedFragment designCarInsuranceDetailedFragment = DesignCarInsuranceDetailedFragment.newInstance();

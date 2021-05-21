@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignFireInsuranceDetailedFragment;
 
 import java.util.Vector;
 
@@ -87,15 +88,11 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
             bundle.putString("strName", fireItems.get(position).getName());
             bundle.putString("strPayment", fireItems.get(position).getPayment());
             bundle.putString("strState", fireItems.get(position).getState());
-            bundle.putString("strPrice", fireItems.get(position).getBuilding_price());
-            bundle.putString("strDate", fireItems.get(position).getConstruction_date());
-            bundle.putString("strFloors", fireItems.get(position).getNumber_of_floors());
-            bundle.putString("strSite", fireItems.get(position).getSite_area());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            DesignCarInsuranceDetailedFragment designCarInsuranceDetailedFragment = DesignCarInsuranceDetailedFragment.newInstance();
-            designCarInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, designCarInsuranceDetailedFragment).commit();
+            DesignFireInsuranceDetailedFragment designFireInsuranceDetailedFragment = DesignFireInsuranceDetailedFragment.newInstance();
+            designFireInsuranceDetailedFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, designFireInsuranceDetailedFragment).commit();
 
         }
     }

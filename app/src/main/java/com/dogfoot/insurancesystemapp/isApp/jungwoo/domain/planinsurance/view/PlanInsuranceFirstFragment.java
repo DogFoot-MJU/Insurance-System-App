@@ -97,19 +97,19 @@ public class PlanInsuranceFirstFragment extends DogFootViewModelFragment {
         travelLinearLayoutManager = new LinearLayoutManager(context);
 
         carRecyclerView.setLayoutManager(carLinearLayoutManager);
-        carPlanningInsuranceAdapter = new CarPlanningInsuranceAdapter(context, fragmentContext);
+        carPlanningInsuranceAdapter = new CarPlanningInsuranceAdapter(context, fragmentContext, false);
         carRecyclerView.setAdapter(carPlanningInsuranceAdapter);
 
         driverRecyclerView.setLayoutManager(driverLinearLayoutManager);
-        driverPlanningInsuranceAdapter = new DriverPlanningInsuranceAdapter(context, fragmentContext);
+        driverPlanningInsuranceAdapter = new DriverPlanningInsuranceAdapter(context, fragmentContext, false);
         driverRecyclerView.setAdapter(driverPlanningInsuranceAdapter);
 
         fireRecyclerView.setLayoutManager(fireLinearLayoutManager);
-        firePlanningInsuranceAdapter = new FirePlanningInsuranceAdapter(context, fragmentContext);
+        firePlanningInsuranceAdapter = new FirePlanningInsuranceAdapter(context, fragmentContext, false);
         fireRecyclerView.setAdapter(firePlanningInsuranceAdapter);
 
         travelRecyclerView.setLayoutManager(travelLinearLayoutManager);
-        travelPlanningInsuranceAdapter = new TravelPlanningInsuranceAdapter(context, fragmentContext);
+        travelPlanningInsuranceAdapter = new TravelPlanningInsuranceAdapter(context, fragmentContext, false);
         travelRecyclerView.setAdapter(travelPlanningInsuranceAdapter);
 
         Constant constant = Constant.getInstance();

@@ -87,13 +87,11 @@ public class DriverDesignInsuranceAdapter extends RecyclerView.Adapter<DriverDes
             bundle.putString("strName", driverItems.get(position).getName());
             bundle.putString("strPayment", driverItems.get(position).getPayment());
             bundle.putString("strState", driverItems.get(position).getState());
-            bundle.putString("strAcquisition", driverItems.get(position).getDate_of_license_acquisition());
-            bundle.putString("strDriver", driverItems.get(position).getDriver_license());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            DesignDriverInsuranceDetailedFragment designCarInsuranceDetailedFragment = DesignDriverInsuranceDetailedFragment.newInstance();
-            designCarInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, designCarInsuranceDetailedFragment).commit();
+            DesignDriverInsuranceDetailedFragment designDriverInsuranceDetailedFragment = DesignDriverInsuranceDetailedFragment.newInstance();
+            designDriverInsuranceDetailedFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, designDriverInsuranceDetailedFragment).commit();
 
         }
     }

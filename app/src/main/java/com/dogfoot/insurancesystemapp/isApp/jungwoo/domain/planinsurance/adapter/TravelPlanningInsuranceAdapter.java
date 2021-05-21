@@ -22,6 +22,8 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignFireInsuranceFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignTravelInsuranceFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
@@ -40,12 +42,13 @@ public class TravelPlanningInsuranceAdapter extends RecyclerView.Adapter<TravelP
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
+    private boolean forDesign = false;
 
-
-    public TravelPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+    public TravelPlanningInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean forDesign) {
         this.travelItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
+        this.forDesign = forDesign;
     }
 
     @NonNull
@@ -98,9 +101,15 @@ public class TravelPlanningInsuranceAdapter extends RecyclerView.Adapter<TravelP
             bundle.putString("strState", travelItems.get(position).getState());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
-            planInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            if(forDesign == false) {
+                PlanInsuranceDetailedFragment planInsuranceDetailedFragment = PlanInsuranceDetailedFragment.newInstance();
+                planInsuranceDetailedFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, planInsuranceDetailedFragment).commit();
+            } else if(forDesign ==true) {
+                DesignTravelInsuranceFragment designTravelInsuranceFragment = DesignTravelInsuranceFragment.newInstance();
+                designTravelInsuranceFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, designTravelInsuranceFragment).commit();
+            }
 
         }
     }

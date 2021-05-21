@@ -22,8 +22,8 @@ public class FireDesignInsuranceResponse {
     private String building_price;
     @SerializedName("construction_date")
     private String construction_date;
-    @SerializedName("number_of_floors")
-    private String number_of_floors;
     @SerializedName("site_area")
     private String site_area;
+    @SerializedName("number_of_floors")
+    private String number_of_floors;
 }

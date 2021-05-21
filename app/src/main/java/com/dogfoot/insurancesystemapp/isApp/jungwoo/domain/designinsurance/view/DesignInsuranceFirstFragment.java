@@ -217,6 +217,12 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
     }
 
     private void init() {
+        mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(DesignInsuranceSecondFragment.newInstance());
+            }
+        });
     }
 
     @Override

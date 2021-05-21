@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignTravelInsuranceDetailedFragment;
 
 import java.util.Vector;
 
@@ -86,12 +87,12 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
             bundle.putString("strName", travelItems.get(position).getName());
             bundle.putString("strPayment", travelItems.get(position).getPayment());
             bundle.putString("strState", travelItems.get(position).getState());
-            bundle.putString("strSafety", travelItems.get(position).getSafety_rank());
+
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            DesignCarInsuranceDetailedFragment designCarInsuranceDetailedFragment = DesignCarInsuranceDetailedFragment.newInstance();
-            designCarInsuranceDetailedFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, designCarInsuranceDetailedFragment).commit();
+            DesignTravelInsuranceDetailedFragment designTravelInsuranceDetailedFragment = DesignTravelInsuranceDetailedFragment.newInstance();
+            designTravelInsuranceDetailedFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, designTravelInsuranceDetailedFragment).commit();
 
         }
     }

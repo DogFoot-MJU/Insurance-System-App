@@ -1,5 +1,13 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,38 +17,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignCarInsuranceBinding;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceCarDetailedBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceDetailedBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.Pagination;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
-
-import java.util.List;
-import java.util.Vector;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment {
+public class DesignCarInsuranceFragment extends DogFootViewModelFragment {
 
-    private FragmentDesignInsuranceCarDetailedBinding mBinding;
+    private FragmentDesignCarInsuranceBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
 
@@ -53,13 +51,14 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentDesignInsuranceCarDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentDesignCarInsuranceBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
         setHasOptionsMenu(true);
         initToolbar();
         initData();
+        init();
 
         return view;
     }
@@ -70,26 +69,37 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
         mBinding.tvDesignName.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState.setText(bundle.getString("strState"));
-
-        Constant constant = Constant.getInstance();
-        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getCarInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<CarDesignInsuranceResponse>() {
-                    @Override
-                    public void onResponse(Call<CarDesignInsuranceResponse> call,
-                                           Response<CarDesignInsuranceResponse> response) {
-                        if(response.isSuccessful()){
-                            mBinding.tvDesignPrice.setText(response.body().getCar_price());
-                            mBinding.tvDesignRelease.setText(response.body().getCar_release_date());
-                            mBinding.tvDesignDistance.setText(response.body().getDriving_distance());
-                        } else{
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<CarDesignInsuranceResponse> call, Throwable t) {
-                    }
-    });
     }
+
+    private void init() {
+        mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = mBinding.tvDesignId.getText().toString();
+                String price = mBinding.tvDesignPrice.getText().toString();
+                String release = mBinding.tvDesignRelease.getText().toString();
+                String distance = mBinding.tvDesignDistance.getText().toString();
+                Constant constant = Constant.getInstance();
+                String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+                RetrofitTool.getAPIWithAuthorizationToken(token)
+                        .DesignCarInsurance(new CarDesignInsuranceRequest(Integer.parseInt(id), price, release, distance))
+                        .enqueue(new Callback<CarDesignInsuranceResponse>() {
+                            @Override
+                            public void onResponse(Call<CarDesignInsuranceResponse> call, Response<CarDesignInsuranceResponse> response) {
+                                if(response.isSuccessful()){
+                                    Toast.makeText(fragmentContext, "보험 설계를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                    replaceFragment(HomeFragment.newInstance());
+                                } else{
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<CarDesignInsuranceResponse> call, Throwable t) { }
+                        });
+            }
+        });
+
+    }
+
 
     @Override
     protected int getLayoutId() {
@@ -129,7 +139,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                replaceFragment(DesignInsuranceFirstFragment.newInstance());
+                replaceFragment(DesignInsuranceSecondFragment.newInstance());
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -141,7 +151,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static DesignCarInsuranceDetailedFragment newInstance() {
-        return new DesignCarInsuranceDetailedFragment();
+    public static DesignCarInsuranceFragment newInstance() {
+        return new DesignCarInsuranceFragment();
     }
 }
