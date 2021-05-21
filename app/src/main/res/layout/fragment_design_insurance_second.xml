@@ -1,14 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DesignInsuranceSecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_planInsuranceToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="535dp"
+        android:background="@drawable/custom_border"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_qnaInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120sp"
+            android:gravity="left"
+            android:text="보험 상품 설계"
+            android:textColor="#9FA5AA"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="173dp"
+            tools:layout_editor_absoluteY="21dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/cl_insuranceDev"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_round_border">
+
+                <EditText
+                    android:id="@+id/tv_insuranceSendInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"
+                    android:text="보험상품 인가"
+                    android:textColor="#9FA5AA"
+                    android:textSize="18sp"></EditText>
+
+                <EditText
+                    android:id="@+id/tv_insuranceDesignInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginRight="100dp"
+                    android:visibility="gone"
+                    android:text="보험상품 설계"
+                    android:textColor="#9FA5AA"
+                    android:textSize="18sp"></EditText>
+
+                <EditText
+                    android:id="@+id/tv_insuranceInitInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginRight="100dp"
+                    android:visibility="gone"
+                    android:text="보험상품 기획"
+                    android:textColor="#9FA5AA"
+                    android:textSize="18sp"></EditText>
+
+                <TextView
+                    android:id="@+id/tv_insuranceDevInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="#1E2329"
+                    android:padding="7dp"
+                    android:text="자동차 보험 상품 설계"
+                    android:textColor="#9FA5AA"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

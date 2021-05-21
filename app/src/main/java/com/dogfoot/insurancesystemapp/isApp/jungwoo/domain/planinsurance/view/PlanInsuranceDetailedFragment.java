@@ -70,11 +70,10 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
 
     private void initData() {
         Bundle bundle = getArguments();
-        mBinding.tvInsuranceNameCar.setText(bundle.getString("strId"));
-        mBinding.textView10.setText(bundle.getString("strName"));
-        mBinding.textView12.setText(bundle.getString("strPayment"));
-        mBinding.textView8.setText(bundle.getString("strState"));
-
+        mBinding.tvPlanInsuranceIdResult.setText(bundle.getString("strId"));
+        mBinding.tvPlanInsuranceNameResult.setText(bundle.getString("strName"));
+        mBinding.tvPlanInsurancePaymentResult.setText(bundle.getString("strPayment"));
+        mBinding.tvPlanInsuranceStateResult.setText(bundle.getString("strState"));
     }
 
 

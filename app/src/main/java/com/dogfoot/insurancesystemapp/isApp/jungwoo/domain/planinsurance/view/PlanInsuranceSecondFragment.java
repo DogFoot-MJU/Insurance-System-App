@@ -9,6 +9,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,8 +23,23 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceSecondBinding;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceRequest;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
 
@@ -45,7 +63,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
 
         setHasOptionsMenu(true);
         initToolbar();
-        //initSpinner();
+        initSpinner();
         init();
 
         return view;
@@ -72,41 +90,104 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
     }
 
     private void init() {
-        mBinding.button.setOnClickListener(new View.OnClickListener() {
+        mBinding.btnPlanInsurance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // db에 전달
-                strName =  mBinding.tvInsuranceNameCar.getText().toString();
-                strPayment = mBinding.textView10.getText().toString();
+                checkInsuranceType();
+            }
 
-                // 이후 strName strPayment strType 전달한다.
+        });
+    }
+
+    private void checkInsuranceType() {
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        strName =  mBinding.etPlanInsuranceNameWrite.getText().toString();
+        strPayment = mBinding.etPlanInsurancePaymentWrite.getText().toString();
+
+        if(strType.equals("자동차 보험")) {
+            RetrofitTool.getAPIWithAuthorizationToken(token).PlanCarInsurance(new CarPlanInsuranceRequest(strName, strPayment))
+                    .enqueue(new Callback<CarPlanInsuranceResponse>() {
+                @Override
+                public void onResponse(Call<CarPlanInsuranceResponse> call, Response<CarPlanInsuranceResponse> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(fragmentContext, "보험 기획을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                    } else{
+                    }
+                }
+                @Override
+                public void onFailure(Call<CarPlanInsuranceResponse> call, Throwable t) { }
+            });
+        } else if(strType.equals("운전자 보험")) {
+            RetrofitTool.getAPIWithAuthorizationToken(token).PlanDriverInsurance(new DriverPlanInsuranceRequest(strName, strPayment))
+                    .enqueue(new Callback<DriverPlanInsuranceResponse>() {
+                @Override
+                public void onResponse(Call<DriverPlanInsuranceResponse> call, Response<DriverPlanInsuranceResponse> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(fragmentContext, "보험 기획을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                    } else{
+                    }
+                }
+                @Override
+                public void onFailure(Call<DriverPlanInsuranceResponse> call, Throwable t) { }
+            });
+        }else if(strType.equals("화재 보험")) {
+            RetrofitTool.getAPIWithAuthorizationToken(token).PlanFireInsurance(new FirePlanInsuranceRequest(strName, strPayment))
+                    .enqueue(new Callback<FirePlanInsuranceResponse>() {
+                @Override
+                public void onResponse(Call<FirePlanInsuranceResponse> call, Response<FirePlanInsuranceResponse> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(fragmentContext, "보험 기획을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                    } else{
+                    }
+                }
+                @Override
+                public void onFailure(Call<FirePlanInsuranceResponse> call, Throwable t) { }
+            });
+        }
+        else if(strType.equals("여행 보험")) {
+            RetrofitTool.getAPIWithAuthorizationToken(token).PlanTravelInsurance(new TravelPlanInsuranceRequest(strName, strPayment))
+                    .enqueue(new Callback<TravelPlanInsuranceResponse>() {
+                @Override
+                public void onResponse(Call<TravelPlanInsuranceResponse> call, Response<TravelPlanInsuranceResponse> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(fragmentContext, "보험 기획을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                    } else{
+                    }
+                }
+                @Override
+                public void onFailure(Call<TravelPlanInsuranceResponse> call, Throwable t) { }
+            });
+        }
+        replaceFragment(HomeFragment.newInstance());
+    }
+
+
+    private void initSpinner() {
+        Spinner insuranceSelectSpinner = mBinding.spinnerInsuranceSelect;
+
+        insuranceSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getItemAtPosition(i).equals("자동차 보험")){
+                    strType = "자동차 보험";
+                } else if(adapterView.getItemAtPosition(i).equals("운전자 보험")){
+                    strType = "운전자 보험";
+                } else if(adapterView.getItemAtPosition(i).equals("화재 보험")){
+                    strType = "화재 보험";
+                } else if(adapterView.getItemAtPosition(i).equals("여행 보험")){
+                    strType = "여행 보험";
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
 
-
-//    private void initSpinner() {
-//        Spinner insuranceSelectSpinner = mBinding.spinnerInsuranceSelect;
-//        ArrayAdapter insuranceAdapter = ArrayAdapter.createFromResource(context.getApplicationContext(),
-//                R.array.insurance_select, android.R.layout.simple_spinner_item);
-//        insuranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        insuranceSelectSpinner.setAdapter(insuranceAdapter);
-//
-//        insuranceSelectSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                    strType = adapterView.getItemAtPosition(i).toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//
-//        });
-//        });
-//
-//    }
 
     // ToolBar Settings
     private void initToolbar() {

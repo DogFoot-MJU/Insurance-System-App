@@ -18,6 +18,7 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -58,33 +59,6 @@ public class JungWoo extends DogFootViewModelActivity {
         navigationBottomInit();
 
     }
-
-
-//    private void initToolbar() {
-//
-//        setSupportActionBar(mBinding.tbMainToolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowCustomEnabled(true);
-//        actionBar.setDisplayShowTitleEnabled(false);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//    }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.actionbar, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case android.R.id.home:
-//                finish();
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private void mainInit() {
 
@@ -325,7 +299,7 @@ public class JungWoo extends DogFootViewModelActivity {
             public void onClick(View view) {
                 drawerLayout.closeDrawers();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fl_main, planInsuranceFirstFragment.newInstance());
+                transaction.replace(R.id.fl_main, DesignInsuranceFirstFragment.newInstance());
                 transaction.commit();
             }
         });
