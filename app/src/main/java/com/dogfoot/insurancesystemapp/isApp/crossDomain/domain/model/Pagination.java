@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model;
+package com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Pagination<T> {
-
+//이동금지
     @SerializedName("total_page")
     private int total_page;
     @SerializedName("current_page")

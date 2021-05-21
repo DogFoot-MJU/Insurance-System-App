@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceFirstBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceFirstBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
@@ -32,21 +31,11 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapt
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.DriverDesignInsuranceAdapter;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.FireDesignInsuranceAdapter;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.TravelDesignInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.CarPlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.DriverPlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.FirePlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.TravelPlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.Pagination;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.Pagination;
 
 import java.util.List;
 import java.util.Vector;
