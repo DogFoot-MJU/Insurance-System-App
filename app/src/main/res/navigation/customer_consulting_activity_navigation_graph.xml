@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_customerConsultingMain_to_customerConsultingInput"
             app:destination="@id/customerConsultingInputFragment" />
+        <action
+            android:id="@+id/action_customerConsultingMain_to_customerConsultingList"
+            app:destination="@id/customerConsultingListFragment" />
     </fragment>
 
     <fragment
@@ -24,6 +27,16 @@
         tools:layout="@layout/fragment_customer_consulting_input" >
         <action
             android:id="@+id/action_customerConsultingInput_to_customerConsultingMain"
+            app:destination="@id/customerConsultingMainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerConsultingListFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingListFragment"
+        android:label="customerConsultingList"
+        tools:layout="@layout/fragment_customer_consulting_list" >
+        <action
+            android:id="@+id/action_customerConsultingList_to_customerConsultingMain"
             app:destination="@id/customerConsultingMainFragment" />
     </fragment>
 

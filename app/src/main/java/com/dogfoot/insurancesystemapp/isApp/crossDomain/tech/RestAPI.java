@@ -5,6 +5,7 @@ package com.dogfoot.insurancesystemapp.isApp.crossDomain.tech;
 
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingInputFragment;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpRequest;
@@ -22,6 +23,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RestAPI {
     @POST("login")
@@ -30,6 +32,8 @@ public interface RestAPI {
     Call<SignUpResponse> signup(@Body SignUpRequest signUpRequest);
     @POST("api/v1/user/consulting")
     Call<CustomerConsultingInputResponse> customerConsultingInput(@Body CustomerConsultingInputRequest customerConsultingInputRequest);
+    @GET("api/v1/user/consulting/list")
+    Call<Pagination<List<CustomerConsultingListResponse>>> getCustomerConsultingList();
 
 
     @GET("api/v1/planner/car/product/development/list?page=0&state=PLAN")

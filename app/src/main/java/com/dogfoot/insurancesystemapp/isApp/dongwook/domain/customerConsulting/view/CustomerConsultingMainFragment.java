@@ -33,6 +33,7 @@ public class CustomerConsultingMainFragment extends DogFootViewModelFragment {
     @Override
     protected void initializeView() {
         this.inputButton.setOnClickListener(v->this.navigateTo(R.id.action_customerConsultingMain_to_customerConsultingInput));
+        this.listButton.setOnClickListener(v->this.navigateTo(R.id.action_customerConsultingMain_to_customerConsultingList));
 
     }
 
