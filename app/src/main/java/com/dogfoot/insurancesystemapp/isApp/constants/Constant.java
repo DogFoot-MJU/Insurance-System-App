@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 public class Constant {
     public static final String URL = "http://112.146.144.170:8080/";
@@ -31,5 +32,23 @@ public class Constant {
             constant = new Constant();
         }
         return constant;
+    }
+
+    @Getter
+    @RequiredArgsConstructor
+    public enum DevelopmentState {
+
+        PLAN("기획"), DESIGN("설계"), AUTHORIZE("인가"), APPROVE("승인");
+
+        private final String value;
+
+    }
+
+    public enum DriverLicence {
+        TYPE_1_NORMAL, TYPE_2_NORMAL;
+    }
+
+    public enum SafetyRank {
+        GREEN, RED, BLUE
     }
 }

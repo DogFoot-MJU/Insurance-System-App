@@ -1,14 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view;
-
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,9 +10,19 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.databinding.FragmentApproveInsuranceFirstBinding;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceFirstBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceFirstBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
@@ -32,21 +32,13 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapt
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.DriverDesignInsuranceAdapter;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.FireDesignInsuranceAdapter;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter.TravelDesignInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.CarPlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.DriverPlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.FirePlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.adapter.TravelPlanningInsuranceAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceSecondFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.Pagination;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 
 import java.util.List;
 import java.util.Vector;
@@ -55,9 +47,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
+public class ApproveInsuranceFirstFragment extends DogFootViewModelFragment {
 
-    private FragmentDesignInsuranceFirstBinding mBinding;
+    private FragmentApproveInsuranceFirstBinding mBinding;
     private CarDesignInsuranceAdapter carDesignInsuranceAdapter;
     private DriverDesignInsuranceAdapter driverDesignInsuranceAdapter;
     private FireDesignInsuranceAdapter fireDesignInsuranceAdapter;
@@ -85,18 +77,16 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
         super.onAttach(activity);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mBinding = FragmentDesignInsuranceFirstBinding.inflate(getLayoutInflater());
+        mBinding = FragmentApproveInsuranceFirstBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
         setHasOptionsMenu(true);
         initToolbar();
-        init();
 
         carRecyclerView = mBinding.rvCarInsuranceDesign;
         driverRecyclerView = mBinding.rvDriverInsuranceDesign;
@@ -108,19 +98,19 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
         travelLinearLayoutManager = new LinearLayoutManager(context);
 
         carRecyclerView.setLayoutManager(carLinearLayoutManager);
-        carDesignInsuranceAdapter = new CarDesignInsuranceAdapter(context, fragmentContext, false, false);
+        carDesignInsuranceAdapter = new CarDesignInsuranceAdapter(context, fragmentContext, false, true);
         carRecyclerView.setAdapter(carDesignInsuranceAdapter);
 
         driverRecyclerView.setLayoutManager(driverLinearLayoutManager);
-        driverDesignInsuranceAdapter = new DriverDesignInsuranceAdapter(context, fragmentContext, false, false);
+        driverDesignInsuranceAdapter = new DriverDesignInsuranceAdapter(context, fragmentContext, false, true);
         driverRecyclerView.setAdapter(driverDesignInsuranceAdapter);
 
         fireRecyclerView.setLayoutManager(fireLinearLayoutManager);
-        fireDesignInsuranceAdapter = new FireDesignInsuranceAdapter(context, fragmentContext, false, false);
+        fireDesignInsuranceAdapter = new FireDesignInsuranceAdapter(context, fragmentContext, false, true);
         fireRecyclerView.setAdapter(fireDesignInsuranceAdapter);
 
         travelRecyclerView.setLayoutManager(travelLinearLayoutManager);
-        travelDesignInsuranceAdapter = new TravelDesignInsuranceAdapter(context, fragmentContext, false, false);
+        travelDesignInsuranceAdapter = new TravelDesignInsuranceAdapter(context, fragmentContext, false, true);
         travelRecyclerView.setAdapter(travelDesignInsuranceAdapter);
 
         Constant constant = Constant.getInstance();
@@ -130,7 +120,7 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
         fireItems = new Vector<>();
         travelItems = new Vector<>();
 
-        RetrofitTool.getAPIWithAuthorizationToken(token).carDesignInsurance()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getAuthorizedCarInsurance()
                 .enqueue(new Callback<Pagination<List<CarDesignInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<CarDesignInsuranceResponse>>> call,
@@ -150,7 +140,7 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
                     public void onFailure(Call<Pagination<List<CarDesignInsuranceResponse>>> call, Throwable t) {
                     }
                 });
-        RetrofitTool.getAPIWithAuthorizationToken(token).driverDesignInsurance()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getAuthorizedDriverInsurance()
                 .enqueue(new Callback<Pagination<List<DriverDesignInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<DriverDesignInsuranceResponse>>> call,
@@ -171,7 +161,7 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
                     }
                 });
 
-        RetrofitTool.getAPIWithAuthorizationToken(token).fireDesignInsurance()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getAuthorizedFireInsurance()
                 .enqueue(new Callback<Pagination<List<FireDesignInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<FireDesignInsuranceResponse>>> call,
@@ -191,7 +181,7 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
                     public void onFailure(Call<Pagination<List<FireDesignInsuranceResponse>>> call, Throwable t) {
                     }
                 });
-        RetrofitTool.getAPIWithAuthorizationToken(token).travelDesignInsurance()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getAuthorizedTravelInsurance()
                 .enqueue(new Callback<Pagination<List<TravelDesignInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<TravelDesignInsuranceResponse>>> call,
@@ -216,14 +206,6 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
         return view;
     }
 
-    private void init() {
-        mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                replaceFragment(DesignInsuranceSecondFragment.newInstance());
-            }
-        });
-    }
 
     @Override
     protected int getLayoutId() {
@@ -266,7 +248,8 @@ public class DesignInsuranceFirstFragment extends DogFootViewModelFragment {
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static DesignInsuranceFirstFragment newInstance() {
-        return new DesignInsuranceFirstFragment();
+    public static ApproveInsuranceFirstFragment newInstance() {
+        return new ApproveInsuranceFirstFragment();
     }
+
 }

@@ -1,6 +1,10 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model;
 
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant.DevelopmentState;
 import com.google.gson.annotations.SerializedName;
+
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,17 +14,17 @@ import lombok.Getter;
 public class CarDesignInsuranceResponse {
 
     @SerializedName("id")
-    private int id;
+    private Long id;
     @SerializedName("name")
     private String name;
     @SerializedName("payment")
-    private String payment;
+    private Long payment;
     @SerializedName("state")
-    private String state;
+    private DevelopmentState state;
     @SerializedName("car_price")
-    private String car_price;
+    private Long car_price;
     @SerializedName("car_release_date")
     private String car_release_date;
     @SerializedName("driving_distance")
-    private String driving_distance;
+    private Long driving_distance;
 }

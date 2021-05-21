@@ -61,9 +61,9 @@ public class TravelPlanningInsuranceAdapter extends RecyclerView.Adapter<TravelP
 
     @Override
     public void onBindViewHolder(@NonNull final TravelPlanningInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(Integer.toString(travelItems.get(position).getId()));
+        holder.tv_insuranceId.setText(String.valueOf(travelItems.get(position).getId()));
         holder.tv_InsuranceName.setText(travelItems.get(position).getName());
-        holder.tv_insurancePayment.setText(travelItems.get(position).getPayment());
+        holder.tv_insurancePayment.setText(String.valueOf(travelItems.get(position).getPayment()));
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -95,10 +95,10 @@ public class TravelPlanningInsuranceAdapter extends RecyclerView.Adapter<TravelP
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(travelItems.get(position).getId()));
+            bundle.putString("strId", String.valueOf(travelItems.get(position).getId()));
             bundle.putString("strName", travelItems.get(position).getName());
-            bundle.putString("strPayment", travelItems.get(position).getPayment());
-            bundle.putString("strState", travelItems.get(position).getState());
+            bundle.putString("strPayment", String.valueOf(travelItems.get(position).getPayment()));
+            bundle.putString("strState", String.valueOf(travelItems.get(position).getState()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(forDesign == false) {
@@ -138,7 +138,7 @@ public class TravelPlanningInsuranceAdapter extends RecyclerView.Adapter<TravelP
         builder.show();
     }
 
-    private void removeByDB(int id) {
+    private void removeByDB(Long id) {
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token).deleteTravelInsuracne(id).enqueue(new Callback<Void>() {

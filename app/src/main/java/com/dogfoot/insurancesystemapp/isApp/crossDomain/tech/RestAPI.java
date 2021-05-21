@@ -53,13 +53,13 @@ public interface RestAPI {
 
     // 보험 상품을 기획한다
     @POST("api/v1/planner/car/product/development/plan")
-    Call<CarPlanInsuranceResponse> PlanCarInsurance(@Body CarPlanInsuranceRequest carPlanInsuranceRequest);
+    Call<CarPlanInsuranceResponse> planCarInsurance(@Body CarPlanInsuranceRequest carPlanInsuranceRequest);
     @POST("api/v1/planner/driver/product/development/plan")
-    Call<DriverPlanInsuranceResponse> PlanDriverInsurance(@Body DriverPlanInsuranceRequest driverPlanInsuranceRequest);
+    Call<DriverPlanInsuranceResponse> planDriverInsurance(@Body DriverPlanInsuranceRequest driverPlanInsuranceRequest);
     @POST("api/v1/planner/fire/product/development/plan")
-    Call<FirePlanInsuranceResponse> PlanFireInsurance(@Body FirePlanInsuranceRequest firePlanInsuranceRequest);
+    Call<FirePlanInsuranceResponse> planFireInsurance(@Body FirePlanInsuranceRequest firePlanInsuranceRequest);
     @POST("api/v1/planner/travel/product/development/plan")
-    Call<TravelPlanInsuranceResponse> PlanTravelInsurance(@Body TravelPlanInsuranceRequest travelPlanInsuranceRequest);
+    Call<TravelPlanInsuranceResponse> planTravelInsurance(@Body TravelPlanInsuranceRequest travelPlanInsuranceRequest);
 
     // 기획된 보험 상품 리스트를 보여준다.
     @GET("api/v1/planner/car/product/development/list?page=0&state=PLAN")
@@ -73,13 +73,13 @@ public interface RestAPI {
 
     // 기획된 보험 상품을 삭제한다.
     @DELETE("api/v1/planner/car/product/development/{id}")
-    Call<Void> deleteCarInsuracne(@Path("id") int id);
+    Call<Void> deleteCarInsuracne(@Path("id") Long id);
     @DELETE("api/v1/planner/driver/product/development/{id}")
-    Call<Void> deleteDriverInsuracne(@Path("id") int id);
+    Call<Void> deleteDriverInsuracne(@Path("id") Long id);
     @DELETE("api/v1/planner/fire/product/development/{id}")
-    Call<Void> deleteFireInsurance(@Path("id") int id);
+    Call<Void> deleteFireInsurance(@Path("id") Long id);
     @DELETE("api/v1/planner/travel/product/development/{id}")
-    Call<Void> deleteTravelInsuracne(@Path("id") int id);
+    Call<Void> deleteTravelInsuracne(@Path("id") Long id);
 
     // 설계된 보험 상품 리스트를 보여준다.
     @GET("api/v1/planner/car/product/development/list?page=0&state=DESIGN")
@@ -93,24 +93,52 @@ public interface RestAPI {
 
     // 보험상품을 설계한다.
     @PUT("api/v1/planner/car/product/development/design")
-    Call<CarDesignInsuranceResponse> DesignCarInsurance(@Body CarDesignInsuranceRequest CarDesignInsuranceRequest);
+    Call<CarDesignInsuranceResponse> designCarInsurance(@Body CarDesignInsuranceRequest CarDesignInsuranceRequest);
     @PUT("api/v1/planner/driver/product/development/design")
-    Call<DriverDesignInsuranceResponse> DesignDriverInsurance(@Body DriverDesignInsuranceRequest driverDesignInsuranceRequest);
+    Call<DriverDesignInsuranceResponse> designDriverInsurance(@Body DriverDesignInsuranceRequest driverDesignInsuranceRequest);
     @PUT("api/v1/planner/fire/product/development/design")
-    Call<FireDesignInsuranceResponse> DesignFireInsurance(@Body FireDesignInsuranceRequest fireDesignInsuranceRequest);
+    Call<FireDesignInsuranceResponse> designFireInsurance(@Body FireDesignInsuranceRequest fireDesignInsuranceRequest);
     @PUT("api/v1/planner/travel/product/development/design")
-    Call<TravelDesignInsuranceResponse> DesignTravelInsurance(@Body TravelDesignInsuranceRequest travelDesignInsuranceRequest);
+    Call<TravelDesignInsuranceResponse> designTravelInsurance(@Body TravelDesignInsuranceRequest travelDesignInsuranceRequest);
 
     // 보험 상품을 상세히 보여준다.
     @GET("api/v1/planner/car/product/development/{id}")
-    Call<CarDesignInsuranceResponse> getCarInsuracneDetailed(@Path("id") int id);
+    Call<CarDesignInsuranceResponse> getCarInsuracneDetailed(@Path("id") Long id);
     @GET("api/v1/planner/driver/product/development/{id}")
-    Call<DriverDesignInsuranceResponse> getDriverInsuracneDetailed(@Path("id") int id);
+    Call<DriverDesignInsuranceResponse> getDriverInsuracneDetailed(@Path("id") Long id);
     @GET("api/v1/planner/fire/product/development/{id}")
-    Call<FireDesignInsuranceResponse> getFireInsuracneDetailed(@Path("id") int id);
+    Call<FireDesignInsuranceResponse> getFireInsuracneDetailed(@Path("id") Long id);
     @GET("api/v1/planner/travel/product/development/{id}")
-    Call<TravelDesignInsuranceResponse> getTravelInsuracneDetailed(@Path("id") int id);
+    Call<TravelDesignInsuranceResponse> getTravelInsuracneDetailed(@Path("id") Long id);
 
+    // 보험 상품 인가하기
+    @PUT("api/v1/planner/car/product/development/authorize/{id}")
+    Call<Void> authorizeCarInsurance(@Path("id") Long id);
+    @PUT("api/v1/planner/driver/product/development/authorize/{id}")
+    Call<Void> authorizeDriverInsurance(@Path("id") Long id);
+    @PUT("api/v1/planner/fire/product/development/authorize/{id}")
+    Call<Void> authorizeFireInsurance(@Path("id") Long id);
+    @PUT("api/v1/planner/travel/product/development/authorize/{id}")
+    Call<Void> authorizeTravelInsurance(@Path("id") Long id);
 
+    // 보험 상품 승인하기
+    @PUT("api/v1/financial/supervisory/car/product/development/approve/{id}")
+    Call<Void> approveCarInsurance(@Path("id") Long id);
+    @PUT("api/v1/financial/supervisory/driver/product/development/approve/{id}")
+    Call<Void> approveDriverInsurance(@Path("id") Long id);
+    @PUT("api/v1/financial/supervisory/fire/product/development/approve/{id}")
+    Call<Void> approveFireInsurance(@Path("id") Long id);
+    @PUT("api/v1/financial/supervisory/travel/product/development/approve/{id}")
+    Call<Void> approveTravelInsurance(@Path("id") Long id);
+
+    // 인가된 보험 상품 리스트를 보여준다.
+    @GET("api/v1/planner/car/product/development/list?state=AUTHORIZE")
+    Call<Pagination<List<CarDesignInsuranceResponse>>> getAuthorizedCarInsurance();
+    @GET("api/v1/planner/driver/product/development/list?state=AUTHORIZE")
+    Call<Pagination<List<DriverDesignInsuranceResponse>>> getAuthorizedDriverInsurance();
+    @GET("api/v1/planner/fire/product/development/list?state=AUTHORIZE")
+    Call<Pagination<List<FireDesignInsuranceResponse>>> getAuthorizedFireInsurance();
+    @GET("api/v1/planner/travel/product/development/list?state=AUTHORIZE")
+    Call<Pagination<List<TravelDesignInsuranceResponse>>> getAuthorizedTravelInsurance();
 
 }

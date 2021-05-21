@@ -12,5 +12,5 @@ public class DriverPlanInsuranceRequest {
     @SerializedName("name")
     private String name;
     @SerializedName("payment")
-    private String payment;
+    private Long payment;
 }

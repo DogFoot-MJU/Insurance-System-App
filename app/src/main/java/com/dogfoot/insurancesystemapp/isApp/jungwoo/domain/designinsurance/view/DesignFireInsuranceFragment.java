@@ -20,14 +20,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignCarInsuranceBinding;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignFireInsuranceBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 
@@ -83,7 +80,7 @@ public class DesignFireInsuranceFragment extends DogFootViewModelFragment {
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .DesignFireInsurance(new FireDesignInsuranceRequest(Integer.parseInt(id), price, date, floors, site))
+                        .designFireInsurance(new FireDesignInsuranceRequest(Long.valueOf(id), Long.valueOf(price), date, Integer.valueOf(floors), Long.valueOf(site)))
                         .enqueue(new Callback<FireDesignInsuranceResponse>() {
                             @Override
                             public void onResponse(Call<FireDesignInsuranceResponse> call, Response<FireDesignInsuranceResponse> response) {

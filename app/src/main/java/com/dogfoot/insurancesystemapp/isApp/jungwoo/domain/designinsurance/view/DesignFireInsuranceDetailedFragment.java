@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -24,6 +25,9 @@ import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
@@ -37,6 +41,8 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
     private FragmentDesignInsuranceFireDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
+    private String authorizeBack;
+    private String approveBack;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -64,19 +70,21 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
         mBinding.tvDesignName3.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment3.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState3.setText(bundle.getString("strState"));
+        authorizeBack = bundle.getString("authorize");
+        approveBack = bundle.getString("approve");
 
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getFireInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<FireDesignInsuranceResponse>() {
+                .getFireInsuracneDetailed(Long.valueOf(bundle.getString("strId"))).enqueue(new Callback<FireDesignInsuranceResponse>() {
             @Override
             public void onResponse(Call<FireDesignInsuranceResponse> call,
                                    Response<FireDesignInsuranceResponse> response) {
                 if(response.isSuccessful()){
-                    mBinding.tvDesignPrice3.setText(response.body().getBuilding_price());
-                    mBinding.tvDesignDate3.setText(response.body().getConstruction_date());
-                    mBinding.tvDesignsite3.setText(response.body().getSite_area());
-                    mBinding.tvDesignFloors3.setText(response.body().getNumber_of_floors());
+                    mBinding.tvDesignPrice3.setText(String.valueOf(response.body().getBuilding_price()));
+                    mBinding.tvDesignDate3.setText(String.valueOf(response.body().getConstruction_date()));
+                    mBinding.tvDesignsite3.setText(String.valueOf(response.body().getSite_area()));
+                    mBinding.tvDesignFloors3.setText(String.valueOf(response.body().getNumber_of_floors()));
                 } else{
                 }
             }
@@ -84,6 +92,47 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
             public void onFailure(Call<FireDesignInsuranceResponse> call, Throwable t) {
             }
         });
+        if(authorizeBack.equals("true")){
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 인가하기");
+            mBinding.tvFireAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvFireAuthorizeNApproveToolbarInfo.setText("보험 상품 인가하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).authorizeFireInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 인가 완료했습니다.", Toast.LENGTH_SHORT).show(); }
+                                    replaceFragment(HomeFragment.newInstance());}
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        } else if(approveBack.equals("true")){
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 승인하기");
+            mBinding.tvFireAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvFireAuthorizeNApproveToolbarInfo.setText("보험 상품 승인하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).approveFireInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 승인 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                        replaceFragment(HomeFragment.newInstance());} }
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        }
 
     }
 
@@ -123,10 +172,14 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
+        if(item.getItemId()==android.R.id.home){
+            if(authorizeBack.equals("true")){
+                replaceFragment(AuthorizeInsuranceFirstFragment.newInstance());
+            } else if(approveBack.equals("true")){
+                replaceFragment(ApproveInsuranceFirstFragment.newInstance());
+            } else{
                 replaceFragment(DesignInsuranceFirstFragment.newInstance());
-                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

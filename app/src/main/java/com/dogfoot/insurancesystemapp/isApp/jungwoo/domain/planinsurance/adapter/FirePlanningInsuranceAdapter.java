@@ -62,9 +62,9 @@ public class FirePlanningInsuranceAdapter extends RecyclerView.Adapter<FirePlann
 
     @Override
     public void onBindViewHolder(@NonNull final FirePlanningInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(Integer.toString(fireItems.get(position).getId()));
+        holder.tv_insuranceId.setText(String.valueOf(fireItems.get(position).getId()));
         holder.tv_InsuranceName.setText(fireItems.get(position).getName());
-        holder.tv_insurancePayment.setText(fireItems.get(position).getPayment());
+        holder.tv_insurancePayment.setText(String.valueOf(fireItems.get(position).getPayment()));
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +96,10 @@ public class FirePlanningInsuranceAdapter extends RecyclerView.Adapter<FirePlann
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(fireItems.get(position).getId()));
+            bundle.putString("strId", String.valueOf(fireItems.get(position).getId()));
             bundle.putString("strName", fireItems.get(position).getName());
-            bundle.putString("strPayment", fireItems.get(position).getPayment());
-            bundle.putString("strState", fireItems.get(position).getState());
+            bundle.putString("strPayment", String.valueOf(fireItems.get(position).getPayment()));
+            bundle.putString("strState", String.valueOf(fireItems.get(position).getState()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(forDesign == false) {
@@ -139,7 +139,7 @@ public class FirePlanningInsuranceAdapter extends RecyclerView.Adapter<FirePlann
         builder.show();
     }
 
-    private void removeByDB(int id) {
+    private void removeByDB(Long id) {
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token).deleteFireInsurance(id).enqueue(new Callback<Void>() {

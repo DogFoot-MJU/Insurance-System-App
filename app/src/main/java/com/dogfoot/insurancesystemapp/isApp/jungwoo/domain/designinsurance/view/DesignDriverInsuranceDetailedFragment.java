@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +26,9 @@ import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
@@ -38,6 +42,8 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
     private FragmentDesignInsuranceDriverDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
+    private String authorizeBack;
+    private String approveBack;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -85,16 +91,19 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
         mBinding.tvDesignName2.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment2.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState2.setText(bundle.getString("strState"));
+        authorizeBack = bundle.getString("authorize");
+        approveBack = bundle.getString("approve");
+
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getDriverInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<DriverDesignInsuranceResponse>() {
+                .getDriverInsuracneDetailed(Long.valueOf(bundle.getString("strId"))).enqueue(new Callback<DriverDesignInsuranceResponse>() {
             @Override
             public void onResponse(Call<DriverDesignInsuranceResponse> call,
                                    Response<DriverDesignInsuranceResponse> response) {
                 if(response.isSuccessful()){
-                    mBinding.tvDesignAcquisition2.setText(response.body().getDate_of_license_acquisition());
-                    mBinding.tvDesignLicense2.setText(response.body().getDriver_license());
+                    mBinding.tvDesignAcquisition2.setText(String.valueOf(response.body().getDate_of_license_acquisition()));
+                    mBinding.tvDesignLicense2.setText(String.valueOf(response.body().getDriver_license()));
                 } else{
                 }
             }
@@ -102,6 +111,47 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
             public void onFailure(Call<DriverDesignInsuranceResponse> call, Throwable t) {
             }
         });
+        if(authorizeBack.equals("true")){
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 인가하기");
+            mBinding.tvDriverAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvDriverAuthorizeNApproveToolbarInfo.setText("보험 상품 인가하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).authorizeDriverInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 인가 완료했습니다.", Toast.LENGTH_SHORT).show(); }
+                                    replaceFragment(HomeFragment.newInstance());}
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        } else if(approveBack.equals("true")){
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 승인하기");
+            mBinding.tvDriverAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvDriverAuthorizeNApproveToolbarInfo.setText("보험 상품 승인하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).approveDriverInsurance(Long.valueOf(Long.valueOf(bundle.getString("strId"))))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 승인 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                        replaceFragment(HomeFragment.newInstance());} }
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        }
     }
 
     // ToolBar Settings
@@ -120,10 +170,14 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
+        if(item.getItemId()==android.R.id.home){
+            if(authorizeBack.equals("true")){
+                replaceFragment(AuthorizeInsuranceFirstFragment.newInstance());
+            } else if(approveBack.equals("true")){
+                replaceFragment(ApproveInsuranceFirstFragment.newInstance());
+            } else{
                 replaceFragment(DesignInsuranceFirstFragment.newInstance());
-                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

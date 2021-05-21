@@ -444,18 +444,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_categoryInfo">
 
                 <TextView
+                    android:id="@+id/tv_insuranceApproveInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"
+                    android:text="보험상품 승인"
+                    android:textColor="#9FA5AA"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_insuranceSendInfo"
+                    app:layout_constraintVertical_bias="0.39"></TextView>
+
+                <TextView
                     android:id="@+id/tv_insuranceSendInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="100dp"
-                    android:layout_marginRight="100dp"
-                    android:layout_marginBottom="16dp"
                     android:visibility="gone"
                     android:text="보험상품 인가"
                     android:textColor="#9FA5AA"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insuranceDesignInfo"></TextView>

@@ -1,5 +1,7 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model;
 
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant.DevelopmentState;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.AllArgsConstructor;
@@ -10,11 +12,11 @@ import lombok.Getter;
 public class FirePlanInsuranceResponse {
 
     @SerializedName("id")
-    private int id;
+    private Long id;
     @SerializedName("name")
     private String name;
     @SerializedName("payment")
-    private String payment;
+    private Long payment;
     @SerializedName("state")
-    private String state;
+    private DevelopmentState state;
 }

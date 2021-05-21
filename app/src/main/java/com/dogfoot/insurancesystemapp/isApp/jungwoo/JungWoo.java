@@ -18,6 +18,8 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +36,7 @@ public class JungWoo extends DogFootViewModelActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
     private Button btn_close;
-    private TextView tv_insuranceDevInfo, tv_insuranceInitInfo, tv_insuranceDesignInfo, tv_insuranceSendInfo;
+    private TextView tv_insuranceDevInfo, tv_insuranceInitInfo, tv_insuranceDesignInfo, tv_insuranceSendInfo, tv_insuranceApproveInfo;
     private TextView tv_uwInfo, tv_uwLossLateInfo, tv_uwAcquisitionPolicyInfo, tv_uwAppropriateExaminationInfo;
     private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo;
     private TextView tv_salesInfo, tv_salesInsuranceConclusionInfo, tv_userSalesCallManagementInfo;
@@ -163,6 +165,7 @@ public class JungWoo extends DogFootViewModelActivity {
         tv_insuranceInitInfo = findViewById(R.id.tv_insuranceInitInfo);
         tv_insuranceDesignInfo = findViewById(R.id.tv_insuranceDesignInfo);
         tv_insuranceSendInfo = findViewById(R.id.tv_insuranceSendInfo);
+        tv_insuranceApproveInfo = findViewById(R.id.tv_insuranceApproveInfo);
 
         tv_uwInfo = findViewById(R.id.tv_uwInfo);
         tv_uwLossLateInfo = findViewById(R.id.tv_uwLossLateInfo);
@@ -197,11 +200,13 @@ public class JungWoo extends DogFootViewModelActivity {
                     tv_insuranceInitInfo.setVisibility(View.GONE);
                     tv_insuranceDesignInfo.setVisibility(View.GONE);
                     tv_insuranceSendInfo.setVisibility(View.GONE);
+                    tv_insuranceApproveInfo.setVisibility(View.GONE);
                 }
                 else{
                     tv_insuranceInitInfo.setVisibility(View.VISIBLE);
                     tv_insuranceDesignInfo.setVisibility(View.VISIBLE);
                     tv_insuranceSendInfo.setVisibility(View.VISIBLE);
+                    tv_insuranceApproveInfo.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -309,7 +314,16 @@ public class JungWoo extends DogFootViewModelActivity {
             public void onClick(View view) {
                 drawerLayout.closeDrawers();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fl_main, planInsuranceFirstFragment.newInstance());
+                transaction.replace(R.id.fl_main, AuthorizeInsuranceFirstFragment.newInstance());
+                transaction.commit();
+            }
+        });
+        tv_insuranceApproveInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fl_main, ApproveInsuranceFirstFragment.newInstance());
                 transaction.commit();
             }
         });
@@ -331,4 +345,5 @@ public class JungWoo extends DogFootViewModelActivity {
     public void dogFootEntityUpdated() {
 
     }
+
 }

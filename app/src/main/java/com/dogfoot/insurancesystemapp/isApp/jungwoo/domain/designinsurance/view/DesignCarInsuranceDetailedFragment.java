@@ -3,12 +3,14 @@ package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +27,9 @@ import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
@@ -34,6 +39,8 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.Pl
 import java.util.List;
 import java.util.Vector;
 
+import lombok.Getter;
+import lombok.Setter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,6 +50,14 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
     private FragmentDesignInsuranceCarDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
+    private String authorizeBack;
+    private String approveBack;
+    @Getter
+    @Setter
+    private static Boolean backCheckAuthorize;
+    @Getter
+    @Setter
+    private static Boolean backCheckApprove;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -69,26 +84,75 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
         mBinding.tvDesignId.setText(bundle.getString("strId"));
         mBinding.tvDesignName.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment.setText(bundle.getString("strPayment"));
-        mBinding.tvDesignState.setText(bundle.getString("strState"));
+        mBinding.tvDesignState.setText(String.valueOf(bundle.get("strState")));
+        authorizeBack = bundle.getString("authorize");
+        approveBack = bundle.getString("approve");
 
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getCarInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<CarDesignInsuranceResponse>() {
-                    @Override
-                    public void onResponse(Call<CarDesignInsuranceResponse> call,
-                                           Response<CarDesignInsuranceResponse> response) {
-                        if(response.isSuccessful()){
-                            mBinding.tvDesignPrice.setText(response.body().getCar_price());
-                            mBinding.tvDesignRelease.setText(response.body().getCar_release_date());
-                            mBinding.tvDesignDistance.setText(response.body().getDriving_distance());
-                        } else{
-                        }
+            RetrofitTool.getAPIWithAuthorizationToken(token)
+                    .getCarInsuracneDetailed((long) Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<CarDesignInsuranceResponse>() {
+                @Override
+                public void onResponse(Call<CarDesignInsuranceResponse> call,
+                                       Response<CarDesignInsuranceResponse> response) {
+                    if (response.isSuccessful()) {
+                        mBinding.tvDesignPrice.setText(String.valueOf(response.body().getCar_price()));
+                        mBinding.tvDesignRelease.setText(String.valueOf(response.body().getCar_release_date()));
+                        mBinding.tvDesignDistance.setText(String.valueOf(response.body().getDriving_distance()));
+                    } else {
                     }
-                    @Override
-                    public void onFailure(Call<CarDesignInsuranceResponse> call, Throwable t) {
-                    }
-    });
+                }
+
+                @Override
+                public void onFailure(Call<CarDesignInsuranceResponse> call, Throwable t) {
+                }
+            });
+
+        if(authorizeBack.equals("true")){
+            backCheckAuthorize = true;
+            backCheckApprove = false;
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 인가하기");
+            mBinding.tvCarAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvCarAuthorizeNApproveToolbarInfo.setText("보험 상품 인가하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).authorizeCarInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 인가 완료했습니다.", Toast.LENGTH_SHORT).show(); }
+                                    replaceFragment(HomeFragment.newInstance());}
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        } else if(approveBack.equals("true")){
+            backCheckApprove = true;
+            backCheckAuthorize = false;
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 승인하기");
+            mBinding.tvCarAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvCarAuthorizeNApproveToolbarInfo.setText("보험 상품 승인하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).approveCarInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 승인 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                        replaceFragment(HomeFragment.newInstance());} }
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        }
     }
 
     @Override
@@ -127,10 +191,14 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
+        if(item.getItemId()==android.R.id.home){
+            if(authorizeBack.equals("true")){
+                replaceFragment(AuthorizeInsuranceFirstFragment.newInstance());
+            } else if(approveBack.equals("true")){
+                replaceFragment(ApproveInsuranceFirstFragment.newInstance());
+            } else{
                 replaceFragment(DesignInsuranceFirstFragment.newInstance());
-                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

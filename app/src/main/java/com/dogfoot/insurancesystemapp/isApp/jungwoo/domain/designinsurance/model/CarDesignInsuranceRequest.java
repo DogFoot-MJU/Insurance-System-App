@@ -3,6 +3,8 @@ package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.mode
 
 import com.google.gson.annotations.SerializedName;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,11 +13,11 @@ import lombok.Getter;
 public class CarDesignInsuranceRequest {
 
     @SerializedName("id")
-    private int id;
+    private Long id;
     @SerializedName("car_price")
-    private String car_price;
+    private Long car_price;
     @SerializedName("car_release_date")
     private String car_release_date;
     @SerializedName("driving_distance")
-    private String driving_distance;
+    private Long driving_distance;
 }

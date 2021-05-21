@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignCarInsuranceBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceCarDetailedBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
@@ -29,8 +28,10 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceRequest;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,7 +60,6 @@ public class DesignCarInsuranceFragment extends DogFootViewModelFragment {
         initToolbar();
         initData();
         init();
-
         return view;
     }
 
@@ -82,7 +82,7 @@ public class DesignCarInsuranceFragment extends DogFootViewModelFragment {
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .DesignCarInsurance(new CarDesignInsuranceRequest(Integer.parseInt(id), price, release, distance))
+                        .designCarInsurance(new CarDesignInsuranceRequest(Long.valueOf(id), Long.valueOf(price), release, Long.valueOf(distance)))
                         .enqueue(new Callback<CarDesignInsuranceResponse>() {
                             @Override
                             public void onResponse(Call<CarDesignInsuranceResponse> call, Response<CarDesignInsuranceResponse> response) {

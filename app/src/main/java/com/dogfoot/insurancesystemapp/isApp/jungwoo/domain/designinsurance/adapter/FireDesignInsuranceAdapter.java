@@ -20,11 +20,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignFireInsuranceDetailedFragment;
 
 import java.util.Vector;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignInsuranceAdapter.CustomViewHolder>{
 
@@ -32,12 +39,16 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
+    private boolean authorize = false;
+    private boolean approve = false;
 
 
-    public FireDesignInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+    public FireDesignInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean authorize, boolean approve) {
         this.fireItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
+        this.authorize = authorize;
+        this.approve = approve;
     }
 
     @NonNull
@@ -50,15 +61,15 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
 
     @Override
     public void onBindViewHolder(@NonNull final FireDesignInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(Integer.toString(fireItems.get(position).getId()));
+        holder.tv_insuranceId.setText(String.valueOf(fireItems.get(position).getId()));
         holder.tv_InsuranceName.setText(fireItems.get(position).getName());
-        holder.tv_insurancePayment.setText(fireItems.get(position).getPayment());
+        holder.tv_insurancePayment.setText(String.valueOf(fireItems.get(position).getPayment()));
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("확인", Integer.toString(position));
+                removeByDB(fireItems.get(position).getId());
                 deleteDialog(position);
             }
         });
@@ -73,6 +84,8 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
 
         });
 
+    }public void setAuthorize(String authorize) {
+        this.authorize = Boolean.valueOf(authorize);
     }
 
     private void doubleClickCheck(int position) {
@@ -84,10 +97,12 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(fireItems.get(position).getId()));
+            bundle.putString("strId", String.valueOf(fireItems.get(position).getId()));
             bundle.putString("strName", fireItems.get(position).getName());
-            bundle.putString("strPayment", fireItems.get(position).getPayment());
-            bundle.putString("strState", fireItems.get(position).getState());
+            bundle.putString("strPayment", String.valueOf(fireItems.get(position).getPayment()));
+            bundle.putString("strState", String.valueOf(fireItems.get(position).getState()));
+            bundle.putString("authorize", String.valueOf(authorize));
+            bundle.putString("approve", String.valueOf(approve));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             DesignFireInsuranceDetailedFragment designFireInsuranceDetailedFragment = DesignFireInsuranceDetailedFragment.newInstance();
@@ -106,7 +121,7 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // db에서 제거
-                        fireItems.get(position).getId(); //이거 db에 전달해서 삭제
+                        removeByDB(fireItems.get(position).getId());
 
                         // view에서 제거
                         remove(position);
@@ -120,6 +135,25 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
                 });
         builder.show();
     }
+
+    private void removeByDB(Long id) {
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).deleteFireInsurance(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     @Override
     public int getItemCount() {

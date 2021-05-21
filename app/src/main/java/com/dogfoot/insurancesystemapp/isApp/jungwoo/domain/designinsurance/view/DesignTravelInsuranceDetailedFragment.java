@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +26,9 @@ import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
@@ -38,6 +42,8 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
     private FragmentDesignInsuranceTravelDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
+    private String authorizeBack;
+    private String approveBack;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -65,16 +71,18 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
         mBinding.tvDesignName4.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment4.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState4.setText(bundle.getString("strState"));
+        authorizeBack = bundle.getString("authorize");
+        approveBack = bundle.getString("approve");
 
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token)
-                .getTravelInsuracneDetailed(Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<TravelDesignInsuranceResponse>() {
+                .getTravelInsuracneDetailed(Long.valueOf(bundle.getString("strId"))).enqueue(new Callback<TravelDesignInsuranceResponse>() {
             @Override
             public void onResponse(Call<TravelDesignInsuranceResponse> call,
                                    Response<TravelDesignInsuranceResponse> response) {
                 if(response.isSuccessful()){
-                    mBinding.tvDesignSafe4.setText(response.body().getSafety_rank());
+                    mBinding.tvDesignSafe4.setText(String.valueOf(response.body().getSafety_rank()));
                 } else{
                 }
             }
@@ -82,6 +90,48 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
             public void onFailure(Call<TravelDesignInsuranceResponse> call, Throwable t) {
             }
         });
+
+        if(authorizeBack.equals("true")){
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 인가하기");
+            mBinding.tvTravelAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvTravelAuthorizeNApproveToolbarInfo.setText("보험 상품 인가하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).authorizeTravelInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 인가 완료했습니다.", Toast.LENGTH_SHORT).show(); }
+                                    replaceFragment(HomeFragment.newInstance());}
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        } else if(approveBack.equals("true")){
+            mBinding.buttonAuthorizeNApprove.setVisibility(View.VISIBLE);
+            mBinding.buttonAuthorizeNApprove.setText("보험 상품 승인하기");
+            mBinding.tvTravelAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
+            mBinding.tvTravelAuthorizeNApproveToolbarInfo.setText("보험 상품 승인하기");
+            mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RetrofitTool.getAPIWithAuthorizationToken(token).approveTravelInsurance(Long.valueOf(bundle.getString("strId")))
+                            .enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        Toast.makeText(fragmentContext, "상품 승인 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                        replaceFragment(HomeFragment.newInstance());} }
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) { }
+                            });
+                }
+            });
+        }
     }
 
     @Override
@@ -120,10 +170,14 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
+        if(item.getItemId()==android.R.id.home){
+            if(authorizeBack.equals("true")){
+                replaceFragment(AuthorizeInsuranceFirstFragment.newInstance());
+            } else if(approveBack.equals("true")){
+                replaceFragment(ApproveInsuranceFirstFragment.newInstance());
+            } else{
                 replaceFragment(DesignInsuranceFirstFragment.newInstance());
-                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

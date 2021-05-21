@@ -51,7 +51,6 @@
     <string name="title_activity_log_out">LogOutActivity</string>
 
 
-
     <!-- 회원가입 프래그먼트 !-->
     <string name="register_email_maintext">이메일을 입력해주세요</string>
     <string name="register_email_hint">example@dogfoot.com</string>

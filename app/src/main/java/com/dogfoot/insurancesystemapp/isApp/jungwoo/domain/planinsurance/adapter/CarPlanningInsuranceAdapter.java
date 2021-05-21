@@ -144,7 +144,7 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
     private void removeByDB(int id) {
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
+        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(Long.valueOf(id)).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){

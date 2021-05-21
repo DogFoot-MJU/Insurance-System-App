@@ -19,11 +19,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignTravelInsuranceDetailedFragment;
 
 import java.util.Vector;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDesignInsuranceAdapter.CustomViewHolder>{
 
@@ -31,12 +38,16 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
+    private boolean authorize = false;
+    private boolean approve = false;
 
 
-    public TravelDesignInsuranceAdapter(Context context, FragmentActivity fragmentContext) {
+    public TravelDesignInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean authorize, boolean approve) {
         this.travelItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
+        this.authorize = authorize;
+        this.approve = approve;
     }
 
     @NonNull
@@ -49,9 +60,9 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
 
     @Override
     public void onBindViewHolder(@NonNull final TravelDesignInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(Integer.toString(travelItems.get(position).getId()));
+        holder.tv_insuranceId.setText(String.valueOf(travelItems.get(position).getId()));
         holder.tv_InsuranceName.setText(travelItems.get(position).getName());
-        holder.tv_insurancePayment.setText(travelItems.get(position).getPayment());
+        holder.tv_insurancePayment.setText(String.valueOf(travelItems.get(position).getPayment()));
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +83,8 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
 
         });
 
+    }public void setAuthorize(String authorize) {
+        this.authorize = Boolean.valueOf(authorize);
     }
 
     private void doubleClickCheck(int position) {
@@ -83,11 +96,12 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(travelItems.get(position).getId()));
+            bundle.putString("strId", String.valueOf(travelItems.get(position).getId()));
             bundle.putString("strName", travelItems.get(position).getName());
-            bundle.putString("strPayment", travelItems.get(position).getPayment());
-            bundle.putString("strState", travelItems.get(position).getState());
-
+            bundle.putString("strPayment", String.valueOf(travelItems.get(position).getPayment()));
+            bundle.putString("strState", String.valueOf(travelItems.get(position).getState()));
+            bundle.putString("authorize", String.valueOf(authorize));
+            bundle.putString("approve", String.valueOf(approve));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             DesignTravelInsuranceDetailedFragment designTravelInsuranceDetailedFragment = DesignTravelInsuranceDetailedFragment.newInstance();
@@ -95,6 +109,23 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
             fragmentTransaction.replace(R.id.fl_main, designTravelInsuranceDetailedFragment).commit();
 
         }
+    }
+
+    private void removeByDB(Long id) {
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).deleteTravelInsuracne(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
 
@@ -106,7 +137,7 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // db에서 제거
-                        travelItems.get(position).getId(); //이거 db에 전달해서 삭제
+                        removeByDB(travelItems.get(position).getId());
 
                         // view에서 제거
                         remove(position);

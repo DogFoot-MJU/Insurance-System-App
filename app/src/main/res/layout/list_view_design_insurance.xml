@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="설계상품 이름"
+            android:text="상품 이름"
             android:textColor="#9FA5AA"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_paymentInfo"

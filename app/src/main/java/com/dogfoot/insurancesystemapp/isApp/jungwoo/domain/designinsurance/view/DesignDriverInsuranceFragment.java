@@ -20,18 +20,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignCarInsuranceBinding;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignDriverInsuranceBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceRequest;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,7 +78,7 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .DesignDriverInsurance(new DriverDesignInsuranceRequest(Integer.parseInt(id), acquisition, license))
+                        .designDriverInsurance(new DriverDesignInsuranceRequest(Long.valueOf(id), acquisition, Constant.DriverLicence.valueOf(license)))
                         .enqueue(new Callback<DriverDesignInsuranceResponse>() {
                             @Override
                             public void onResponse(Call<DriverDesignInsuranceResponse> call, Response<DriverDesignInsuranceResponse> response) {

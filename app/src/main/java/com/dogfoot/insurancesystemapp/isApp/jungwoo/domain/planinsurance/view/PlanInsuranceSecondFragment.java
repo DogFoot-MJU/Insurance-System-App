@@ -107,7 +107,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
         strPayment = mBinding.etPlanInsurancePaymentWrite.getText().toString();
 
         if(strType.equals("자동차 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).PlanCarInsurance(new CarPlanInsuranceRequest(strName, strPayment))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planCarInsurance(new CarPlanInsuranceRequest(strName, Long.valueOf(strPayment)))
                     .enqueue(new Callback<CarPlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<CarPlanInsuranceResponse> call, Response<CarPlanInsuranceResponse> response) {
@@ -120,7 +120,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
                 public void onFailure(Call<CarPlanInsuranceResponse> call, Throwable t) { }
             });
         } else if(strType.equals("운전자 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).PlanDriverInsurance(new DriverPlanInsuranceRequest(strName, strPayment))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planDriverInsurance(new DriverPlanInsuranceRequest(strName, Long.valueOf(strPayment)))
                     .enqueue(new Callback<DriverPlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<DriverPlanInsuranceResponse> call, Response<DriverPlanInsuranceResponse> response) {
@@ -133,7 +133,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
                 public void onFailure(Call<DriverPlanInsuranceResponse> call, Throwable t) { }
             });
         }else if(strType.equals("화재 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).PlanFireInsurance(new FirePlanInsuranceRequest(strName, strPayment))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planFireInsurance(new FirePlanInsuranceRequest(strName, Long.valueOf(strPayment)))
                     .enqueue(new Callback<FirePlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<FirePlanInsuranceResponse> call, Response<FirePlanInsuranceResponse> response) {
@@ -147,7 +147,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
             });
         }
         else if(strType.equals("여행 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).PlanTravelInsurance(new TravelPlanInsuranceRequest(strName, strPayment))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planTravelInsurance(new TravelPlanInsuranceRequest(strName, Long.valueOf(strPayment)))
                     .enqueue(new Callback<TravelPlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<TravelPlanInsuranceResponse> call, Response<TravelPlanInsuranceResponse> response) {

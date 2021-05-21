@@ -58,9 +58,9 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
 
     @Override
     public void onBindViewHolder(@NonNull final DriverPlanningInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(Integer.toString(driverItems.get(position).getId()));
+        holder.tv_insuranceId.setText(String.valueOf(driverItems.get(position).getId()));
         holder.tv_InsuranceName.setText(driverItems.get(position).getName());
-        holder.tv_insurancePayment.setText(driverItems.get(position).getPayment());
+        holder.tv_insurancePayment.setText(String.valueOf(driverItems.get(position).getPayment()));
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +91,10 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", Integer.toString(driverItems.get(position).getId()));
+            bundle.putString("strId", String.valueOf(driverItems.get(position).getId()));
             bundle.putString("strName", driverItems.get(position).getName());
-            bundle.putString("strPayment", driverItems.get(position).getPayment());
-            bundle.putString("strState", driverItems.get(position).getState());
+            bundle.putString("strPayment", String.valueOf(driverItems.get(position).getPayment()));
+            bundle.putString("strState", String.valueOf(driverItems.get(position).getState()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(forDesign == false) {
@@ -134,7 +134,8 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
         builder.show();
     }
 
-    private void removeByDB(int id) {
+
+    private void removeByDB(Long id) {
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token).deleteDriverInsuracne(id).enqueue(new Callback<Void>() {
