@@ -21,6 +21,7 @@ public class Constant {
     public static final String LOG_OUT_ACTIVITY_SUCCESSFUL_DIALOG_MESSAGE = "성공적으로 로그아웃하였습니다.";
     public static final String LOG_OUT_ACTIVITY_FAILURE_DIALOG_TITLE = "로그인 되어 있지 않습니다.";
     public static final String LOG_OUT_ACTIVITY_FAILURE_DIALOG_MESSAGE = "로그인 되어 있지 않습니다.";
+    public static final String CUSTOMER_CONSULTING__ACTIVITY_ID="viewId";
 
     @Getter
     private Map<DogFootEntity.EDogFootData, String> dataset;

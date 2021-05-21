@@ -12,7 +12,7 @@ import lombok.Setter;
 public class DogFootEntity {
 
     // Static Value
-    public enum EDogFootData {AUTHORIZATION,AUTO_LOGIN, EMAIL, PASSWORD, NAME,PHONE,ADDRESS,RESIDENT, TRUE, FALSE}
+    public enum EDogFootData {AUTHORIZATION,AUTO_LOGIN, EMAIL, PASSWORD, NAME,PHONE,ADDRESS,RESIDENT, TRUE, FALSE,ID}
 
     // Component
     private Map<EDogFootData, String> dataset;  // email, pw, authorization... 등 엥간한 것들을 여기 저장

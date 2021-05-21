@@ -35,9 +35,12 @@
         android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingListFragment"
         android:label="customerConsultingList"
         tools:layout="@layout/fragment_customer_consulting_list" >
+
         <action
             android:id="@+id/action_customerConsultingList_to_customerConsultingMain"
             app:destination="@id/customerConsultingMainFragment" />
     </fragment>
+
+
 
 </navigation>

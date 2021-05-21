@@ -3,6 +3,7 @@ package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class CustomerConsultingViewHolder extends RecyclerView.ViewHolder {
         // ETC
         private Activity activity;
 
+
     // Constructor
     public CustomerConsultingViewHolder(View itemView, View.OnClickListener onClickListener, Activity activity) {
         super(itemView);
@@ -32,6 +34,7 @@ public class CustomerConsultingViewHolder extends RecyclerView.ViewHolder {
         this.activity=activity;
 
         // Associate View
+
         this.title = itemView.findViewById(R.id.item_customer_consulting_title_input);
         this.author = itemView.findViewById(R.id.item_customer_consulting_author_input);
         this.isAnswer = itemView.findViewById(R.id.item_customer_consulting_isanswer_input);
@@ -39,9 +42,15 @@ public class CustomerConsultingViewHolder extends RecyclerView.ViewHolder {
 
         // Initialize View
         itemView.setOnClickListener(onClickListener);
+
+
+
+
+
     }
 
     public void setValue(CustomerConsultingListResponse response) {
+        this.itemView.setTag(response.getId());
         this.title.setText(response.getTitle());
         this.author.setText(response.getWriter());
         this.isAnswer.setText(response.getState());
