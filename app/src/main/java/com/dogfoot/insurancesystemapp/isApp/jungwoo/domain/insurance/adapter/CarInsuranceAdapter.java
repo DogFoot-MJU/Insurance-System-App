@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.adapter;
+package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,12 +19,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.databinding.FragmentRegistrationCapacityPolicyThirdBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyThirdFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
 
 import java.util.Vector;
 
@@ -32,36 +34,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignInsuranceAdapter.CustomViewHolder>{
+public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapter.CustomViewHolder>{
 
-    private Vector<CarDesignInsuranceResponse> carItems;
+    private Vector<CarInsuranceResponse> carItems;
     private Context context;
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
-    private static boolean authorize = false;
-    private static boolean approve = false;
+    private boolean capacityPolicy;
 
-    public CarDesignInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean authorize, boolean approve) {
+    public CarInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy) {
         this.carItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
-        this.authorize = authorize;
-        this.approve = approve;
+        this.capacityPolicy = true;
     }
 
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_plan_insurance, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_insurance, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CarDesignInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
+    public void onBindViewHolder(@NonNull final CarInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
         holder.tv_insuranceId.setText(Long.toString(carItems.get(position).getId()));
-        holder.tv_InsuranceName.setText(carItems.get(position).getName());
-        holder.tv_insurancePayment.setText(Long.toString(carItems.get(position).getPayment()));
+        holder.tv_insuranceName.setText(carItems.get(position).getName());
         holder.itemView.setTag(position);
 
         holder.ib_clear.setOnClickListener(new View.OnClickListener() {
@@ -96,18 +95,16 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
 
             Bundle bundle = new Bundle();
             bundle.putString("strId", Long.toString(carItems.get(position).getId()));
-            bundle.putString("strName", carItems.get(position).getName());
-            bundle.putString("strPayment", Long.toString(carItems.get(position).getPayment()));
-            bundle.putString("strState", String.valueOf(carItems.get(position).getState()));
-            bundle.putString("integerExpirationDate", Integer.toString(carItems.get(position).getExpiration_date()));
-            bundle.putString("authorize", String.valueOf(authorize));
-            bundle.putString("approve", String.valueOf(approve));
-
+            bundle.putString("strInsuranceName", carItems.get(position).getName());
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                DesignCarInsuranceDetailedFragment designCarInsuranceDetailedFragment = DesignCarInsuranceDetailedFragment.newInstance();
-                designCarInsuranceDetailedFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fl_main, designCarInsuranceDetailedFragment).commit();
+
+            if(capacityPolicy == true){
+                RegistrationCapacityPolicyThirdFragment registrationCapacityPolicyThirdFragment = RegistrationCapacityPolicyThirdFragment.newInstance();
+                registrationCapacityPolicyThirdFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, registrationCapacityPolicyThirdFragment).commit();
+            }
+
 
         }
     }
@@ -139,20 +136,19 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
         Constant constant = Constant.getInstance();
         //String token =
 
-        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-
-            }
-        });
+//        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+//        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
+//            @Override
+//            public void onResponse(Call<Void> call, Response<Void> response) {
+//                if(response.isSuccessful()){
+//                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<Void> call, Throwable t) {
+//
+//            }
+//        });
     }
 
     @Override
@@ -173,20 +169,18 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_insuranceId;
-        TextView tv_InsuranceName;
-        TextView tv_insurancePayment;
+        TextView tv_insuranceName;
         ImageButton ib_clear;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.tv_insuranceId = itemView.findViewById(R.id.tv_planInsuranceId);
-            this.tv_InsuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
-            this.tv_insurancePayment = itemView.findViewById(R.id.tv_planInsurancePayment);
+            this.tv_insuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
             this.ib_clear = itemView.findViewById(R.id.ib_clear);
         }
     }
 
-    public void addCarItems(Vector<CarDesignInsuranceResponse> carItems){
+    public void addCarItems(Vector<CarInsuranceResponse> carItems){
         this.carItems = carItems;
     }
 }

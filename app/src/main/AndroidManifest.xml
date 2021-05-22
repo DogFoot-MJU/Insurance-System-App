@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InsuranceSystemApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment"></activity>
+        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyUpdateFragment"></activity>
+        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicySecondFragment" />
+        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyDetailedFragment" />
+        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyFirstFragment" />
+        <activity android:name=".isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment" />
         <activity android:name=".isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment" />
         <activity android:name=".isApp.jungwoo.domain.designinsurance.view.DesignTravelInsuranceFragment" />
         <activity android:name=".isApp.jungwoo.domain.designinsurance.view.DesignFireInsuranceFragment" />

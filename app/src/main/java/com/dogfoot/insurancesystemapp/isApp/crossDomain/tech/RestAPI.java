@@ -7,6 +7,9 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.m
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.model.CapacityPolicyRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.model.CapacityPolicyResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.model.CapacityPolicyUpdateRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceRequest;
@@ -15,6 +18,10 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.DriverInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.FireInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.TravelInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceRequest;
@@ -137,5 +144,37 @@ public interface RestAPI {
     Call<Pagination<List<FireDesignInsuranceResponse>>> getAuthorizedFireInsurance();
     @GET("api/v1/planner/travel/product/development/list?state=AUTHORIZE")
     Call<Pagination<List<TravelDesignInsuranceResponse>>> getAuthorizedTravelInsurance();
+
+    // 인수정책을 등록한다.
+    @POST("api/v1/uw/capacity")
+    Call<Void> registrationCapacityPolicy(@Body CapacityPolicyRequest capacityPolicyRequest);
+
+    // 인수정책 리스트를 보여준다.
+    @GET("api/v1/uw/capacity/list")
+    Call<Pagination<List<CapacityPolicyResponse>>> getCapacityPolicyList();
+
+    // 인수정책을 삭제한다.
+    @DELETE("api/v1/uw/capacity/{id}")
+    Call<Void> deleteCapacityPolicy(@Path("id") Long id);
+
+    // 인수정책 상세보기
+    @GET("api/v1/uw/capacity/{id}")
+    Call<CapacityPolicyResponse> getCapacityPolicyDetailed(@Path("id") Long id);
+
+    // 인수정책이 가능한 보험리스트를 보여준다.
+
+    // 인수정책 수정하기
+    @PUT("api/v1/uw/capacity")
+    Call<Void> updateCapacityPolicy(@Body CapacityPolicyUpdateRequest capacityPolicyUpdateRequest);
+
+    // 판매가능 보험 리스트
+    @GET("api/v1/user/car/insurance/available/list")
+    Call<Pagination<List<CarInsuranceResponse>>> getPossibleCarInsuranceList();
+    @GET("api/v1/user/driver/insurance/available/list")
+    Call<Pagination<List<DriverInsuranceResponse>>> getPossibleDriverInsuranceList();
+    @GET("api/v1/user/fire/insurance/available/list")
+    Call<Pagination<List<FireInsuranceResponse>>> getPossibleFireInsuranceList();
+    @GET("api/v1/user/travel/insurance/available/list")
+    Call<Pagination<List<TravelInsuranceResponse>>> getPossibleTravelInsuranceList();
 
 }

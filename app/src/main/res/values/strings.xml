@@ -25,7 +25,6 @@
     <string name="loadingDialog_textView_text">Loading...</string>
 
 
-
     <!-- 동욱 액티비티 !-->
     <string name="dongWook_title">동욱 기능 테스트</string>
     <string name="dongWook_btn_login">로그인</string>
@@ -82,8 +81,6 @@
 
     <!-- 고객 상담리스트 액티비티 !-->
     <string name="customer_consulting_list_connection_fail">서버에 연결할 수 없습니다.</string>
-
-
 
 
 </resources>
