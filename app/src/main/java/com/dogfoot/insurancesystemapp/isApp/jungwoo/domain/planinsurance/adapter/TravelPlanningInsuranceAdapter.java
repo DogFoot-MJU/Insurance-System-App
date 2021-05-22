@@ -99,6 +99,7 @@ public class TravelPlanningInsuranceAdapter extends RecyclerView.Adapter<TravelP
             bundle.putString("strName", travelItems.get(position).getName());
             bundle.putString("strPayment", String.valueOf(travelItems.get(position).getPayment()));
             bundle.putString("strState", String.valueOf(travelItems.get(position).getState()));
+            bundle.putString("integerExpirationDate", Integer.toString(travelItems.get(position).getExpiration_date()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(forDesign == false) {

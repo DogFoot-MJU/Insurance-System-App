@@ -52,10 +52,6 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.e("크리에이트뷰홀더", "크리에이트뷰홀더");
-        if(DesignCarInsuranceDetailedFragment.getBackCheckAuthorize()==true){
-            this.authorize = true;
-        }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_plan_insurance, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
@@ -63,7 +59,6 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
 
     @Override
     public void onBindViewHolder(@NonNull final CarDesignInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        Log.e("바인드뷰홀더", "바인드뷰홀더");
         holder.tv_insuranceId.setText(Long.toString(carItems.get(position).getId()));
         holder.tv_InsuranceName.setText(carItems.get(position).getName());
         holder.tv_insurancePayment.setText(Long.toString(carItems.get(position).getPayment()));
@@ -104,7 +99,7 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
             bundle.putString("strName", carItems.get(position).getName());
             bundle.putString("strPayment", Long.toString(carItems.get(position).getPayment()));
            bundle.putString("strState", String.valueOf(carItems.get(position).getState()));
-            //bundle.putSerializable("strState", carItems.get(position).getState());
+            bundle.putString("integerExpirationDate", Integer.toString(carItems.get(position).getExpiration_date()));
             bundle.putString("authorize", String.valueOf(authorize));
             bundle.putString("approve", String.valueOf(approve));
 
@@ -142,6 +137,8 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
 
     private void removeByDB(Long id) {
         Constant constant = Constant.getInstance();
+        //String token =
+
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
             @Override
@@ -172,7 +169,6 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
             ex.printStackTrace();
         }
     }
-
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 

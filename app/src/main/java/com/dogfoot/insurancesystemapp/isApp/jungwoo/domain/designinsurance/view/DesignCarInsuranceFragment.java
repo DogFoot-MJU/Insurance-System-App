@@ -69,6 +69,7 @@ public class DesignCarInsuranceFragment extends DogFootViewModelFragment {
         mBinding.tvDesignName.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState.setText(bundle.getString("strState"));
+        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
     }
 
     private void init() {

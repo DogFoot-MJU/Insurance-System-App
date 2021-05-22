@@ -15,6 +15,8 @@ public class CarPlanInsuranceResponse {
     private String name;
     @SerializedName("payment")
     private String payment;
+    @SerializedName("expiration_date")
+    private int expiration_date;
     @SerializedName("state")
     private String state;
 }

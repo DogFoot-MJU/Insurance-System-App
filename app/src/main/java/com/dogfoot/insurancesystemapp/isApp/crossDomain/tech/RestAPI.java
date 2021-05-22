@@ -1,8 +1,5 @@
 package com.dogfoot.insurancesystemapp.isApp.crossDomain.tech;
 
-
-
-
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
@@ -39,6 +36,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RestAPI {
+
     @POST("login")
     Call<LoginRequest> login(@Body LoginRequest loginRequest);
     @POST("signup")
@@ -49,9 +47,6 @@ public interface RestAPI {
     Call<Pagination<List<CustomerConsultingListResponse>>> getCustomerConsultingList();
     @GET("api/v1/user/consulting/{id}")
     Call<CustomerConsultingViewResponse> getCustomerConsultingView(@Path("id") Long id);
-
-
-
 
     // 보험 상품을 기획한다
     @POST("api/v1/planner/car/product/development/plan")

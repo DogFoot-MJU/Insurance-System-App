@@ -111,7 +111,7 @@ public class ApproveInsuranceFirstFragment extends DogFootViewModelFragment {
         travelRecyclerView.setAdapter(travelDesignInsuranceAdapter);
 
         Constant constant = Constant.getInstance();
-        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+       String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         carItems = new Vector<>();
         driverItems = new Vector<>();
         fireItems = new Vector<>();

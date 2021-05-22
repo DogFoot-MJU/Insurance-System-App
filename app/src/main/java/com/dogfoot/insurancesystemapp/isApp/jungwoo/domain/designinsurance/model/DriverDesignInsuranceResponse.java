@@ -23,6 +23,8 @@ public class DriverDesignInsuranceResponse {
     private Long payment;
     @SerializedName("state")
     private DevelopmentState state;
+    @SerializedName("expiration_date")
+    private int expiration_date;
     @SerializedName("date_of_license_acquisition")
     private String date_of_license_acquisition;
     @SerializedName("driver_license")

@@ -21,6 +21,8 @@ public class TravelDesignInsuranceResponse {
     private Long payment;
     @SerializedName("state")
     private DevelopmentState state;
+    @SerializedName("expiration_date")
+    private int expiration_date;
     @SerializedName("safety_rank")
     private SafetyRank safety_rank;
 }

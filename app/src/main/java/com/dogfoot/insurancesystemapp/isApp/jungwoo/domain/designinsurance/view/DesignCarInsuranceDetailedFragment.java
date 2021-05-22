@@ -76,6 +76,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
         mBinding.tvDesignName.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState.setText(String.valueOf(bundle.get("strState")));
+        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
         authorizeBack = bundle.getString("authorize");
         approveBack = bundle.getString("approve");
 
@@ -88,7 +89,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
                                        Response<CarDesignInsuranceResponse> response) {
                     if (response.isSuccessful()) {
                         mBinding.tvDesignPrice.setText(String.valueOf(response.body().getCar_price()));
-                        mBinding.tvDesignRelease.setText(String.valueOf(response.body().getCar_release_date()));
+                        mBinding.tvDesignRelease.setText(response.body().getCar_release_date().toString());
                         mBinding.tvDesignDistance.setText(String.valueOf(response.body().getDriving_distance()));
                     } else {
                     }

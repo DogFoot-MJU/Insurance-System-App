@@ -101,6 +101,7 @@ public class FireDesignInsuranceAdapter extends RecyclerView.Adapter<FireDesignI
             bundle.putString("strName", fireItems.get(position).getName());
             bundle.putString("strPayment", String.valueOf(fireItems.get(position).getPayment()));
             bundle.putString("strState", String.valueOf(fireItems.get(position).getState()));
+            bundle.putString("integerExpirationDate", Integer.toString(fireItems.get(position).getExpiration_date()));
             bundle.putString("authorize", String.valueOf(authorize));
             bundle.putString("approve", String.valueOf(approve));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();

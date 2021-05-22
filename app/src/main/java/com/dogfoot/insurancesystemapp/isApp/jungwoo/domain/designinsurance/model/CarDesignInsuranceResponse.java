@@ -21,6 +21,8 @@ public class CarDesignInsuranceResponse {
     private Long payment;
     @SerializedName("state")
     private DevelopmentState state;
+    @SerializedName("expiration_date")
+    private int expiration_date;
     @SerializedName("car_price")
     private Long car_price;
     @SerializedName("car_release_date")

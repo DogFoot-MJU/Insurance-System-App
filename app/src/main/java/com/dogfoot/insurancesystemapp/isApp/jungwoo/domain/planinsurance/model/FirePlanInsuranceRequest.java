@@ -13,4 +13,6 @@ public class FirePlanInsuranceRequest {
     private String name;
     @SerializedName("payment")
     private Long payment;
+    @SerializedName("expiration_date")
+    private int expiration_date;
 }

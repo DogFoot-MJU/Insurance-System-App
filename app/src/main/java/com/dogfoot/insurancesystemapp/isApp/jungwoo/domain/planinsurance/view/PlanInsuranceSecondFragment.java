@@ -37,6 +37,8 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.F
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceRequest;
 
+import java.lang.reflect.Array;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +49,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
     private Context context;
     private FragmentActivity fragmentContext;
     private String strName, strPayment, strType;
+    private int expiration_date;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -105,9 +108,10 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
         strName =  mBinding.etPlanInsuranceNameWrite.getText().toString();
         strPayment = mBinding.etPlanInsurancePaymentWrite.getText().toString();
+        expiration_date = Integer.valueOf(mBinding.etExpirationDate.getText().toString());
 
         if(strType.equals("자동차 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).planCarInsurance(new CarPlanInsuranceRequest(strName, Long.valueOf(strPayment)))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planCarInsurance(new CarPlanInsuranceRequest(strName, Long.valueOf(strPayment), expiration_date))
                     .enqueue(new Callback<CarPlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<CarPlanInsuranceResponse> call, Response<CarPlanInsuranceResponse> response) {
@@ -120,7 +124,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
                 public void onFailure(Call<CarPlanInsuranceResponse> call, Throwable t) { }
             });
         } else if(strType.equals("운전자 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).planDriverInsurance(new DriverPlanInsuranceRequest(strName, Long.valueOf(strPayment)))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planDriverInsurance(new DriverPlanInsuranceRequest(strName, Long.valueOf(strPayment), expiration_date))
                     .enqueue(new Callback<DriverPlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<DriverPlanInsuranceResponse> call, Response<DriverPlanInsuranceResponse> response) {
@@ -133,7 +137,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
                 public void onFailure(Call<DriverPlanInsuranceResponse> call, Throwable t) { }
             });
         }else if(strType.equals("화재 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).planFireInsurance(new FirePlanInsuranceRequest(strName, Long.valueOf(strPayment)))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planFireInsurance(new FirePlanInsuranceRequest(strName, Long.valueOf(strPayment), expiration_date))
                     .enqueue(new Callback<FirePlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<FirePlanInsuranceResponse> call, Response<FirePlanInsuranceResponse> response) {
@@ -147,7 +151,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
             });
         }
         else if(strType.equals("여행 보험")) {
-            RetrofitTool.getAPIWithAuthorizationToken(token).planTravelInsurance(new TravelPlanInsuranceRequest(strName, Long.valueOf(strPayment)))
+            RetrofitTool.getAPIWithAuthorizationToken(token).planTravelInsurance(new TravelPlanInsuranceRequest(strName, Long.valueOf(strPayment), expiration_date))
                     .enqueue(new Callback<TravelPlanInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<TravelPlanInsuranceResponse> call, Response<TravelPlanInsuranceResponse> response) {

@@ -22,6 +22,8 @@ public class FireDesignInsuranceResponse {
     private Long payment;
     @SerializedName("state")
     private DevelopmentState state;
+    @SerializedName("expiration_date")
+    private int expiration_date;
     @SerializedName("building_price")
     private Long building_price;
     @SerializedName("construction_date")

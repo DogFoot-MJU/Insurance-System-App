@@ -41,6 +41,8 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.Pagination;
 import java.util.List;
 import java.util.Vector;
 
+import lombok.Getter;
+import lombok.Setter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,6 +70,10 @@ public class AuthorizeInsuranceFirstFragment extends DogFootViewModelFragment {
     Vector<DriverDesignInsuranceResponse> driverItems;
     Vector<FireDesignInsuranceResponse> fireItems;
     Vector<TravelDesignInsuranceResponse> travelItems;
+
+    @Setter
+    @Getter
+    private String token;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -204,6 +210,14 @@ public class AuthorizeInsuranceFirstFragment extends DogFootViewModelFragment {
 
 
         return view;
+    }
+
+    private String getToken(){
+        return token;
+    }
+
+    private void setToken(String token) {
+        this.token = token;
     }
 
     private void init() {
