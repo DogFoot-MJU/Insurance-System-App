@@ -18,9 +18,13 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.DriverInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.DriverInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.FireInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.FireInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.TravelInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.TravelInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
@@ -176,5 +180,20 @@ public interface RestAPI {
     Call<Pagination<List<FireInsuranceResponse>>> getPossibleFireInsuranceList();
     @GET("api/v1/user/travel/insurance/available/list")
     Call<Pagination<List<TravelInsuranceResponse>>> getPossibleTravelInsuranceList();
+
+    // 보험 신청하기
+    @POST("api/v1/contract/car")
+    Call<Void> applyForCarInsurance(@Body CarInsuranceRequest carInsuranceRequest);
+    @POST("api/v1/contract/car")
+    Call<Void> applyForDriverInsurance(@Body DriverInsuranceRequest driverInsuranceRequest);
+    @POST("api/v1/contract/car")
+    Call<Void> applyForFireInsurance(@Body FireInsuranceRequest fireInsuranceRequest);
+    @POST("api/v1/contract/car")
+    Call<Void> applyForTravelInsurance(@Body TravelInsuranceRequest travelInsuranceRequest);
+
+    // 판매가능한 보험 상세보기
+    @GET("api/v1/user/car/insurance/{id}")
+    Call<CarInsuranceResponse> getPossibleCarInsuranceDetailed(@Path("id") Long id);
+
 
 }

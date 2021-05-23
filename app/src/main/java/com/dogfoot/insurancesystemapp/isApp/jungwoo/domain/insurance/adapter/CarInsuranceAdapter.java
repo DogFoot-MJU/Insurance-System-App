@@ -27,6 +27,7 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.R
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view.CarInsuranceApplicationFragment;
 
 import java.util.Vector;
 
@@ -41,12 +42,14 @@ public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapte
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
     private boolean capacityPolicy;
+    private boolean insuranceApplication;
 
-    public CarInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy) {
+    public CarInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy, boolean insuranceApplication) {
         this.carItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
-        this.capacityPolicy = true;
+        this.capacityPolicy = capacityPolicy;
+        this.insuranceApplication = insuranceApplication;
     }
 
     @NonNull
@@ -103,6 +106,10 @@ public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapte
                 RegistrationCapacityPolicyThirdFragment registrationCapacityPolicyThirdFragment = RegistrationCapacityPolicyThirdFragment.newInstance();
                 registrationCapacityPolicyThirdFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.fl_main, registrationCapacityPolicyThirdFragment).commit();
+            } else if(insuranceApplication == true){
+                CarInsuranceApplicationFragment carInsuranceApplicationFragment = CarInsuranceApplicationFragment.newInstance();
+                carInsuranceApplicationFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, carInsuranceApplicationFragment).commit();
             }
 
 

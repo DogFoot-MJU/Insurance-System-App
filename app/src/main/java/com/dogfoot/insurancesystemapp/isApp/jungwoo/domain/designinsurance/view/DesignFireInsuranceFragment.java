@@ -25,6 +25,7 @@ import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 
@@ -87,6 +88,7 @@ public class DesignFireInsuranceFragment extends DogFootViewModelFragment {
                             public void onResponse(Call<FireDesignInsuranceResponse> call, Response<FireDesignInsuranceResponse> response) {
                                 if(response.isSuccessful()){
                                     Toast.makeText(fragmentContext, "보험 설계를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                    replaceFragment(HomeFragment.newInstance());
                                 } else{
                                 }
                             }

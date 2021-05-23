@@ -41,12 +41,14 @@ public class FireInsuranceAdapter extends RecyclerView.Adapter<FireInsuranceAdap
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
     private boolean capacityPolicy;
+    private boolean insuranceApplication;
 
-    public FireInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy) {
+    public FireInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy, boolean insuranceApplication) {
         this.fireItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
         this.capacityPolicy = capacityPolicy;
+        this.insuranceApplication = insuranceApplication;
     }
 
     @NonNull

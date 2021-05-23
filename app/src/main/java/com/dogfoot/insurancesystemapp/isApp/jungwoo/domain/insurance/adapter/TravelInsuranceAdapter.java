@@ -41,13 +41,15 @@ public class TravelInsuranceAdapter extends RecyclerView.Adapter<TravelInsurance
     private FragmentActivity fragmentContext;
     private long btnPressTime = 0;
     private boolean capacityPolicy;
+    private boolean insuranceApplication;
 
 
-    public TravelInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy) {
+    public TravelInsuranceAdapter(Context context, FragmentActivity fragmentContext, boolean capacityPolicy, boolean insuranceApplication) {
         this.travelItems = new Vector<>();
         this.context = context;
         this.fragmentContext = fragmentContext;
-        this.capacityPolicy = true;
+        this.capacityPolicy = capacityPolicy;
+        this.insuranceApplication = insuranceApplication;
     }
 
     @NonNull

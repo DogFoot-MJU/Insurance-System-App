@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class CarInsuranceRequest {
 
     @SerializedName("id")
@@ -17,7 +22,7 @@ public class CarInsuranceRequest {
     @SerializedName("customer_car_price")
     private Long customer_car_price;
     @SerializedName("customer_car_release_date")
-    private LocalDate customer_car_release_date;
+    private String customer_car_release_date;
     @SerializedName("customer_driving_distance")
     private Long customer_driving_distance;
 }

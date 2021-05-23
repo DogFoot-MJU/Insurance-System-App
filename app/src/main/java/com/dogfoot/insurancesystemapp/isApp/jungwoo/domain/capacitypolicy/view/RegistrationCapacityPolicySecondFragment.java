@@ -104,19 +104,19 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
         travelLinearLayoutManager = new LinearLayoutManager(context);
 
         carRecyclerView.setLayoutManager(carLinearLayoutManager);
-        carInsuranceAdapter = new CarInsuranceAdapter(context, fragmentContext, true);
+        carInsuranceAdapter = new CarInsuranceAdapter(context, fragmentContext, true, false);
         carRecyclerView.setAdapter(carInsuranceAdapter);
 
         driverRecyclerView.setLayoutManager(driverLinearLayoutManager);
-        driverInsuranceAdapter = new DriverInsuranceAdapter(context, fragmentContext, true);
+        driverInsuranceAdapter = new DriverInsuranceAdapter(context, fragmentContext, true, false);
         driverRecyclerView.setAdapter(driverInsuranceAdapter);
 
         fireRecyclerView.setLayoutManager(fireLinearLayoutManager);
-        fireInsuranceAdapter = new FireInsuranceAdapter(context, fragmentContext, true);
+        fireInsuranceAdapter = new FireInsuranceAdapter(context, fragmentContext, true, false);
         fireRecyclerView.setAdapter(fireInsuranceAdapter);
 
         travelRecyclerView.setLayoutManager(travelLinearLayoutManager);
-        travelInsuranceAdapter = new TravelInsuranceAdapter(context, fragmentContext, true);
+        travelInsuranceAdapter = new TravelInsuranceAdapter(context, fragmentContext, true, false);
         travelRecyclerView.setAdapter(travelInsuranceAdapter);
 
         Constant constant = Constant.getInstance();

@@ -22,6 +22,7 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view.InsuranceApplicationFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -334,6 +335,16 @@ public class JungWoo extends DogFootViewModelActivity {
                 drawerLayout.closeDrawers();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fl_main, RegistrationCapacityPolicyFirstFragment.newInstance());
+                transaction.commit();
+            }
+        });
+
+        tv_userApplicationInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.closeDrawers();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fl_main, InsuranceApplicationFragment.newInstance());
                 transaction.commit();
             }
         });
