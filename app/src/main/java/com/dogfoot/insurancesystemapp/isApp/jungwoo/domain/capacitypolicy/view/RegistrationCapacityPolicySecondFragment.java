@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,9 +72,6 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
     Vector<FireInsuranceResponse> fireItems;
     Vector<TravelInsuranceResponse> travelItems;
 
-    @Setter
-    @Getter
-    private String token;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -126,7 +124,7 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
         fireItems = new Vector<>();
         travelItems = new Vector<>();
 
-        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleCarInsuranceList()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleCapacityCarInsuranceList()
                 .enqueue(new Callback<Pagination<List<CarInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<CarInsuranceResponse>>> call,
@@ -136,6 +134,7 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
                             for(CarInsuranceResponse res: response.body().getData()){
                                 carItems.add(res);
                             }
+                            Log.e("사이즈확인",String.valueOf(carItems.size()));
                             carInsuranceAdapter.addCarItems(carItems);
                             carInsuranceAdapter.notifyDataSetChanged();
                         } else{
@@ -146,7 +145,7 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
                     public void onFailure(Call<Pagination<List<CarInsuranceResponse>>> call, Throwable t) {
                     }
                 });
-        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleDriverInsuranceList()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleCapacityDriverInsuranceList()
                 .enqueue(new Callback<Pagination<List<DriverInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<DriverInsuranceResponse>>> call,
@@ -166,7 +165,7 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
                     }
                 });
 
-        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleFireInsuranceList()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleCapacityFireInsuranceList()
                 .enqueue(new Callback<Pagination<List<FireInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<FireInsuranceResponse>>> call,
@@ -185,7 +184,7 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
                     public void onFailure(Call<Pagination<List<FireInsuranceResponse>>> call, Throwable t) {
                     }
                 });
-        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleTravelInsuranceList()
+        RetrofitTool.getAPIWithAuthorizationToken(token).getPossibleCapacityTravelInsuranceList()
                 .enqueue(new Callback<Pagination<List<TravelInsuranceResponse>>>() {
                     @Override
                     public void onResponse(Call<Pagination<List<TravelInsuranceResponse>>> call,
@@ -210,13 +209,6 @@ public class RegistrationCapacityPolicySecondFragment extends DogFootViewModelFr
         return view;
     }
 
-    private String getToken(){
-        return token;
-    }
-
-    private void setToken(String token) {
-        this.token = token;
-    }
 
     private void init() {
     }

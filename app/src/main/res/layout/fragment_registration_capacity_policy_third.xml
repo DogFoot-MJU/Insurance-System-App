@@ -169,6 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
+                    android:hint="ex) 신체 불구 불가"
                     android:layout_marginLeft="80dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
@@ -199,6 +200,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"
+                    android:hint="ex) 연봉 1억 이상"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceDateInfo"
@@ -227,6 +229,7 @@
                     android:id="@+id/et_capacityPolicyEnvironmentalUpdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="ex) 환경 변수 1"
                     android:textSize="18sp"
                     android:layout_marginLeft="80dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -249,6 +252,17 @@
                     android:background="@drawable/custom_border"
                     android:text="인수 정책 등록하기"
                     android:textColor="#9FA5AA" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_marginBottom="300dp"
+                    android:text="환경"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

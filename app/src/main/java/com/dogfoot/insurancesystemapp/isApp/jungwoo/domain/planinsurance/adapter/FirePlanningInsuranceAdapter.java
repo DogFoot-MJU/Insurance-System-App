@@ -100,7 +100,7 @@ public class FirePlanningInsuranceAdapter extends RecyclerView.Adapter<FirePlann
             bundle.putString("strName", fireItems.get(position).getName());
             bundle.putString("strPayment", String.valueOf(fireItems.get(position).getPayment()));
             bundle.putString("strState", String.valueOf(fireItems.get(position).getState()));
-            bundle.putString("integerExpirationDate", Integer.toString(fireItems.get(position).getExpiration_date()));
+            bundle.putString("integerExpirationDate", String.valueOf(fireItems.get(position).getExpiration_date()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(forDesign == false) {

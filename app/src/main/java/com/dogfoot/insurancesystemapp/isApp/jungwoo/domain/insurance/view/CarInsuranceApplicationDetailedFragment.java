@@ -121,13 +121,7 @@ public class CarInsuranceApplicationDetailedFragment extends DogFootViewModelFra
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
-            if(authorizeBack.equals("true")){
-                replaceFragment(AuthorizeInsuranceFirstFragment.newInstance());
-            } else if(approveBack.equals("true")){
-                replaceFragment(ApproveInsuranceFirstFragment.newInstance());
-            } else{
-                replaceFragment(DesignInsuranceFirstFragment.newInstance());
-            }
+                replaceFragment(InsuranceApplicationFragment.newInstance());
         }
         return super.onOptionsItemSelected(item);
     }

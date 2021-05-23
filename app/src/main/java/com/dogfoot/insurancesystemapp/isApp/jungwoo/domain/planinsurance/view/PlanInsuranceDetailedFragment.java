@@ -20,7 +20,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentPlanInsuranceDetailedBinding;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.Pagination;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.FirePlanInsuranceResponse;
+
+import java.util.List;
+import java.util.Vector;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
 

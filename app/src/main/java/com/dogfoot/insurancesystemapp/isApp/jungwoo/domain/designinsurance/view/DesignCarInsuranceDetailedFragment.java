@@ -90,7 +90,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
                                        Response<CarDesignInsuranceResponse> response) {
                     if (response.isSuccessful()) {
                         mBinding.tvDesignPrice.setText(String.valueOf(response.body().getCar_price()));
-                        mBinding.tvDesignRelease.setText(response.body().getCar_release_date().toString());
+                        mBinding.tvDesignRelease.setText(response.body().getCar_release_date());
                         mBinding.tvDesignDistance.setText(String.valueOf(response.body().getDriving_distance()));
                     } else {
                     }

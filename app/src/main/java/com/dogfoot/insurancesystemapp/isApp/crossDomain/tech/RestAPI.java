@@ -90,7 +90,7 @@ public interface RestAPI {
     Call<Void> deleteTravelInsuracne(@Path("id") Long id);
 
     // 설계된 보험 상품 리스트를 보여준다.
-    @GET("api/v1/planner/car/product/development/list?page=0&state=DESIGN")
+    @GET("api/v1/planner/car/product/development/list?state=DESIGN")
     Call<Pagination<List<CarDesignInsuranceResponse>>> carDesignInsurance();
     @GET("api/v1/planner/driver/product/development/list?state=DESIGN")
     Call<Pagination<List<DriverDesignInsuranceResponse>>> driverDesignInsurance();
@@ -166,6 +166,14 @@ public interface RestAPI {
     Call<CapacityPolicyResponse> getCapacityPolicyDetailed(@Path("id") Long id);
 
     // 인수정책이 가능한 보험리스트를 보여준다.
+    @GET("api/v1/user/car/insurance/unavailable/list")
+    Call<Pagination<List<CarInsuranceResponse>>> getPossibleCapacityCarInsuranceList();
+    @GET("api/v1/user/driver/insurance/unavailable/list")
+    Call<Pagination<List<DriverInsuranceResponse>>> getPossibleCapacityDriverInsuranceList();
+    @GET("api/v1/user/fire/insurance/unavailable/list")
+    Call<Pagination<List<FireInsuranceResponse>>> getPossibleCapacityFireInsuranceList();
+    @GET("api/v1/user/travel/insurance/unavailable/list")
+    Call<Pagination<List<TravelInsuranceResponse>>> getPossibleCapacityTravelInsuranceList();
 
     // 인수정책 수정하기
     @PUT("api/v1/uw/capacity")

@@ -65,7 +65,7 @@ public class FireInsuranceAdapter extends RecyclerView.Adapter<FireInsuranceAdap
         holder.tv_insuranceName.setText(fireItems.get(position).getName());
         holder.itemView.setTag(position);
 
-        holder.ib_clear.setOnClickListener(new View.OnClickListener() {
+        holder.tv_insuranceDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 removeByDB(fireItems.get(position).getId());
@@ -169,13 +169,13 @@ public class FireInsuranceAdapter extends RecyclerView.Adapter<FireInsuranceAdap
 
         TextView tv_insuranceId;
         TextView tv_insuranceName;
-        ImageButton ib_clear;
+        ImageButton tv_insuranceDelete;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_insuranceId = itemView.findViewById(R.id.tv_planInsuranceId);
-            this.tv_insuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
-            this.ib_clear = itemView.findViewById(R.id.ib_clear);
+            this.tv_insuranceId = itemView.findViewById(R.id.tv_insuranceId);
+            this.tv_insuranceName = itemView.findViewById(R.id.tv_insuranceName);
+            this.tv_insuranceDelete = itemView.findViewById(R.id.tv_insuranceDelete);
         }
     }
 

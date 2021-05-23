@@ -62,11 +62,11 @@ public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final CarInsuranceAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_insuranceId.setText(Long.toString(carItems.get(position).getId()));
+        holder.tv_insuranceId.setText(String.valueOf(carItems.get(position).getId()));
         holder.tv_insuranceName.setText(carItems.get(position).getName());
         holder.itemView.setTag(position);
 
-        holder.ib_clear.setOnClickListener(new View.OnClickListener() {
+        holder.tv_insuranceDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e("확인", Integer.toString(position));
@@ -177,13 +177,13 @@ public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapte
 
         TextView tv_insuranceId;
         TextView tv_insuranceName;
-        ImageButton ib_clear;
+        ImageButton tv_insuranceDelete;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_insuranceId = itemView.findViewById(R.id.tv_planInsuranceId);
-            this.tv_insuranceName = itemView.findViewById(R.id.tv_planInsuranceName);
-            this.ib_clear = itemView.findViewById(R.id.ib_clear);
+            this.tv_insuranceId = itemView.findViewById(R.id.tv_insuranceId);
+            this.tv_insuranceName = itemView.findViewById(R.id.tv_insuranceName);
+            this.tv_insuranceDelete = itemView.findViewById(R.id.tv_insuranceDelete);
         }
     }
 
