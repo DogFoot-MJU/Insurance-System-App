@@ -48,15 +48,33 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_driverInsuranceApplicationTextInfo"
+                    android:id="@+id/tv_driverAuthorizeNApproveInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="운전자 보험 가입을 위해 \n개인 정보를 입력해주세요"
+                    android:text="해당 운전자 보험 가입을 위해 \n개인 정보를 입력해주세요"
                     android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button_driverInsuranceApplicationDetailed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/custom_border"
+                    android:text="해당 운전자 보험 정보 상세히 보기"
+                    android:textColor="#9FA5AA" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -274,26 +292,76 @@
                 android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btn_rateCalculateInfo"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_border"
+                    android:text="요율계산"
+                    android:textColor="#9FA5AA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/tv_monthInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="매달"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
+
+                <TextView
+                    android:id="@+id/btn_rateCalculated"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
+
+                <TextView
+                    android:id="@+id/tv_wonInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:text="원"
+                    android:textSize="18sp" />
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_carInsuranceCalculateRate"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/custom_border"
-                android:text="자동차 보험 신청하기"
-                android:textColor="#9FA5AA" />
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button_carInsuranceApplication"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/custom_border"
+                    android:text="자동차 보험 신청하기"
+                    android:textColor="#9FA5AA" />
 
-            <TextView
-                android:id="@+id/button_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
-                android:layout_marginBottom="25dp"
-                android:textColor="#9FA5AA" />
+                <TextView
+                    android:id="@+id/button_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginBottom="25dp"
+                    android:textColor="#9FA5AA" />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </ScrollView>

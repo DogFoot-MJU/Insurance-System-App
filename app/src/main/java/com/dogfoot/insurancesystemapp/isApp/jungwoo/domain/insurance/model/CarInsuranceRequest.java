@@ -11,8 +11,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CarInsuranceRequest {
 
-    @SerializedName("id")
-    private Long id;
+    @SerializedName("insurance_id")
+    private Long insurance_id;
     @SerializedName("customer_physical")
     private String customer_physical;
     @SerializedName("customer_economical")

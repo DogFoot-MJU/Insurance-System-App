@@ -30,7 +30,9 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyThirdFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.PaymentResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
 
@@ -45,14 +47,13 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
     private FragmentCarInsuranceApplicationBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
-    private String authorizeBack;
-    private String approveBack;
     @Getter
     @Setter
     private static Boolean backCheckAuthorize;
     @Getter
     @Setter
     private static Boolean backCheckApprove;
+    String id;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -76,12 +77,17 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
 
     private void initData() {
         Bundle bundle = getArguments();
-        String id = bundle.getString("strId");
+        id = bundle.getString("strId");
         mBinding.tvCarInsuranceApplicationId.setText(id);
 
         mBinding.buttonCarInsuranceApplicationDetailed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("strId", id);
+                FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
@@ -91,8 +97,17 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
                             public void onResponse(Call<CarInsuranceResponse> call,
                                                    Response<CarInsuranceResponse> response) {
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(fragmentContext, "보험 신청을 완료했습니다.", Toast.LENGTH_SHORT).show();
-                                    replaceFragment(CarInsuranceApplicationDetailedFragment.newInstance());
+                                    bundle.putString("strName", response.body().getName());
+                                    bundle.putString("strPayment", String.valueOf(response.body().getPayment()));
+                                    bundle.putString("strPhysical", response.body().getPhysical());
+                                    bundle.putString("strEconomical", response.body().getEconomical());
+                                    bundle.putString("strEnvironmental", response.body().getEnvironmental());
+                                    bundle.putString("strPrice", String.valueOf(response.body().getCar_price()));
+                                    bundle.putString("strRelease", response.body().getCar_release_date());
+                                    bundle.putString("strDistance", String.valueOf(response.body().getDriving_distance()));
+                                    CarInsuranceApplicationDetailedFragment carInsuranceApplicationDetailedFragment = CarInsuranceApplicationDetailedFragment.newInstance();
+                                    carInsuranceApplicationDetailedFragment.setArguments(bundle);
+                                    fragmentTransaction.replace(R.id.fl_main, carInsuranceApplicationDetailedFragment).commit();
                                 } else {
                                 }
                             }
@@ -103,16 +118,10 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
             }
         });
 
-        mBinding.btnRateCalculated.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 요율 계산 api
-            }
-        });
-
         mBinding.buttonCarInsuranceApplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String physical = mBinding.etCarInsuranceApplicationPhysical.getText().toString();
                 String economical = mBinding.etCarInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.etCarInsuranceApplicationEnvironmental.getText().toString();
@@ -135,6 +144,37 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
                             }
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
+                            }
+                        });
+            }
+        });
+
+        mBinding.btnRateCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String physical = mBinding.etCarInsuranceApplicationPhysical.getText().toString();
+                String economical = mBinding.etCarInsuranceApplicationEconomical.getText().toString();
+                String environmental = mBinding.etCarInsuranceApplicationEnvironmental.getText().toString();
+                String price = mBinding.etCarInsuranceApplicationPrice.getText().toString();
+                String releaseDate = mBinding.etCarInsuranceApplicationReleaseDate.getText().toString();
+                String distance = mBinding.etCarInsuranceApplicationDistance.getText().toString();
+                Constant constant = Constant.getInstance();
+                String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+                RetrofitTool.getAPIWithAuthorizationToken(token)
+                        .calculateCarInsurancePrice(new CarInsuranceRequest(Long.valueOf(id), physical, economical, environmental,
+                                Long.valueOf(price), releaseDate, Long.valueOf(distance)))
+                        .enqueue(new Callback<PaymentResponse>() {
+                            @Override
+                            public void onResponse(Call<PaymentResponse> call,
+                                                   Response<PaymentResponse> response) {
+                                if (response.isSuccessful()) {
+                                    mBinding.tvRateCalculated.setText(response.body().getPayment().toString());
+                                    Toast.makeText(fragmentContext, "요율 계산을 완료했습니다.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<PaymentResponse> call, Throwable t) {
                             }
                         });
             }
@@ -180,9 +220,7 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
-            if(authorizeBack.equals("true")){
                 replaceFragment(InsuranceApplicationFragment.newInstance());
-            }
         }
         return super.onOptionsItemSelected(item);
     }

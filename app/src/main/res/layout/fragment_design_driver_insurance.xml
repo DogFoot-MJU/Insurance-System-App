@@ -256,16 +256,12 @@
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                <EditText
-                    android:id="@+id/tv_designLicense2"
-                    android:layout_width="230dp"
+                <Spinner
+                    android:id="@+id/spinner_licenseSelect"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:hint="ex) TYPE_1_NORMAL"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
+                    android:layout_marginLeft="40dp"
+                    android:entries="@array/license_select" />
 
             </LinearLayout>
 

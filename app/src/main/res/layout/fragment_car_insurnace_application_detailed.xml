@@ -134,7 +134,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designPayment"
+                    android:id="@+id/tv_carInsuranceDetailedPayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="55dp"
@@ -163,8 +163,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/et_carInsuranceApplicationPhysical"
-                    android:hint="ex) 신체 이상 없음"
+                    android:id="@+id/tv_carInsuranceApplicationPhysical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -190,11 +189,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/et_carInsuranceApplicationEconomical"
+                    android:id="@+id/tv_carInsuranceApplicationEconomical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:hint="ex) 경제 문제 없음"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
@@ -220,11 +218,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/et_carInsuranceApplicationEnvironmental"
+                    android:id="@+id/tv_carInsuranceApplicationEnvironmental"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
-                    android:hint="ex) 환경 문제 없음"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
@@ -240,7 +237,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designPriceInfo"
+                    android:id="@+id/tv_carInsuranceApplicationPriceInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="차 가격"
@@ -250,7 +247,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designPrice"
+                    android:id="@+id/tv_carInsuranceApplicationPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
@@ -269,7 +266,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designReleaseInfo"
+                    android:id="@+id/tv_carInsuranceApplicationReleaseInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="차 출고일"
@@ -279,7 +276,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designRelease"
+                    android:id="@+id/tv_carInsuranceApplicationRelease"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
@@ -298,7 +295,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designDistanceInfo"
+                    android:id="@+id/tv_carInsuranceApplicationDistanceInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="주행 거리"
@@ -308,7 +305,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designDistance"
+                    android:id="@+id/tv_carInsuranceApplicationDistance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
@@ -319,22 +316,12 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_authorizeNApprove"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/custom_border"
-                android:text="보험 상품 인가하기"
-                android:textColor="#9FA5AA" />
-
             <TextView
                 android:id="@+id/button_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="130dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="100dp"
                 android:textColor="#9FA5AA" />
 
         </LinearLayout>

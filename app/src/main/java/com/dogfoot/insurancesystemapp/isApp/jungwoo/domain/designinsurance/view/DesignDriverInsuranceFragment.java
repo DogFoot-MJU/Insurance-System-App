@@ -11,12 +11,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
@@ -26,6 +29,8 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEnti
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 
@@ -38,6 +43,7 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
     private FragmentDesignDriverInsuranceBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
+    private String strLicense;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -70,16 +76,17 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
     }
 
     private void init() {
+              initSpinner();
+
         mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String id = mBinding.tvDesignId2.getText().toString();
                 String acquisition = mBinding.tvDesignAcquisition2.getText().toString();
-                String license = mBinding.tvDesignLicense2.getText().toString();
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .designDriverInsurance(new DriverDesignInsuranceRequest(Long.valueOf(id), acquisition, Constant.DriverLicence.valueOf(license)))
+                        .designDriverInsurance(new DriverDesignInsuranceRequest(Long.valueOf(id), acquisition, Constant.DriverLicence.valueOf(strLicense)))
                         .enqueue(new Callback<DriverDesignInsuranceResponse>() {
                             @Override
                             public void onResponse(Call<DriverDesignInsuranceResponse> call, Response<DriverDesignInsuranceResponse> response) {
@@ -90,11 +97,30 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
                                 }
                             }
                             @Override
-                            public void onFailure(Call<DriverDesignInsuranceResponse> call, Throwable t) { }
+                            public void onFailure(Call<DriverDesignInsuranceResponse> call, Throwable t) {
+                            }
                         });
             }
         });
 
+    }
+
+    public void initSpinner(){
+        strLicense = "TYPE_1_NORMAL";
+        mBinding.spinnerLicenseSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getItemAtPosition(i).equals("1종 보통")){
+                    strLicense = "TYPE_1_NORMAL";
+                } else if(adapterView.getItemAtPosition(i).equals("2종 보통")){
+                    strLicense = "TYPE_2_NORMAL";
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 

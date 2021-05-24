@@ -57,9 +57,6 @@ public class RegistrationCapacityPolicyThirdFragment extends DogFootViewModelFra
     private Context context;
     private FragmentActivity fragmentContext;
 
-    @Setter
-    @Getter
-    private String token;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -118,13 +115,6 @@ public class RegistrationCapacityPolicyThirdFragment extends DogFootViewModelFra
         return view;
     }
 
-    private String getToken(){
-        return token;
-    }
-
-    private void setToken(String token) {
-        this.token = token;
-    }
 
 
     @Override

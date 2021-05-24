@@ -82,7 +82,7 @@ public class DesignTravelInsuranceFragment extends DogFootViewModelFragment {
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .designTravelInsurance(new TravelDesignInsuranceRequest(Long.valueOf(id), Constant.SafetyRank.valueOf(safe)))
+                        .designTravelInsurance(new TravelDesignInsuranceRequest(Long.valueOf(id), safe))
                         .enqueue(new Callback<TravelDesignInsuranceResponse>() {
                             @Override
                             public void onResponse(Call<TravelDesignInsuranceResponse> call, Response<TravelDesignInsuranceResponse> response) {

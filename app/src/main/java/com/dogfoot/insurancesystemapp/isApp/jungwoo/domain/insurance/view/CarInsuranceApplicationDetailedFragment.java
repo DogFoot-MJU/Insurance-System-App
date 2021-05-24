@@ -31,6 +31,7 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -51,6 +52,8 @@ public class CarInsuranceApplicationDetailedFragment extends DogFootViewModelFra
     @Getter
     @Setter
     private static Boolean backCheckApprove;
+
+    private String id;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -73,14 +76,17 @@ public class CarInsuranceApplicationDetailedFragment extends DogFootViewModelFra
     }
 
     private void initData() {
-//        Bundle bundle = getArguments();
-//        mBinding.tvDesignId.setText(bundle.getString("strId"));
-//        mBinding.tvDesignName.setText(bundle.getString("strName"));
-//        mBinding.tvDesignPayment.setText(bundle.getString("strPayment"));
-//        mBinding.tvDesignState.setText(String.valueOf(bundle.get("strState")));
-//        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
-//        authorizeBack = bundle.getString("authorize");
-//        approveBack = bundle.getString("approve");
+        Bundle bundle = getArguments();
+        id = bundle.getString("strId");
+        mBinding.tvCarInsuranceDetailedId.setText(id);
+        mBinding.tvCarInsuranceDetailedName.setText(bundle.getString("strName"));
+        mBinding.tvCarInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
+        mBinding.tvCarInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
+        mBinding.tvCarInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
+        mBinding.tvCarInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
+        mBinding.tvCarInsuranceApplicationPrice.setText(String.valueOf(bundle.get("strPrice")));
+        mBinding.tvCarInsuranceApplicationRelease.setText(String.valueOf(bundle.get("strRelease")));
+        mBinding.tvCarInsuranceApplicationDistance.setText(bundle.getString("strDistance"));
 
     }
 
@@ -121,7 +127,13 @@ public class CarInsuranceApplicationDetailedFragment extends DogFootViewModelFra
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
-                replaceFragment(InsuranceApplicationFragment.newInstance());
+            FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Bundle bundle = new Bundle();
+            bundle.putString("strId", id);
+            CarInsuranceApplicationFragment carInsuranceApplicationFragment = CarInsuranceApplicationFragment.newInstance();
+            carInsuranceApplicationFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, carInsuranceApplicationFragment).commit();
         }
         return super.onOptionsItemSelected(item);
     }

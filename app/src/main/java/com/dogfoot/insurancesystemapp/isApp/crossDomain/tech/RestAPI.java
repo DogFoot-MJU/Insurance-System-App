@@ -16,6 +16,7 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.PaymentResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.TravelDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceRequest;
@@ -203,5 +204,8 @@ public interface RestAPI {
     @GET("api/v1/user/car/insurance/{id}")
     Call<CarInsuranceResponse> getPossibleCarInsuranceDetailed(@Path("id") Long id);
 
+    // 보험 요율 계산하기
+    @POST("api/v1/contract/car/calculate")
+    Call<PaymentResponse> calculateCarInsurancePrice(@Body CarInsuranceRequest carInsuranceRequest);
 
 }

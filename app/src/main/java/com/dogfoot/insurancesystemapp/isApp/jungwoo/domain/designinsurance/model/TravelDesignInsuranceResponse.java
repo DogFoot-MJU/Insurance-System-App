@@ -24,5 +24,5 @@ public class TravelDesignInsuranceResponse {
     @SerializedName("expiration_date")
     private int expiration_date;
     @SerializedName("safety_rank")
-    private SafetyRank safety_rank;
+    private String safety_rank;
 }

@@ -72,9 +72,6 @@ public class InsuranceApplicationFragment extends DogFootViewModelFragment {
     Vector<FireInsuranceResponse> fireItems;
     Vector<TravelInsuranceResponse> travelItems;
 
-    @Setter
-    @Getter
-    private String token;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -209,14 +206,6 @@ public class InsuranceApplicationFragment extends DogFootViewModelFragment {
 
 
         return view;
-    }
-
-    private String getToken(){
-        return token;
-    }
-
-    private void setToken(String token) {
-        this.token = token;
     }
 
     private void init() {

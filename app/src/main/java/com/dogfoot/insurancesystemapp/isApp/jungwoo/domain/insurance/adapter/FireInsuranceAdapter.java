@@ -54,7 +54,7 @@ public class FireInsuranceAdapter extends RecyclerView.Adapter<FireInsuranceAdap
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_plan_insurance, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_insurance, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }

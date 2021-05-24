@@ -15,5 +15,5 @@ public class TravelDesignInsuranceRequest {
     @SerializedName("id")
     private Long id;
     @SerializedName("safety_rank")
-    private SafetyRank safety_rank;
+    private String safety_rank;
 }

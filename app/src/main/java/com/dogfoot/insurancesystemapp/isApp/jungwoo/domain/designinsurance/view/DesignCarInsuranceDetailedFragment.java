@@ -84,7 +84,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
         Constant constant = Constant.getInstance();
         String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
             RetrofitTool.getAPIWithAuthorizationToken(token)
-                    .getCarInsuracneDetailed((long) Integer.parseInt(bundle.getString("strId"))).enqueue(new Callback<CarDesignInsuranceResponse>() {
+                    .getCarInsuracneDetailed(Long.valueOf(bundle.getString("strId"))).enqueue(new Callback<CarDesignInsuranceResponse>() {
                 @Override
                 public void onResponse(Call<CarDesignInsuranceResponse> call,
                                        Response<CarDesignInsuranceResponse> response) {
