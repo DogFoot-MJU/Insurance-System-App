@@ -191,21 +191,33 @@ public interface RestAPI {
     Call<Pagination<List<TravelInsuranceResponse>>> getPossibleTravelInsuranceList();
 
     // 보험 신청하기
-    @POST("api/v1/contract/car")
+    @POST("api/v1/contract/car/apply")
     Call<Void> applyForCarInsurance(@Body CarInsuranceRequest carInsuranceRequest);
-    @POST("api/v1/contract/car")
+    @POST("api/v1/contract/driver/apply")
     Call<Void> applyForDriverInsurance(@Body DriverInsuranceRequest driverInsuranceRequest);
-    @POST("api/v1/contract/car")
+    @POST("api/v1/contract/fire/apply")
     Call<Void> applyForFireInsurance(@Body FireInsuranceRequest fireInsuranceRequest);
-    @POST("api/v1/contract/car")
+    @POST("api/v1/contract/travel/apply")
     Call<Void> applyForTravelInsurance(@Body TravelInsuranceRequest travelInsuranceRequest);
 
     // 판매가능한 보험 상세보기
     @GET("api/v1/user/car/insurance/{id}")
     Call<CarInsuranceResponse> getPossibleCarInsuranceDetailed(@Path("id") Long id);
+    @GET("api/v1/user/driver/insurance/{id}")
+    Call<DriverInsuranceResponse> getPossibleDriverInsuranceDetailed(@Path("id") Long id);
+    @GET("api/v1/user/fire/insurance/{id}")
+    Call<FireInsuranceResponse> getPossibleFireInsuranceDetailed(@Path("id") Long id);
+    @GET("api/v1/user/travel/insurance/{id}")
+    Call<TravelInsuranceResponse> getPossibleTravelInsuranceDetailed(@Path("id") Long id);
 
     // 보험 요율 계산하기
     @POST("api/v1/contract/car/calculate")
     Call<PaymentResponse> calculateCarInsurancePrice(@Body CarInsuranceRequest carInsuranceRequest);
+    @POST("api/v1/contract/driver/calculate")
+    Call<PaymentResponse> calculateDriverInsurancePrice(@Body DriverInsuranceRequest driverInsuranceRequest);
+    @POST("api/v1/contract/fire/calculate")
+    Call<PaymentResponse> calculateFireInsurancePrice(@Body FireInsuranceRequest fireInsuranceRequest);
+    @POST("api/v1/contract/travel/calculate")
+    Call<PaymentResponse> calculateTravelInsurancePrice(@Body TravelInsuranceRequest travelInsuranceRequest);
 
 }

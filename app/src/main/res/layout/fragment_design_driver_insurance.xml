@@ -26,7 +26,7 @@
             android:layout_marginLeft="120sp"
             android:text="기획된 보험 상품을 설계하기"
             android:textColor="#9FA5AA"
-            android:textSize="22sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="21dp" />
     </androidx.appcompat.widget.Toolbar>
@@ -57,6 +57,7 @@
                     android:id="@+id/tv_driverInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:text="기획된 운전자 보험을 바탕으로 설계합니다."
                     android:textSize="18sp" />
             </LinearLayout>
@@ -73,7 +74,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ID"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -84,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="110dp"
                     android:layout_marginRight="50dp"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -103,7 +106,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="상품 이름"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -113,7 +117,8 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -132,7 +137,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="지불금"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -143,7 +149,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="70dp"
                     android:layout_marginRight="50dp"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -162,7 +169,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="개발 상태"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -172,7 +180,8 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -191,7 +200,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="만료일"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toStartOf="@+id/tv_planInsuranceIdResult"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +212,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="55dp"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceDateInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStateResult" />
@@ -221,7 +232,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="운전 면허 취득일"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -232,7 +244,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:hint="ex) 2020-05-05"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -251,7 +264,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="운전 면허"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />

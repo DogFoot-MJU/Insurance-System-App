@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_designFireInsuranceToolbar"
+        android:id="@+id/tb_designCarInsuranceToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="535dp"
@@ -21,11 +20,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_fireAuthorizeNApproveToolbarInfo"
+            android:id="@+id/tv_carInsuranceDetailedToolbarInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100sp"
-            android:text="설계된 보험 상품 상세히보기"
+            android:layout_marginLeft="120sp"
+            android:text="보험 상품 상세히 보기"
             android:textColor="#9FA5AA"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="173dp"
@@ -37,7 +36,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_designFireInsuranceToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/tb_designCarInsuranceToolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,12 +52,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_fireAuthorizeNApproveInfo"
+                    android:id="@+id/tv_carInsuranceDetailedTextInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="선택하신 화재 보험의 상세 설계 내용입니다."
                     android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:text="선택하신 여행 보험의 자세한 내용입니다."
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,24 +68,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designIdInfo3"
+                    android:id="@+id/tv_travelInsuranceDetailedIdInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:text="ID"
-                    android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designId3"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_travelInsuranceDetailedId"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:textColor="#000000"
                     android:layout_marginRight="50dp"
-                    android:textColor="#000000"
                     android:textSize="14sp"
-                    android:translationX="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -101,26 +100,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designNameInfo3"
+                    android:id="@+id/tv_travelInsuranceDetailedNameInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:text="상품 이름"
-                    android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designName3"
+                    android:id="@+id/tv_travelInsuranceDetailedName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:translationX="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="50dp"
+                    android:textSize="14sp"></TextView>
 
             </LinearLayout>
 
@@ -132,117 +129,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designPaymentInfo3"
+                    android:id="@+id/tv_designPaymentInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:text="지불금"
-                    android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designPayment3"
+                    android:id="@+id/tv_travelInsuranceDetailedPayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:translationX="60dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_designStateInfo3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="개발 상태"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-                <TextView
-                    android:id="@+id/tv_designState3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:translationX="35dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_planInsuranceDateInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="만료일"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_planInsuranceIdResult"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStatusInfo" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="55dp"
-                    android:textColor="#000000"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceDateInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStateResult" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_designPriceInfo3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="빌딩 가격"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-                <TextView
-                    android:id="@+id/tv_designPrice3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:translationX="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -257,23 +160,51 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designDateInfo3"
+                    android:id="@+id/tv_travelInsuranceApplicationPhysicalInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="건축 날짜"
                     android:textColor="#000000"
+                    android:text="신체 이상 여부"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designDate3"
+                    android:id="@+id/tv_travelInsuranceApplicationPhysical"
+                    android:layout_width="match_parent"
+                    android:textColor="#000000"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="14sp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_travelInsuranceApplicationEconomicalInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:text="경제 이상 여부"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/tv_travelInsuranceApplicationEconomical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
+                    android:layout_marginLeft="20dp"
                     android:textSize="14sp"
-                    android:translationX="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -288,23 +219,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designFloorsInfo3"
+                    android:id="@+id/tv_travelInsuranceApplicationEnvironmentalInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="부지 면적"
                     android:textColor="#000000"
+                    android:text="환경 이상 여부"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designsite3"
+                    android:id="@+id/tv_travelInsuranceApplicationEnvironmental"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
+                    android:layout_marginLeft="35dp"
                     android:textSize="14sp"
-                    android:translationX="35dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -319,45 +250,36 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_designsiteInfo3"
+                    android:id="@+id/tv_travelInsuranceApplicationSafetyRankInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="건물 층수"
                     android:textColor="#000000"
+                    android:text="안전 등급"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_designFloors3"
+                    android:id="@+id/tv_travelInsuranceApplicationSafetyRank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:translationX="35dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_authorizeNApprove"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/custom_border"
-                android:text="보험 상품 인가하기"
-                android:textColor="#9FA5AA" />
 
             <TextView
                 android:id="@+id/button_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="130dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="100dp"
                 android:textColor="#9FA5AA" />
 
         </LinearLayout>

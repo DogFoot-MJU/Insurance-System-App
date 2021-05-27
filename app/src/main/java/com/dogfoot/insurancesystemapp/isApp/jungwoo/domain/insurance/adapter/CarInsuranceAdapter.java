@@ -141,21 +141,20 @@ public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapte
 
     private void removeByDB(Long id) {
         Constant constant = Constant.getInstance();
-        //String token =
 
-//        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
-//        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-//                if(response.isSuccessful()){
-//                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {
-//
-//            }
-//        });
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).deleteCarInsuracne(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(fragmentContext, "삭제를 완료했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -177,7 +176,7 @@ public class CarInsuranceAdapter extends RecyclerView.Adapter<CarInsuranceAdapte
 
         TextView tv_insuranceId;
         TextView tv_insuranceName;
-        ImageButton tv_insuranceDelete;
+        TextView tv_insuranceDelete;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);

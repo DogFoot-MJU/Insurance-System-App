@@ -42,9 +42,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FireInsuranceApplicationDetailedFragment extends DogFootViewModelFragment {
+public class TravelInsuranceApplicationDetailedFragment extends DogFootViewModelFragment {
 
-    private FragmentFireInsuranceApplicationDetailedBinding mBinding;
+    private FragmentTravelInsuranceApplicationDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
 
@@ -66,7 +66,7 @@ public class FireInsuranceApplicationDetailedFragment extends DogFootViewModelFr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentFireInsuranceApplicationDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentTravelInsuranceApplicationDetailedBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
@@ -80,16 +80,13 @@ public class FireInsuranceApplicationDetailedFragment extends DogFootViewModelFr
     private void initData() {
         Bundle bundle = getArguments();
         id = bundle.getString("strId");
-        mBinding.tvFireInsuranceDetailedId.setText(id);
-        mBinding.tvFireInsuranceDetailedName.setText(bundle.getString("strName"));
-        mBinding.tvFireInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
-        mBinding.tvFireInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
-        mBinding.tvFireInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
-        mBinding.tvFireInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
-        mBinding.tvFireInsuranceApplicationSiteArea.setText(String.valueOf(bundle.get("strSiteArea")));
-        mBinding.tvFireInsuranceApplicationBuildingPrice.setText(String.valueOf(bundle.get("strBuildingPrice")));
-        mBinding.tvFireInsuranceApplicationFloors.setText(String.valueOf(bundle.get("strFloors")));
-        mBinding.tvFireInsuranceApplicationDate.setText(String.valueOf(bundle.get("strDate")));
+        mBinding.tvTravelInsuranceDetailedId.setText(id);
+        mBinding.tvTravelInsuranceDetailedName.setText(bundle.getString("strName"));
+        mBinding.tvTravelInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
+        mBinding.tvTravelInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
+        mBinding.tvTravelInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
+        mBinding.tvTravelInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
+        mBinding.tvTravelInsuranceApplicationSafetyRank.setText(String.valueOf(bundle.get("strSafetyRank")));
 
     }
 
@@ -134,9 +131,9 @@ public class FireInsuranceApplicationDetailedFragment extends DogFootViewModelFr
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             Bundle bundle = new Bundle();
             bundle.putString("strId", id);
-            FireInsuranceApplicationFragment fireInsuranceApplicationFragment = FireInsuranceApplicationFragment.newInstance();
-            fireInsuranceApplicationFragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fl_main, fireInsuranceApplicationFragment).commit();
+            TravelInsuranceApplicationFragment travelInsuranceApplicationFragment = TravelInsuranceApplicationFragment.newInstance();
+            travelInsuranceApplicationFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, travelInsuranceApplicationFragment).commit();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -147,7 +144,7 @@ public class FireInsuranceApplicationDetailedFragment extends DogFootViewModelFr
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static FireInsuranceApplicationDetailedFragment newInstance() {
-        return new FireInsuranceApplicationDetailedFragment();
+    public static TravelInsuranceApplicationDetailedFragment newInstance() {
+        return new TravelInsuranceApplicationDetailedFragment();
     }
 }

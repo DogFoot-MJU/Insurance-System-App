@@ -21,20 +21,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.databinding.FragmentCarInsuranceApplicationBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceCarDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDriverInsuranceApplicationBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyThirdFragment;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.PaymentResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.DriverInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.DriverInsuranceResponse;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,7 +41,7 @@ import retrofit2.Response;
 
 public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment {
 
-    private FragmentCarInsuranceApplicationBinding mBinding;
+    private FragmentDriverInsuranceApplicationBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
     @Getter
@@ -62,9 +59,8 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mBinding = FragmentCarInsuranceApplicationBinding.inflate(getLayoutInflater());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mBinding = FragmentDriverInsuranceApplicationBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
@@ -75,12 +71,13 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
         return view;
     }
 
+
     private void initData() {
         Bundle bundle = getArguments();
         id = bundle.getString("strId");
-        mBinding.tvCarInsuranceApplicationId.setText(id);
+        mBinding.tvDriverInsuranceApplicationId.setText(id);
 
-        mBinding.buttonCarInsuranceApplicationDetailed.setOnClickListener(new View.OnClickListener() {
+        mBinding.buttonDriverInsuranceApplicationDetailed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
@@ -91,47 +88,46 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .getPossibleCarInsuranceDetailed(Long.valueOf(id))
-                        .enqueue(new Callback<CarInsuranceResponse>() {
+                        .getPossibleDriverInsuranceDetailed(Long.valueOf(id))
+                        .enqueue(new Callback<DriverInsuranceResponse>() {
                             @Override
-                            public void onResponse(Call<CarInsuranceResponse> call,
-                                                   Response<CarInsuranceResponse> response) {
+                            public void onResponse(Call<DriverInsuranceResponse> call,
+                                                   Response<DriverInsuranceResponse> response) {
                                 if (response.isSuccessful()) {
                                     bundle.putString("strName", response.body().getName());
                                     bundle.putString("strPayment", String.valueOf(response.body().getPayment()));
                                     bundle.putString("strPhysical", response.body().getPhysical());
                                     bundle.putString("strEconomical", response.body().getEconomical());
                                     bundle.putString("strEnvironmental", response.body().getEnvironmental());
-                                    bundle.putString("strPrice", String.valueOf(response.body().getCar_price()));
-                                    bundle.putString("strRelease", response.body().getCar_release_date());
-                                    bundle.putString("strDistance", String.valueOf(response.body().getDriving_distance()));
-                                    CarInsuranceApplicationDetailedFragment carInsuranceApplicationDetailedFragment = CarInsuranceApplicationDetailedFragment.newInstance();
-                                    carInsuranceApplicationDetailedFragment.setArguments(bundle);
-                                    fragmentTransaction.replace(R.id.fl_main, carInsuranceApplicationDetailedFragment).commit();
+                                    bundle.putString("strDate", String.valueOf(response.body().getDate_of_license_acquisition()));
+                                    bundle.putString("strLicense", String.valueOf(response.body().getDriver_licence()));
+                                    DriverInsuranceApplicationDetailedFragment driverInsuranceApplicationDetailedFragment = DriverInsuranceApplicationDetailedFragment.newInstance();
+                                    driverInsuranceApplicationDetailedFragment.setArguments(bundle);
+                                    fragmentTransaction.replace(R.id.fl_main, driverInsuranceApplicationDetailedFragment).commit();
                                 } else {
                                 }
                             }
                             @Override
-                            public void onFailure(Call<CarInsuranceResponse> call, Throwable t) {
+                            public void onFailure(Call<DriverInsuranceResponse> call, Throwable t) {
                             }
                         });
             }
         });
 
-        mBinding.buttonCarInsuranceApplication.setOnClickListener(new View.OnClickListener() {
+        mBinding.buttonDriverInsuranceApplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String physical = mBinding.etCarInsuranceApplicationPhysical.getText().toString();
-                String economical = mBinding.etCarInsuranceApplicationEconomical.getText().toString();
-                String environmental = mBinding.etCarInsuranceApplicationEnvironmental.getText().toString();
-                String price = mBinding.etCarInsuranceApplicationPrice.getText().toString();
-                String releaseDate = mBinding.etCarInsuranceApplicationReleaseDate.getText().toString();
-                String distance = mBinding.etCarInsuranceApplicationDistance.getText().toString();
+                String physical = mBinding.etDriverInsuranceApplicationPhysical.getText().toString();
+                String economical = mBinding.etDriverInsuranceApplicationEconomical.getText().toString();
+                String environmental = mBinding.etDriverInsuranceApplicationEnvironmental.getText().toString();
+                String date = mBinding.etDriverInsuranceApplicationLicenseDate.getText().toString();
+                String driverLicense = mBinding.etDriverInsuranceApplicationDriverLicense.getText().toString();
+
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .applyForCarInsurance(new CarInsuranceRequest(Long.valueOf(id), physical, economical, environmental, Long.valueOf(price), releaseDate, Long.valueOf(distance)))
+                        .applyForDriverInsurance(new DriverInsuranceRequest(Long.valueOf(id), physical, economical, environmental, date, Constant.DriverLicence.valueOf(driverLicense)))
                         .enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call,
@@ -152,17 +148,17 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
         mBinding.btnRateCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String physical = mBinding.etCarInsuranceApplicationPhysical.getText().toString();
-                String economical = mBinding.etCarInsuranceApplicationEconomical.getText().toString();
-                String environmental = mBinding.etCarInsuranceApplicationEnvironmental.getText().toString();
-                String price = mBinding.etCarInsuranceApplicationPrice.getText().toString();
-                String releaseDate = mBinding.etCarInsuranceApplicationReleaseDate.getText().toString();
-                String distance = mBinding.etCarInsuranceApplicationDistance.getText().toString();
+                String physical = mBinding.etDriverInsuranceApplicationPhysical.getText().toString();
+                String economical = mBinding.etDriverInsuranceApplicationEconomical.getText().toString();
+                String environmental = mBinding.etDriverInsuranceApplicationEnvironmental.getText().toString();
+                String date = mBinding.etDriverInsuranceApplicationLicenseDate.getText().toString();
+                String driverLicense = mBinding.etDriverInsuranceApplicationDriverLicense.getText().toString();
+
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .calculateCarInsurancePrice(new CarInsuranceRequest(Long.valueOf(id), physical, economical, environmental,
-                                Long.valueOf(price), releaseDate, Long.valueOf(distance)))
+                        .calculateDriverInsurancePrice(new DriverInsuranceRequest(Long.valueOf(id), physical, economical, environmental,
+                                 date, Constant.DriverLicence.valueOf(driverLicense)))
                         .enqueue(new Callback<PaymentResponse>() {
                             @Override
                             public void onResponse(Call<PaymentResponse> call,

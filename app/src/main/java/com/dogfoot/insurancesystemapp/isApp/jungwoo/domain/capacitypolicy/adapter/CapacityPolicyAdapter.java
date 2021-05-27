@@ -165,7 +165,7 @@ public class CapacityPolicyAdapter extends RecyclerView.Adapter<CapacityPolicyAd
         TextView tv_capacityPolicyId;
         TextView tv_capacityPolicyName;
         TextView tv_capacityPolicyInsuranceName;
-        ImageButton ib_capacityPolicyDelete;
+        TextView ib_capacityPolicyDelete;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);

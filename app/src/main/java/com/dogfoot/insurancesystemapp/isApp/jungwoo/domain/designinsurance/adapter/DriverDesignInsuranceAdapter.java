@@ -176,7 +176,7 @@ public class DriverDesignInsuranceAdapter extends RecyclerView.Adapter<DriverDes
         TextView tv_insuranceId;
         TextView tv_InsuranceName;
         TextView tv_insurancePayment;
-        ImageButton ib_clear;
+        TextView ib_clear;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);

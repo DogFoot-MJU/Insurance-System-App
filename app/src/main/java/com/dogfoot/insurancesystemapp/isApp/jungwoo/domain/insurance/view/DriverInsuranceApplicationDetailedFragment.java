@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentCarInsurnaceApplicationDetailedBinding;
 import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceCarDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDriverInsuranceApplicationDetailedBinding;
 import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
@@ -41,11 +42,10 @@ import retrofit2.Response;
 
 public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModelFragment {
 
-    private FragmentCarInsurnaceApplicationDetailedBinding mBinding;
+    private FragmentDriverInsuranceApplicationDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
-    private String authorizeBack;
-    private String approveBack;
+
     @Getter
     @Setter
     private static Boolean backCheckAuthorize;
@@ -64,7 +64,7 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentCarInsurnaceApplicationDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentDriverInsuranceApplicationDetailedBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
@@ -78,15 +78,14 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
     private void initData() {
         Bundle bundle = getArguments();
         id = bundle.getString("strId");
-        mBinding.tvCarInsuranceDetailedId.setText(id);
-        mBinding.tvCarInsuranceDetailedName.setText(bundle.getString("strName"));
-        mBinding.tvCarInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
-        mBinding.tvCarInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
-        mBinding.tvCarInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
-        mBinding.tvCarInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
-        mBinding.tvCarInsuranceApplicationPrice.setText(String.valueOf(bundle.get("strPrice")));
-        mBinding.tvCarInsuranceApplicationRelease.setText(String.valueOf(bundle.get("strRelease")));
-        mBinding.tvCarInsuranceApplicationDistance.setText(bundle.getString("strDistance"));
+        mBinding.tvDriverInsuranceDetailedId.setText(id);
+        mBinding.tvDriverInsuranceDetailedName.setText(bundle.getString("strName"));
+        mBinding.tvDriverInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
+        mBinding.tvDriverInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
+        mBinding.tvDriverInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
+        mBinding.tvDriverInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
+        mBinding.tvDriverInsuranceApplicationLicenseDate.setText(String.valueOf(bundle.get("strDate")));
+        mBinding.tvDriverInsuranceApplicationDriverLicense.setText(String.valueOf(bundle.get("strLicense")));
 
     }
 
@@ -144,7 +143,7 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
         fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 
-    public static CarInsuranceApplicationDetailedFragment newInstance() {
-        return new CarInsuranceApplicationDetailedFragment();
+    public static DriverInsuranceApplicationDetailedFragment newInstance() {
+        return new DriverInsuranceApplicationDetailedFragment();
     }
 }

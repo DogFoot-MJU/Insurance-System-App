@@ -23,7 +23,8 @@
             android:layout_height="22dp"
             android:layout_marginTop="24dp"
             android:text="보험 ID"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/tv_planInsuranceNameInfo"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="보험이름"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tv_planInsuranceDateInfo"
@@ -39,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="만료일"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/tv_planInsuranceStatusInfo"
@@ -47,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="상태"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/tv_planInsurancePaymentInfo"
@@ -55,7 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="지불금"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +81,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/tv_planInsuranceNameResult"
@@ -84,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textView10"
@@ -92,7 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tv_planInsuranceStateResult"
@@ -101,7 +109,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tv_planInsurancePaymentResult"
@@ -110,7 +119,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="50dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
     </LinearLayout>
 
     <androidx.appcompat.widget.Toolbar
@@ -133,7 +143,7 @@
             android:layout_marginLeft="120sp"
             android:text="기획된 보험 상품 상세히 보기"
             android:textColor="#9FA5AA"
-            android:textSize="22sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="21dp" />
     </androidx.appcompat.widget.Toolbar>
@@ -143,6 +153,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:textColor="#000000"
         android:text="선택하신 보험의 기획내용은 다음과 같습니다."
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

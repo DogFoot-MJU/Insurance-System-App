@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:hint="보험이름을 작성해주세요."
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
 
         <EditText
             android:id="@+id/et_planInsurancePaymentWrite"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:hint="지불금을 작성해주세요."
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
 
         <Spinner
             android:id="@+id/spinner_insuranceSelect"
@@ -46,7 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:hint="ex) 60"
-            android:textSize="18sp"></EditText>
+            android:textSize="14sp"
+            android:textColor="#000000"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -65,7 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="보험이름"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tv_planInsurancePaymentInfo"
@@ -73,21 +77,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="지불금"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000"/>
         <TextView
             android:id="@+id/tv_planInsuranceIdInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="보험 종류"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
         <TextView
             android:id="@+id/tv_expirationDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="보험 만료일"
-            android:textSize="18sp" />
+            android:textSize="14sp"
+            android:textColor="#000000" />
 
     </LinearLayout>
 
@@ -112,7 +119,7 @@
             android:gravity="left"
             android:text="보험 상품 기획"
             android:textColor="#9FA5AA"
-            android:textSize="24sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="21dp" />
     </androidx.appcompat.widget.Toolbar>
@@ -123,6 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:textColor="#000000"
         android:text="기획할 보험의 내용을 작성해주세요."
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

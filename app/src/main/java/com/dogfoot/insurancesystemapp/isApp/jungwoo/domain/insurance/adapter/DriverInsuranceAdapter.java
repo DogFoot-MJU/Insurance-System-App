@@ -26,6 +26,8 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceDetailedFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignDriverInsuranceDetailedFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.DriverInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view.CarInsuranceApplicationFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view.DriverInsuranceApplicationFragment;
 
 import java.util.Vector;
 
@@ -104,6 +106,10 @@ public class DriverInsuranceAdapter extends RecyclerView.Adapter<DriverInsurance
                 RegistrationCapacityPolicyThirdFragment registrationCapacityPolicyThirdFragment = RegistrationCapacityPolicyThirdFragment.newInstance();
                 registrationCapacityPolicyThirdFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.fl_main, registrationCapacityPolicyThirdFragment).commit();
+            } else if(insuranceApplication == true){
+                DriverInsuranceApplicationFragment driverInsuranceApplicationFragment = DriverInsuranceApplicationFragment.newInstance();
+                driverInsuranceApplicationFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fl_main, driverInsuranceApplicationFragment).commit();
             }
 
         }
@@ -170,7 +176,7 @@ public class DriverInsuranceAdapter extends RecyclerView.Adapter<DriverInsurance
 
         TextView tv_insuranceId;
         TextView tv_insuranceName;
-        ImageButton tv_insuranceDelete;
+        TextView tv_insuranceDelete;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
