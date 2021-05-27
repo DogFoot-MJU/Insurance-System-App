@@ -1,5 +1,6 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model;
 
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.AllArgsConstructor;
@@ -14,4 +15,16 @@ public class TravelInsuranceResponse {
     private Long id;
     @SerializedName("name")
     private String name;
+    @SerializedName("payment")
+    private Long payment;
+    @SerializedName("physical")
+    private String physical;
+    @SerializedName("economical")
+    private String economical;
+    @SerializedName("environmental")
+    private final String environmental;
+    @SerializedName("safetyRank")
+    private Constant.SafetyRank safetyRank;
+    @SerializedName("available_sale")
+    private final boolean available_sale;
 }

@@ -1,13 +1,5 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -17,18 +9,39 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.FragmentCarInsurnaceApplicationDetailedBinding;
-import com.dogfoot.insurancesystemapp.databinding.FragmentDriverInsuranceApplicationDetailedBinding;
+import com.dogfoot.insurancesystemapp.databinding.FragmentDesignInsuranceCarDetailedBinding;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.CarDesignInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.DesignInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.CarInsuranceResponse;
 
 import lombok.Getter;
 import lombok.Setter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModelFragment {
 
-    private FragmentDriverInsuranceApplicationDetailedBinding mBinding;
+    private FragmentCarInsurnaceApplicationDetailedBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
     private String authorizeBack;
@@ -40,6 +53,8 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
     @Setter
     private static Boolean backCheckApprove;
 
+    private String id;
+
     @Override
     public void onAttach(@NonNull Activity activity) {
         fragmentContext=(FragmentActivity) activity;
@@ -49,7 +64,7 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = FragmentDriverInsuranceApplicationDetailedBinding.inflate(getLayoutInflater());
+        mBinding = FragmentCarInsurnaceApplicationDetailedBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
 
@@ -62,15 +77,16 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
 
     private void initData() {
         Bundle bundle = getArguments();
-//        mBinding.tvCarInsuranceDetailedId.setText(bundle.getString("strId"));
-//        mBinding.tvCarInsuranceDetailedName.setText(bundle.getString("strName"));
-//        mBinding.tvCarInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
-//        mBinding.tvCarInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("physical")));
-//        mBinding.tvCarInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("economical")));
-//        mBinding.tvCarInsuranceApplicationEnvironmental.setText(bundle.getString("environmental"));
-//        mBinding.tvCarInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("price")));
-//        mBinding.tvCarInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("release")));
-//        mBinding.tvCarInsuranceApplicationEnvironmental.setText(bundle.getString("distance"));
+        id = bundle.getString("strId");
+        mBinding.tvCarInsuranceDetailedId.setText(id);
+        mBinding.tvCarInsuranceDetailedName.setText(bundle.getString("strName"));
+        mBinding.tvCarInsuranceDetailedPayment.setText(bundle.getString("strPayment"));
+        mBinding.tvCarInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
+        mBinding.tvCarInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
+        mBinding.tvCarInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
+        mBinding.tvCarInsuranceApplicationPrice.setText(String.valueOf(bundle.get("strPrice")));
+        mBinding.tvCarInsuranceApplicationRelease.setText(String.valueOf(bundle.get("strRelease")));
+        mBinding.tvCarInsuranceApplicationDistance.setText(bundle.getString("strDistance"));
 
     }
 
@@ -96,7 +112,7 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
 
     // ToolBar Settings
     private void initToolbar() {
-//        ((AppCompatActivity)getActivity()).setSupportActionBar(mBinding.tbDesignCarInsuranceToolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mBinding.tbDesignCarInsuranceToolbar);
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
@@ -111,7 +127,13 @@ public class DriverInsuranceApplicationDetailedFragment extends DogFootViewModel
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
-            replaceFragment(CarInsuranceApplicationFragment.newInstance());
+            FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Bundle bundle = new Bundle();
+            bundle.putString("strId", id);
+            DriverInsuranceApplicationFragment driverInsuranceApplicationFragment = DriverInsuranceApplicationFragment.newInstance();
+            driverInsuranceApplicationFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fl_main, driverInsuranceApplicationFragment).commit();
         }
         return super.onOptionsItemSelected(item);
     }

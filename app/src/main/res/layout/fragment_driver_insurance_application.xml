@@ -85,7 +85,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_carInsuranceApplicationIdInfo"
+                    android:id="@+id/tv_driverInsuranceApplicationIdInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ID"
@@ -95,7 +95,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
-                    android:id="@+id/tv_carInsuranceApplicationId"
+                    android:id="@+id/tv_driverInsuranceApplicationId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="90dp"
@@ -115,7 +115,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_carInsuranceApplicationPhysicalInfo"
+                    android:id="@+id/tv_driverInsuranceApplicationPhysicalInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="신체 이상 여부"
