@@ -1,10 +1,14 @@
 package com.dogfoot.insurancesystemapp.isApp.crossDomain.tech;
 
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingAnsweredViewResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingViewResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingInputRequest;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingInputResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.model.SignUpResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.model.CapacityPolicyRequest;
@@ -59,6 +63,17 @@ public interface RestAPI {
     Call<Pagination<List<CustomerConsultingListResponse>>> getCustomerConsultingList();
     @GET("api/v1/user/consulting/{id}")
     Call<CustomerConsultingViewResponse> getCustomerConsultingView(@Path("id") Long id);
+
+    @GET("api/v1/user/consulting/answer/{id}")
+    Call<CustomerConsultingAnsweredViewResponse> getCustomerConsultingAnsweredView(@Path("id") Long id);
+
+
+
+    @GET("api/v1/seller/consulting/list")
+    Call<Pagination<List<SalesConsultingListResponse>>> getSalesConsultingList();
+
+    @POST("api/v1/seller/consulting/answer")
+    Call<SalesConsultingInputResponse> salesConsultingInput(@Body SalesConsultingInputRequest salesConsultingInputRequest);
 
     // 보험 상품을 기획한다
     @POST("api/v1/planner/car/product/development/plan")

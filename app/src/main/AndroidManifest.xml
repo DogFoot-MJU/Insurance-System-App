@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".isApp.dongwook.domain.logout.view.LogOutActivity" />
         <activity android:name=".isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainActivity" />
-        <activity android:name=".isApp.dongwook.domain.customerConsulting.view.CustomerConsultingViewActivity" />
+        <activity android:name=".isApp.dongwook.domain.salesConsulting.view.SalesConsultingMainActivity"/>
         <activity android:name=".isApp.dongwook.DongWookActivity" />
         <activity android:name=".isApp.dongwook.domain.login.view.LoginActivity" />
         <activity android:name=".isApp.dongwook.domain.signUp.view.SignUpActivity" />

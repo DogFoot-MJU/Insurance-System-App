@@ -82,5 +82,8 @@
     <!-- 고객 상담리스트 액티비티 !-->
     <string name="customer_consulting_list_connection_fail">서버에 연결할 수 없습니다.</string>
 
+    <!-- 영업 상담 액티비티 !-->
+    <string name="admin_consulting_main">영업 상담</string>
+
 
 </resources>

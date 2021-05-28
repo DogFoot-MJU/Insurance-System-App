@@ -2,7 +2,6 @@ package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingViewActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingViewFragment;
 
 
 import java.util.Vector;
-
-import static com.dogfoot.insurancesystemapp.isApp.constants.Constant.CUSTOMER_CONSULTING__ACTIVITY_ID;
 
 public class CustomerConsultingRecyclerAdapter extends RecyclerView.Adapter<CustomerConsultingViewHolder> {
 
@@ -24,11 +21,13 @@ public class CustomerConsultingRecyclerAdapter extends RecyclerView.Adapter<Cust
         // ETC
         private Activity activity;
         private Vector<CustomerConsultingListResponse> items;
+        private View.OnClickListener onClickListener;
 
     // Constructor
-    public CustomerConsultingRecyclerAdapter(Activity activity) {
+    public CustomerConsultingRecyclerAdapter(Activity activity,View.OnClickListener listener) {
         this.items = new Vector<>();
         this.activity=activity;
+        this.onClickListener=listener;
     }
 
 
@@ -42,21 +41,13 @@ public class CustomerConsultingRecyclerAdapter extends RecyclerView.Adapter<Cust
     }
     @Override
     public void onBindViewHolder(CustomerConsultingViewHolder holder, int position) {
-        holder.setValue(items.get(position));
+        holder.setValue(items.get(position),this.onClickListener);
     }
     @Override
     public int getItemCount() { return items.size(); }
 
     public void setItems(Vector<CustomerConsultingListResponse> items) { this.items=items; }
     private void startViewActivity(Long id) {
-
-        Intent intent = new Intent(this.activity, CustomerConsultingViewActivity.class);
-        intent.putExtra("viewId",id);
-
-
-
-
-        this.activity.startActivity(intent);
 
     }
 }

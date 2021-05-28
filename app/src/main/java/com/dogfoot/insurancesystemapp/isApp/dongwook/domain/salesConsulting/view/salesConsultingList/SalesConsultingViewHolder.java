@@ -1,20 +1,16 @@
-package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingList;
+package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.salesConsultingList;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingListResponse;
 
 
-public class CustomerConsultingViewHolder extends RecyclerView.ViewHolder {
+public class SalesConsultingViewHolder extends RecyclerView.ViewHolder {
 
 
 
@@ -27,7 +23,7 @@ public class CustomerConsultingViewHolder extends RecyclerView.ViewHolder {
 
 
     // Constructor
-    public CustomerConsultingViewHolder(View itemView, View.OnClickListener onClickListener, Activity activity) {
+    public SalesConsultingViewHolder(View itemView, View.OnClickListener onClickListener, Activity activity) {
         super(itemView);
 
         // Associate
@@ -49,7 +45,7 @@ public class CustomerConsultingViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setValue(CustomerConsultingListResponse response,View.OnClickListener listener) {
+    public void setValue(SalesConsultingListResponse response,View.OnClickListener listener) {
         this.itemView.setTag(getAdapterPosition());
         this.itemView.setOnClickListener(listener);
         this.title.setText(response.getTitle());

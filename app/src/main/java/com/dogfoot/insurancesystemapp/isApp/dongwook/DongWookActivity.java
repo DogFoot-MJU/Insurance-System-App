@@ -9,6 +9,7 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.v
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainFragment;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.view.LoginActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.logout.view.LogOutActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingMainActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.SignUpActivity;
 
 
@@ -27,6 +28,7 @@ public class DongWookActivity extends DogFootViewModelActivity {
         this.findViewById(R.id.dongWookActivity_signUpButton).setOnClickListener(v -> this.startActivity(SignUpActivity.class));
         this.findViewById(R.id.dongWookActivity_logoutButton).setOnClickListener(v -> this.startActivity(LogOutActivity.class));
         this.findViewById(R.id.dongWookActivity_customerConsultingButton).setOnClickListener(v -> this.startActivity(CustomerConsultingMainActivity.class));
+        this.findViewById(R.id.dongWookActivity_adminConsultingButton).setOnClickListener(v -> this.startActivity(SalesConsultingMainActivity.class));
 
     }
 
