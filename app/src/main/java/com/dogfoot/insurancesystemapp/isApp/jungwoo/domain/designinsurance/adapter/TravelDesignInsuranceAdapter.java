@@ -100,7 +100,6 @@ public class TravelDesignInsuranceAdapter extends RecyclerView.Adapter<TravelDes
             bundle.putString("strName", travelItems.get(position).getName());
             bundle.putString("strPayment", String.valueOf(travelItems.get(position).getPayment()));
             bundle.putString("strState", String.valueOf(travelItems.get(position).getState()));
-            bundle.putString("integerExpirationDate", Integer.toString(travelItems.get(position).getExpiration_date()));
             bundle.putString("authorize", String.valueOf(authorize));
             bundle.putString("approve", String.valueOf(approve));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();

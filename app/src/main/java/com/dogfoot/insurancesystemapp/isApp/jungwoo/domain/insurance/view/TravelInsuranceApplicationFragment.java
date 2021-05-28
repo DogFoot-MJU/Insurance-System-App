@@ -104,6 +104,7 @@ public class TravelInsuranceApplicationFragment extends DogFootViewModelFragment
                                     bundle.putString("strPayment", String.valueOf(response.body().getPayment()));
                                     bundle.putString("strPhysical", response.body().getPhysical());
                                     bundle.putString("strEconomical", response.body().getEconomical());
+                                    bundle.putString("strEnvironmental", response.body().getEnvironmental());
                                     bundle.putString("strSafetyRank", String.valueOf(response.body().getSafetyRank()));
                                     TravelInsuranceApplicationDetailedFragment travelInsuranceApplicationDetailedFragment = TravelInsuranceApplicationDetailedFragment.newInstance();
                                     travelInsuranceApplicationDetailedFragment.setArguments(bundle);

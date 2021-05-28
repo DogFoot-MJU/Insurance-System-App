@@ -99,7 +99,6 @@ public class CarDesignInsuranceAdapter extends RecyclerView.Adapter<CarDesignIns
             bundle.putString("strName", carItems.get(position).getName());
             bundle.putString("strPayment", Long.toString(carItems.get(position).getPayment()));
             bundle.putString("strState", String.valueOf(carItems.get(position).getState()));
-            bundle.putString("integerExpirationDate", String.valueOf(carItems.get(position).getExpiration_date()));
             bundle.putString("authorize", String.valueOf(authorize));
             bundle.putString("approve", String.valueOf(approve));
 

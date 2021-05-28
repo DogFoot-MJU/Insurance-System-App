@@ -86,7 +86,7 @@ public class TravelInsuranceApplicationDetailedFragment extends DogFootViewModel
         mBinding.tvTravelInsuranceApplicationPhysical.setText(String.valueOf(bundle.get("strPhysical")));
         mBinding.tvTravelInsuranceApplicationEconomical.setText(String.valueOf(bundle.get("strEconomical")));
         mBinding.tvTravelInsuranceApplicationEnvironmental.setText(bundle.getString("strEnvironmental"));
-        mBinding.tvTravelInsuranceApplicationSafetyRank.setText(String.valueOf(bundle.get("strSafetyRank")));
+        mBinding.tvTravelInsuranceApplicationSafetyRank.setText(bundle.getString("strSafetyRank"));
 
     }
 

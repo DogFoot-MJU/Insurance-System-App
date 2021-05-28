@@ -72,7 +72,9 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
         mBinding.tvDesignName2.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment2.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState2.setText(bundle.getString("strState"));
-        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
+
+
+
     }
 
     private void init() {

@@ -23,7 +23,7 @@ public class TravelInsuranceResponse {
     private String economical;
     @SerializedName("environmental")
     private final String environmental;
-    @SerializedName("safetyRank")
+    @SerializedName("safety_rank")
     private Constant.SafetyRank safetyRank;
     @SerializedName("available_sale")
     private final boolean available_sale;

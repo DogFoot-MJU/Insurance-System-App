@@ -71,7 +71,7 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
         mBinding.tvDesignName4.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment4.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState4.setText(bundle.getString("strState"));
-        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
+
         authorizeBack = bundle.getString("authorize");
         approveBack = bundle.getString("approve");
 

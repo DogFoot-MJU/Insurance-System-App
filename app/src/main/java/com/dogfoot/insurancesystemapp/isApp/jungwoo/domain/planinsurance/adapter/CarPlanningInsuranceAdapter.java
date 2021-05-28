@@ -97,7 +97,7 @@ public class CarPlanningInsuranceAdapter extends RecyclerView.Adapter<CarPlannin
                 bundle.putString("strName", carItems.get(position).getName());
                 bundle.putString("strPayment", carItems.get(position).getPayment());
                 bundle.putString("strState", carItems.get(position).getState());
-                bundle.putString("integerExpirationDate", String.valueOf(carItems.get(position).getExpiration_date()));
+
                 FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 if(forDesign == false) {

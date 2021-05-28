@@ -95,7 +95,7 @@ public class DriverPlanningInsuranceAdapter extends RecyclerView.Adapter<DriverP
             bundle.putString("strName", driverItems.get(position).getName());
             bundle.putString("strPayment", String.valueOf(driverItems.get(position).getPayment()));
             bundle.putString("strState", String.valueOf(driverItems.get(position).getState()));
-            bundle.putString("integerExpirationDate", String.valueOf(driverItems.get(position).getExpiration_date()));
+
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(forDesign == false) {

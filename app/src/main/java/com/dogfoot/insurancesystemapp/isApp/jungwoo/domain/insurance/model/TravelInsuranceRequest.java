@@ -18,7 +18,7 @@ public class TravelInsuranceRequest {
     private String customer_economical;
     @SerializedName("customer_environmental")
     private String customer_environmental;
-    @SerializedName("safetyRank")
+    @SerializedName("safety_rank")
     private Constant.SafetyRank safetyRank;
 
 }

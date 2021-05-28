@@ -101,6 +101,7 @@ public class FireInsuranceApplicationFragment extends DogFootViewModelFragment {
                                     bundle.putString("strPayment", String.valueOf(response.body().getPayment()));
                                     bundle.putString("strPhysical", response.body().getPhysical());
                                     bundle.putString("strEconomical", response.body().getEconomical());
+                                    bundle.putString("strEnvironmental", response.body().getEnvironmental());
                                     bundle.putString("strSiteArea", String.valueOf(response.body().getSite_area()));
                                     bundle.putString("strBuildingPrice", String.valueOf(response.body().getBuilding_price()));
                                     bundle.putString("strFloors", String.valueOf(response.body().getNumber_of_floors()));

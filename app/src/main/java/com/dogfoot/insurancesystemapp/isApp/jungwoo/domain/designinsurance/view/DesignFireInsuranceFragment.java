@@ -26,6 +26,7 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEnti
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.DriverDesignInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.model.FireDesignInsuranceResponse;
 
@@ -66,7 +67,9 @@ public class DesignFireInsuranceFragment extends DogFootViewModelFragment {
         mBinding.tvDesignName3.setText(bundle.getString("strName"));
         mBinding.tvDesignPayment3.setText(bundle.getString("strPayment"));
         mBinding.tvDesignState3.setText(bundle.getString("strState"));
-        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
+
+
+
     }
 
     private void init() {

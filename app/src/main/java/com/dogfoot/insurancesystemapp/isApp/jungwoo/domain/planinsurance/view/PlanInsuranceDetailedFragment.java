@@ -86,7 +86,6 @@ public class PlanInsuranceDetailedFragment extends DogFootViewModelFragment {
         mBinding.tvPlanInsuranceNameResult.setText(bundle.getString("strName"));
         mBinding.tvPlanInsurancePaymentResult.setText(bundle.getString("strPayment"));
         mBinding.tvPlanInsuranceStateResult.setText(bundle.getString("strState"));
-        mBinding.textView10.setText(bundle.getString("integerExpirationDate"));
 
     }
 
