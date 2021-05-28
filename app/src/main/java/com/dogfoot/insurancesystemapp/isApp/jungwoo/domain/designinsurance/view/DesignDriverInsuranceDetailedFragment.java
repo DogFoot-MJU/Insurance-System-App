@@ -103,6 +103,7 @@ public class DesignDriverInsuranceDetailedFragment extends DogFootViewModelFragm
             public void onResponse(Call<DriverDesignInsuranceResponse> call,
                                    Response<DriverDesignInsuranceResponse> response) {
                 if(response.isSuccessful()){
+                    mBinding.textView10.setText(String.valueOf(response.body().getExpiration_date()));
                     mBinding.tvDesignAcquisition2.setText(String.valueOf(response.body().getDate_of_license_acquisition()));
                     mBinding.tvDesignLicense2.setText(String.valueOf(response.body().getDriver_license()));
                 } else{

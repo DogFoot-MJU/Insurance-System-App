@@ -89,6 +89,7 @@ public class DesignCarInsuranceDetailedFragment extends DogFootViewModelFragment
                 public void onResponse(Call<CarDesignInsuranceResponse> call,
                                        Response<CarDesignInsuranceResponse> response) {
                     if (response.isSuccessful()) {
+                        mBinding.textView10.setText(String.valueOf(response.body().getExpiration_date()));
                         mBinding.tvDesignPrice.setText(String.valueOf(response.body().getCar_price()));
                         mBinding.tvDesignRelease.setText(response.body().getCar_release_date());
                         mBinding.tvDesignDistance.setText(String.valueOf(response.body().getDriving_distance()));

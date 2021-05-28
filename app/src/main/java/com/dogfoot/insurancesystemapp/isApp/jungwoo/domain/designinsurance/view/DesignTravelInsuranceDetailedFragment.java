@@ -83,6 +83,7 @@ public class DesignTravelInsuranceDetailedFragment extends DogFootViewModelFragm
             public void onResponse(Call<TravelDesignInsuranceResponse> call,
                                    Response<TravelDesignInsuranceResponse> response) {
                 if(response.isSuccessful()){
+                    mBinding.textView10.setText(String.valueOf(response.body().getExpiration_date()));
                     mBinding.tvDesignSafe4.setText(String.valueOf(response.body().getSafety_rank()));
                 } else{
                 }

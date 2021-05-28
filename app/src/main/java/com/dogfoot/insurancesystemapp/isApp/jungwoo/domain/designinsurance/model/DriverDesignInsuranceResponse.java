@@ -27,6 +27,6 @@ public class DriverDesignInsuranceResponse {
     private int expiration_date;
     @SerializedName("date_of_license_acquisition")
     private String date_of_license_acquisition;
-    @SerializedName("driver_license")
+    @SerializedName("driver_licence")
     private DriverLicence driver_license;
 }

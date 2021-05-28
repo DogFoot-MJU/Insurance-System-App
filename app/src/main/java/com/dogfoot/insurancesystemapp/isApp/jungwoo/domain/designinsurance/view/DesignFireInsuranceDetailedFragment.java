@@ -82,6 +82,7 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
             public void onResponse(Call<FireDesignInsuranceResponse> call,
                                    Response<FireDesignInsuranceResponse> response) {
                 if(response.isSuccessful()){
+                    mBinding.textView10.setText(String.valueOf(response.body().getExpiration_date()));
                     mBinding.tvDesignPrice3.setText(String.valueOf(response.body().getBuilding_price()));
                     mBinding.tvDesignDate3.setText(String.valueOf(response.body().getConstruction_date()));
                     mBinding.tvDesignsite3.setText(String.valueOf(response.body().getSite_area()));

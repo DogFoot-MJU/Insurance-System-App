@@ -15,25 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InsuranceSystemApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.FireInsuranceApplicationDetailedFragment"></activity>
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.DriverInsuranceApplicationDetailedFragment" />
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.CarInsurnaceApplicationDetailedFragment" />
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.TravelInsuranceApplicationFragment" />
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.FireInsuranceApplicationFragment" />
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.DriverInsuranceApplicationFragment" />
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.CarInsuranceApplicationFragment" />
-        <activity android:name=".isApp.jungwoo.domain.insurance.view.InsuranceApplicationFragment" />
-        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyUpdateFragment" />
-        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicySecondFragment" />
-        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyDetailedFragment" />
-        <activity android:name=".isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyFirstFragment" />
-        <activity android:name=".isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment" />
-        <activity android:name=".isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment" />
-        <activity android:name=".isApp.jungwoo.domain.designinsurance.view.DesignTravelInsuranceFragment" />
-        <activity android:name=".isApp.jungwoo.domain.designinsurance.view.DesignFireInsuranceFragment" />
-        <activity android:name=".isApp.jungwoo.domain.designinsurance.view.DesignDriverInsuranceFragment" />
-        <activity android:name=".isApp.jungwoo.domain.designinsurance.view.DesignCarInsuranceFragment" />
         <activity android:name=".isApp.jungwoo.JungWoo" />
+        <activity android:name=".isApp.jungwoo.intro.IntroActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".isApp.dongwook.domain.logout.view.LogOutActivity" />
         <activity android:name=".isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainActivity" />
         <activity android:name=".isApp.dongwook.domain.customerConsulting.view.CustomerConsultingViewActivity" />
@@ -41,11 +29,6 @@
         <activity android:name=".isApp.dongwook.domain.login.view.LoginActivity" />
         <activity android:name=".isApp.dongwook.domain.signUp.view.SignUpActivity" />
         <activity android:name=".isApp.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
