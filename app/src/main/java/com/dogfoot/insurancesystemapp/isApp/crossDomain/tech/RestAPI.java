@@ -31,6 +31,10 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.FireI
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.FireInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.TravelInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.model.TravelInsuranceResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.legitimateexamination.model.CarLegitimateExaminationResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.legitimateexamination.model.DriverLegitimateExaminationResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.legitimateexamination.model.FireLegitimateExaminationResponse;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.legitimateexamination.model.TravelLegitimateExaminationResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceRequest;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.CarPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.DriverPlanInsuranceRequest;
@@ -234,5 +238,45 @@ public interface RestAPI {
     Call<PaymentResponse> calculateFireInsurancePrice(@Body FireInsuranceRequest fireInsuranceRequest);
     @POST("api/v1/user/contract/travel/calculate")
     Call<PaymentResponse> calculateTravelInsurancePrice(@Body TravelInsuranceRequest travelInsuranceRequest);
+
+    // 적법 심사 리스트
+    @GET("api/v1/uw/contract/car/wait/list")
+    Call<Pagination<List<CarLegitimateExaminationResponse>>> getCarLegitimateExaminationList();
+    @GET("api/v1/uw/contract/driver/wait/list")
+    Call<Pagination<List<DriverLegitimateExaminationResponse>>> getDriverLegitimateExaminationList();
+    @GET("api/v1/uw/contract/fire/wait/list")
+    Call<Pagination<List<FireLegitimateExaminationResponse>>> getFireLegitimateExaminationList();
+    @GET("api/v1/uw/contract/travel/wait/list")
+    Call<Pagination<List<TravelLegitimateExaminationResponse>>> getTravelLegitimateExaminationList();
+
+    // 계약 상세보기
+    @GET("api/v1/uw/contract/car/wait/detail/{id}")
+    Call<CarLegitimateExaminationResponse> getCarLegitimateExaminationDetailed(@Path("id") Long id);
+    @GET("api/v1/uw/contract/driver/wait/detail/{id}")
+    Call<DriverLegitimateExaminationResponse> getDriverLegitimateExaminationDetailed(@Path("id") Long id);
+    @GET("api/v1/uw/contract/fire/wait/detail/{id}")
+    Call<FireLegitimateExaminationResponse> getFireLegitimateExaminationDetailed(@Path("id") Long id);
+    @GET("api/v1/uw/contract/travel/wait/detail/{id}")
+    Call<TravelLegitimateExaminationResponse> getTravelLegitimateExaminationDetailed(@Path("id") Long id);
+
+    // 계약 승인하기
+    @PUT("api/v1/uw/contract/car/approve/{id}")
+    Call<Void> approveLegitimateExaminationCar(@Path("id") Long id);
+    @PUT("api/v1/uw/contract/driver/approve/{id}")
+    Call<Void> approveLegitimateExaminationDriver(@Path("id") Long id);
+    @PUT("api/v1/uw/contract/fire/approve/{id}")
+    Call<Void> approveLegitimateExaminationFire(@Path("id") Long id);
+    @PUT("api/v1/uw/contract/travel/approve/{id}")
+    Call<Void> approveLegitimateExaminationTravel(@Path("id") Long id);
+
+    // 계약 거절하기
+    @PUT("api/v1/uw/contract/car/reject/{id}")
+    Call<Void> rejectLegitimateExaminationCar(@Path("id") Long id);
+    @PUT("api/v1/uw/contract/driver/reject/{id}")
+    Call<Void> rejectLegitimateExaminationDriver(@Path("id") Long id);
+    @PUT("api/v1/uw/contract/fire/reject/{id}")
+    Call<Void> rejectLegitimateExaminationFire(@Path("id") Long id);
+    @PUT("api/v1/uw/contract/travel/reject/{id}")
+    Call<Void> rejectLegitimateExaminationTravel(@Path("id") Long id);
 
 }
