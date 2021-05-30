@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
     @Setter
     private static Boolean backCheckApprove;
     String id;
+    private String strLicense;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -71,8 +73,28 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
         return view;
     }
 
+    public void initSpinner(){
+        strLicense = "TYPE_1_NORMAL";
+        mBinding.spDriverInsuranceApplicationDriverLicense.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getItemAtPosition(i).equals("1종 보통")){
+                    strLicense = "TYPE_1_NORMAL";
+                } else if(adapterView.getItemAtPosition(i).equals("2종 보통")){
+                    strLicense = "TYPE_2_NORMAL";
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+
 
     private void initData() {
+        initSpinner();
         Bundle bundle = getArguments();
         id = bundle.getString("strId");
         mBinding.tvDriverInsuranceApplicationId.setText(id);
@@ -114,6 +136,8 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
             }
         });
 
+
+
         mBinding.buttonDriverInsuranceApplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,12 +146,11 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
                 String economical = mBinding.etDriverInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.etDriverInsuranceApplicationEnvironmental.getText().toString();
                 String date = mBinding.etDriverInsuranceApplicationLicenseDate.getText().toString();
-                String driverLicense = mBinding.etDriverInsuranceApplicationDriverLicense.getText().toString();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .applyForDriverInsurance(new DriverInsuranceRequest(Long.valueOf(id), physical, economical, environmental, date, Constant.DriverLicence.valueOf(driverLicense)))
+                        .applyForDriverInsurance(new DriverInsuranceRequest(Long.valueOf(id), physical, economical, environmental, date, Constant.DriverLicence.valueOf(strLicense)))
                         .enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call,
@@ -152,13 +175,12 @@ public class DriverInsuranceApplicationFragment extends DogFootViewModelFragment
                 String economical = mBinding.etDriverInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.etDriverInsuranceApplicationEnvironmental.getText().toString();
                 String date = mBinding.etDriverInsuranceApplicationLicenseDate.getText().toString();
-                String driverLicense = mBinding.etDriverInsuranceApplicationDriverLicense.getText().toString();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
                         .calculateDriverInsurancePrice(new DriverInsuranceRequest(Long.valueOf(id), physical, economical, environmental,
-                                 date, Constant.DriverLicence.valueOf(driverLicense)))
+                                 date, Constant.DriverLicence.valueOf(strLicense)))
                         .enqueue(new Callback<PaymentResponse>() {
                             @Override
                             public void onResponse(Call<PaymentResponse> call,

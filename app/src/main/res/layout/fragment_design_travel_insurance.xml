@@ -205,18 +205,12 @@
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                <EditText
-                    android:id="@+id/tv_designSafe4"
-                    android:layout_width="match_parent"
+                <Spinner
+                    android:id="@+id/spinner_safetyRankSelect"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:hint="GREEN"
-                    android:translationX="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                    android:layout_marginLeft="40dp"
+                    android:entries="@array/safetyRank_select" />
             </LinearLayout>
 
             <LinearLayout

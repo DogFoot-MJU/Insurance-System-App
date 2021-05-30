@@ -79,7 +79,7 @@
                     android:id="@+id/tv_legitimateId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="75dp"
                     android:textSize="14sp"
                     android:textColor="#000000" />
 
@@ -132,7 +132,7 @@
                     android:id="@+id/tv_legitimateUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="35dp"
                     android:textSize="14sp"
                     android:textColor="#000000" />
 

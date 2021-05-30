@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class TravelInsuranceApplicationFragment extends DogFootViewModelFragment
     @Setter
     private static Boolean backCheckApprove;
     String id;
+    private String strSafety;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -78,7 +80,29 @@ public class TravelInsuranceApplicationFragment extends DogFootViewModelFragment
         return view;
     }
 
+    public void initSpinner(){
+        strSafety = "GREEN";
+        mBinding.spinnerSafetyRankSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getItemAtPosition(i).equals("GREEN")){
+                    strSafety = "GREEN";
+                } else if(adapterView.getItemAtPosition(i).equals("BLUE")){
+                    strSafety = "BLUE";
+                }
+                else if(adapterView.getItemAtPosition(i).equals("RED")){
+                    strSafety = "RED";
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     private void initData() {
+        initSpinner();
         Bundle bundle = getArguments();
         id = bundle.getString("strId");
         mBinding.tvTravelInsuranceApplicationId.setText(id);
@@ -126,13 +150,12 @@ public class TravelInsuranceApplicationFragment extends DogFootViewModelFragment
                 String physical = mBinding.tvTravelInsuranceApplicationPhysical.getText().toString();
                 String economical = mBinding.tvTravelInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.tvTravelInsuranceApplicationEnvironmental.getText().toString();
-                String safetyRank = mBinding.tvTravelInsuranceApplicationSafetyRank.getText().toString();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
                         .applyForTravelInsurance(new TravelInsuranceRequest(Long.valueOf(id), physical, economical, environmental,
-                                Constant.SafetyRank.valueOf(safetyRank)))
+                                Constant.SafetyRank.valueOf(strSafety)))
                         .enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call,
@@ -156,13 +179,12 @@ public class TravelInsuranceApplicationFragment extends DogFootViewModelFragment
                 String physical = mBinding.tvTravelInsuranceApplicationPhysical.getText().toString();
                 String economical = mBinding.tvTravelInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.tvTravelInsuranceApplicationEnvironmental.getText().toString();
-                String safetyRank = mBinding.tvTravelInsuranceApplicationSafetyRank.getText().toString();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
                         .calculateTravelInsurancePrice(new TravelInsuranceRequest(Long.valueOf(id), physical, economical, environmental,
-                                Constant.SafetyRank.valueOf(safetyRank)))
+                                Constant.SafetyRank.valueOf(strSafety)))
                         .enqueue(new Callback<PaymentResponse>() {
                             @Override
                             public void onResponse(Call<PaymentResponse> call,

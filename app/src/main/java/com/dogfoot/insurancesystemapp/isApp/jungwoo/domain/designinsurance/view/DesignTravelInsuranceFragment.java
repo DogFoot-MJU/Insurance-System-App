@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.dogfoot.insurancesystemapp.R;
@@ -41,6 +42,7 @@ public class DesignTravelInsuranceFragment extends DogFootViewModelFragment {
     private FragmentDesignTravelInsuranceBinding mBinding;
     private Context context;
     private FragmentActivity fragmentContext;
+    private String strSafety;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -63,6 +65,27 @@ public class DesignTravelInsuranceFragment extends DogFootViewModelFragment {
         return view;
     }
 
+    public void initSpinner(){
+        strSafety = "GREEN";
+        mBinding.spinnerSafetyRankSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getItemAtPosition(i).equals("GREEN")){
+                    strSafety = "GREEN";
+                } else if(adapterView.getItemAtPosition(i).equals("BLUE")){
+                    strSafety = "BLUE";
+                }
+                else if(adapterView.getItemAtPosition(i).equals("RED")){
+                    strSafety = "RED";
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     private void initData() {
         Bundle bundle = getArguments();
         mBinding.tvDesignId4.setText(bundle.getString("strId"));
@@ -73,16 +96,16 @@ public class DesignTravelInsuranceFragment extends DogFootViewModelFragment {
     }
 
     private void init() {
+        initSpinner();
         mBinding.buttonInsuranceDesign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String id = mBinding.tvDesignId4.getText().toString();
-                String safe = mBinding.tvDesignSafe4.getText().toString();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
-                        .designTravelInsurance(new TravelDesignInsuranceRequest(Long.valueOf(id), safe))
+                        .designTravelInsurance(new TravelDesignInsuranceRequest(Long.valueOf(id), strSafety))
                         .enqueue(new Callback<TravelDesignInsuranceResponse>() {
                             @Override
                             public void onResponse(Call<TravelDesignInsuranceResponse> call, Response<TravelDesignInsuranceResponse> response) {

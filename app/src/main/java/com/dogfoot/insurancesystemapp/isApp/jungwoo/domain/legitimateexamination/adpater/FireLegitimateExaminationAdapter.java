@@ -56,7 +56,7 @@ public class FireLegitimateExaminationAdapter extends RecyclerView.Adapter<FireL
 
     @Override
     public void onBindViewHolder(@NonNull final FireLegitimateExaminationAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_contractId.setText(String.valueOf(fireItems.get(position).getInsurance_id()));
+        holder.tv_contractId.setText(String.valueOf(fireItems.get(position).getId()));
         holder.tv_contractName.setText(fireItems.get(position).getInsurance_name());
         holder.tv_contractUserName.setText(fireItems.get(position).getUser_name());
         holder.itemView.setTag(position);
@@ -82,7 +82,7 @@ public class FireLegitimateExaminationAdapter extends RecyclerView.Adapter<FireL
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
 
-            bundle.putString("strId", String.valueOf(fireItems.get(position).getInsurance_id()));
+            bundle.putString("strId", String.valueOf(fireItems.get(position).getId()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

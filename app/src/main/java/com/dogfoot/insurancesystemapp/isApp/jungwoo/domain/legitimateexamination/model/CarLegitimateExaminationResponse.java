@@ -12,6 +12,9 @@ import lombok.ToString;
 @ToString
 public class CarLegitimateExaminationResponse {
 
+
+    @SerializedName("id")
+    private Long id;
     @SerializedName("user_name")
     private String user_name;
     @SerializedName("email")

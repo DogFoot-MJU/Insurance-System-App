@@ -79,8 +79,7 @@
                     android:id="@+id/tv_legitimateId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="20dp"
                     android:textSize="14sp"
                     android:textColor="#000000" />
 
@@ -108,8 +107,7 @@
                     android:id="@+id/tv_legitimateInsuranceName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="20dp"
                     android:textSize="14sp"
                     android:textColor="#000000"></TextView>
 
@@ -134,8 +132,7 @@
                     android:id="@+id/tv_legitimateUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="20dp"
                     android:textSize="14sp"
                     android:textColor="#000000" />
 
@@ -160,8 +157,7 @@
                     android:id="@+id/tv_legitimateEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="15dp"
                     android:textSize="14sp"
                     android:textColor="#000000" />
 
@@ -190,7 +186,7 @@
                     android:id="@+id/tv_legitimatePhysical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
+                    android:layout_marginLeft="15dp"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -221,7 +217,7 @@
                     android:id="@+id/tv_legitimateEconomical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="15dp"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -253,7 +249,7 @@
                     android:id="@+id/tv_legitimateEnvironmental"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
+                    android:layout_marginLeft="15dp"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"

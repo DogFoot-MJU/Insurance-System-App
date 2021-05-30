@@ -10,6 +10,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class TravelLegitimateExaminationResponse {
 
+    @SerializedName("id")
+    private Long id;
     @SerializedName("user_name")
     private String user_name;
     @SerializedName("email")

@@ -55,7 +55,7 @@ public class DriverLegitimateExaminationAdapter extends RecyclerView.Adapter<Dri
 
     @Override
     public void onBindViewHolder(@NonNull final DriverLegitimateExaminationAdapter.CustomViewHolder holder, int position) { // 추가될때 이 메서드가 실행된다.
-        holder.tv_contractId.setText(String.valueOf(driverItems.get(position).getInsurance_id()));
+        holder.tv_contractId.setText(String.valueOf(driverItems.get(position).getId()));
         holder.tv_contractName.setText(driverItems.get(position).getInsurance_name());
         holder.tv_contractUserName.setText(driverItems.get(position).getUser_name());
 
@@ -79,7 +79,7 @@ public class DriverLegitimateExaminationAdapter extends RecyclerView.Adapter<Dri
         }
         if (System.currentTimeMillis() <= btnPressTime + 1000) {
             Bundle bundle = new Bundle();
-            bundle.putString("strId", String.valueOf(driverItems.get(position).getInsurance_id()));
+            bundle.putString("strId", String.valueOf(driverItems.get(position).getId()));
             FragmentManager fragmentManager = fragmentContext.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             LegitimateExaminationDriverDetailedFragment legitimateExaminationDriverDetailedFragment = LegitimateExaminationDriverDetailedFragment.newInstance();

@@ -183,7 +183,7 @@
                     android:id="@+id/tv_travelInsuranceApplicationEnvironmental"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="22dp"
                     android:hint="ex) 환경 문제 없음"
                     android:textColor="#000000"
                     android:textSize="14sp"
@@ -212,17 +212,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStatusInfo" />
 
-                <EditText
-                    android:id="@+id/tv_travelInsuranceApplicationSafetyRank"
-                    android:layout_width="match_parent"
+                <Spinner
+                    android:id="@+id/spinner_safetyRankSelect"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:textColor="#000000"
-                    android:hint="ex) GREEN"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceDateInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_planInsuranceStateResult" />
+                    android:layout_marginLeft="55dp"
+                    android:entries="@array/safetyRank_select" />
 
             </LinearLayout>
 
