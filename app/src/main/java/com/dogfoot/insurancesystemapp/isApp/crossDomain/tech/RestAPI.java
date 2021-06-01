@@ -47,12 +47,15 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.T
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface RestAPI {
@@ -71,7 +74,9 @@ public interface RestAPI {
     @GET("api/v1/user/consulting/answer/{id}")
     Call<CustomerConsultingAnsweredViewResponse> getCustomerConsultingAnsweredView(@Path("id") Long id);
 
-
+    @Multipart
+    @POST("upload")
+    Call<ImageUploadResponse> uploadImage(@Part MultipartBody.Part uploadFile);
 
     @GET("api/v1/seller/consulting/list")
     Call<Pagination<List<SalesConsultingListResponse>>> getSalesConsultingList();
