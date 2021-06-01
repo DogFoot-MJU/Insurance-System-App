@@ -129,7 +129,7 @@ public class FireInsuranceApplicationFragment extends DogFootViewModelFragment {
                 String siteArea = mBinding.tvFireInsuranceApplicationSiteArea.getText().toString();
                 String buildingPrice = mBinding.tvFireInsuranceApplicationBuildingPrice.getText().toString();
                 String floors = mBinding.tvFireInsuranceApplicationFloors.getText().toString();
-                String date = mBinding.tvFireInsuranceApplicationDate.getText().toString();
+                String date = calculateDate();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
@@ -162,7 +162,7 @@ public class FireInsuranceApplicationFragment extends DogFootViewModelFragment {
                 String siteArea = mBinding.tvFireInsuranceApplicationSiteArea.getText().toString();
                 String buildingPrice = mBinding.tvFireInsuranceApplicationBuildingPrice.getText().toString();
                 String floors = mBinding.tvFireInsuranceApplicationFloors.getText().toString();
-                String date = mBinding.tvFireInsuranceApplicationDate.getText().toString();
+                String date = calculateDate();
 
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
@@ -187,6 +187,28 @@ public class FireInsuranceApplicationFragment extends DogFootViewModelFragment {
         });
 
 
+    }
+
+    private String calculateDate() {
+
+        String year;
+        String month;
+        String day;
+        year = Integer.toString(mBinding.dpFireInsuranceDate.getYear());
+        if(mBinding.dpFireInsuranceDate.getMonth()+1<10){
+            month = "0"+Integer.toString(mBinding.dpFireInsuranceDate.getMonth()+1);
+        } else {
+            month = Integer.toString(mBinding.dpFireInsuranceDate.getMonth()+1);
+        }
+        if(mBinding.dpFireInsuranceDate.getDayOfMonth()<10){
+            day = "0"+Integer.toString(mBinding.dpFireInsuranceDate.getDayOfMonth());
+        } else {
+            day = Integer.toString(mBinding.dpFireInsuranceDate.getDayOfMonth());
+        }
+        String date = year+"-"
+                +month+"-"
+                +day;
+        return date;
     }
 
     @Override

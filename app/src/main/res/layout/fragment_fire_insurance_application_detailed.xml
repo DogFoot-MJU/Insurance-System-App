@@ -84,7 +84,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="90dp"
                     android:textColor="#000000"
-                    android:layout_marginRight="50dp"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
@@ -115,8 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="45dp"
                     android:textSize="14sp"></TextView>
 
             </LinearLayout>
@@ -141,15 +139,22 @@
 
                 <TextView
                     android:id="@+id/tv_fireInsuranceDetailedPayment"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:layout_marginLeft="55dp"
+                    android:layout_marginLeft="60dp"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_priceInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="원"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -234,7 +239,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="20dp"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
@@ -262,15 +267,22 @@
 
                 <TextView
                     android:id="@+id/tv_fireInsuranceApplicationSiteArea"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="40dp"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_m2Info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="m2"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -293,7 +305,7 @@
 
                 <TextView
                     android:id="@+id/tv_fireInsuranceApplicationBuildingPrice"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:textColor="#000000"
@@ -301,7 +313,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_price2Info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="원"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -324,7 +343,7 @@
 
                 <TextView
                     android:id="@+id/tv_fireInsuranceApplicationFloors"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:textColor="#000000"
@@ -332,7 +351,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_floorInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="층"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout

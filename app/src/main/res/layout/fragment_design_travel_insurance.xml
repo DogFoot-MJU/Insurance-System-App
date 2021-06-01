@@ -81,12 +81,11 @@
 
                 <TextView
                     android:id="@+id/tv_designId4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="80dp"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:translationX="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -117,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:translationX="40dp"
+                    android:layout_marginLeft="35dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -144,15 +143,22 @@
 
                 <TextView
                     android:id="@+id/tv_designPayment4"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:translationX="55dp"
+                   android:layout_marginLeft="55dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_priceInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="원"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:translationX="35dp"
+                    android:layout_marginLeft="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -211,6 +217,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:entries="@array/safetyRank_select" />
+
+                <TextView
+                    android:id="@+id/tv_gradeInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="등급"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout

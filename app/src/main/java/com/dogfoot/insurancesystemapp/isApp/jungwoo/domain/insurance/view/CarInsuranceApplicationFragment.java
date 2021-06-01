@@ -3,6 +3,7 @@ package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -126,7 +127,7 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
                 String economical = mBinding.etCarInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.etCarInsuranceApplicationEnvironmental.getText().toString();
                 String price = mBinding.etCarInsuranceApplicationPrice.getText().toString();
-                String releaseDate = mBinding.etCarInsuranceApplicationReleaseDate.getText().toString();
+                String releaseDate = calculateDate();
                 String distance = mBinding.etCarInsuranceApplicationDistance.getText().toString();
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
@@ -156,7 +157,8 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
                 String economical = mBinding.etCarInsuranceApplicationEconomical.getText().toString();
                 String environmental = mBinding.etCarInsuranceApplicationEnvironmental.getText().toString();
                 String price = mBinding.etCarInsuranceApplicationPrice.getText().toString();
-                String releaseDate = mBinding.etCarInsuranceApplicationReleaseDate.getText().toString();
+
+                String releaseDate = calculateDate();
                 String distance = mBinding.etCarInsuranceApplicationDistance.getText().toString();
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
@@ -178,9 +180,31 @@ public class CarInsuranceApplicationFragment extends DogFootViewModelFragment {
                             }
                         });
             }
+
         });
 
 
+    }
+    private String calculateDate() {
+
+        String year;
+        String month;
+        String day;
+        year = Integer.toString(mBinding.dpCarInsuranceRelease.getYear());
+        if(mBinding.dpCarInsuranceRelease.getMonth()+1<10){
+            month = "0"+Integer.toString(mBinding.dpCarInsuranceRelease.getMonth()+1);
+        } else {
+            month = Integer.toString(mBinding.dpCarInsuranceRelease.getMonth()+1);
+        }
+        if(mBinding.dpCarInsuranceRelease.getDayOfMonth()<10){
+            day = "0"+Integer.toString(mBinding.dpCarInsuranceRelease.getDayOfMonth());
+        } else {
+            day = Integer.toString(mBinding.dpCarInsuranceRelease.getDayOfMonth());
+        }
+        String date = year+"-"
+                +month+"-"
+                +day;
+        return date;
     }
 
     @Override

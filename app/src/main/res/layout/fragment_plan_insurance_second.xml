@@ -26,30 +26,60 @@
             android:textSize="14sp"
             android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/et_planInsurancePaymentWrite"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/et_planInsurancePaymentWrite"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:hint="지불금을 작성해주세요."
+            android:hint="ex) 30000"
             android:textSize="14sp"
             android:textColor="#000000"/>
 
+        <TextView
+            android:id="@+id/tv_priceInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:text="원"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+        </LinearLayout>
         <Spinner
             android:id="@+id/spinner_insuranceSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:entries="@array/insurance_select" />
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <EditText
             android:id="@+id/et_ExpirationDate"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:hint="ex) 60"
             android:textSize="14sp"
             android:textColor="#000000"></EditText>
+
+        <TextView
+            android:id="@+id/tv_dayInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="36dp"
+            android:text="일"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

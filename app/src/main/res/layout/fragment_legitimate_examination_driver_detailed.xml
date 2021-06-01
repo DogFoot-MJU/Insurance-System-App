@@ -275,18 +275,32 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
                 <TextView
-                    android:id="@+id/tv_legitimateRate"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_monthInfo"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
+                    android:text="매달"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/tv_legitimateRate"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_priceInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="원"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -311,7 +325,7 @@
                     android:id="@+id/tv_legitimateExpirationDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="38dp"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -370,7 +384,7 @@
                     android:id="@+id/tv_legitimateCustomerAcquisition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="25dp"
                     android:textSize="14sp"
                     android:textColor="#000000" />
 

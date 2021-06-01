@@ -78,7 +78,7 @@ public class DesignFireInsuranceFragment extends DogFootViewModelFragment {
             public void onClick(View view) {
                 String id = mBinding.tvDesignId3.getText().toString();
                 String price = mBinding.tvDesignPrice3.getText().toString();
-                String date = mBinding.tvDesignDate3.getText().toString();
+                String date = calculateDate();
                 String floors = mBinding.tvDesignFloors3.getText().toString();
                 String site = mBinding.tvDesignsite3.getText().toString();
 
@@ -101,6 +101,28 @@ public class DesignFireInsuranceFragment extends DogFootViewModelFragment {
             }
         });
 
+    }
+
+    private String calculateDate() {
+
+        String year;
+        String month;
+        String day;
+        year = Integer.toString(mBinding.dpFireInsuranceDate.getYear());
+        if(mBinding.dpFireInsuranceDate.getMonth()+1<10){
+            month = "0"+Integer.toString(mBinding.dpFireInsuranceDate.getMonth()+1);
+        } else {
+            month = Integer.toString(mBinding.dpFireInsuranceDate.getMonth()+1);
+        }
+        if(mBinding.dpFireInsuranceDate.getDayOfMonth()<10){
+            day = "0"+Integer.toString(mBinding.dpFireInsuranceDate.getDayOfMonth());
+        } else {
+            day = Integer.toString(mBinding.dpFireInsuranceDate.getDayOfMonth());
+        }
+        String date = year+"-"
+                +month+"-"
+                +day;
+        return date;
     }
 
 

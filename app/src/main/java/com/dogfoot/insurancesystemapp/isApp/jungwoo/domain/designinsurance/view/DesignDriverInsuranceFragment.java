@@ -84,7 +84,7 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
             @Override
             public void onClick(View view) {
                 String id = mBinding.tvDesignId2.getText().toString();
-                String acquisition = mBinding.tvDesignAcquisition2.getText().toString();
+                String acquisition = calculateDate();
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
                 RetrofitTool.getAPIWithAuthorizationToken(token)
@@ -105,6 +105,28 @@ public class DesignDriverInsuranceFragment extends DogFootViewModelFragment {
             }
         });
 
+    }
+
+    private String calculateDate() {
+
+        String year;
+        String month;
+        String day;
+        year = Integer.toString(mBinding.dpDriverInsuranceLicenseDate.getYear());
+        if(mBinding.dpDriverInsuranceLicenseDate.getMonth()+1<10){
+            month = "0"+Integer.toString(mBinding.dpDriverInsuranceLicenseDate.getMonth()+1);
+        } else {
+            month = Integer.toString(mBinding.dpDriverInsuranceLicenseDate.getMonth()+1);
+        }
+        if(mBinding.dpDriverInsuranceLicenseDate.getDayOfMonth()<10){
+            day = "0"+Integer.toString(mBinding.dpDriverInsuranceLicenseDate.getDayOfMonth());
+        } else {
+            day = Integer.toString(mBinding.dpDriverInsuranceLicenseDate.getDayOfMonth());
+        }
+        String date = year+"-"
+                +month+"-"
+                +day;
+        return date;
     }
 
     public void initSpinner(){

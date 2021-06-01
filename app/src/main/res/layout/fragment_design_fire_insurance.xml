@@ -81,12 +81,11 @@
 
                 <TextView
                     android:id="@+id/tv_designId3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
                     android:textSize="14sp"
                     android:textColor="#000000"
-                    android:translationX="100dp"
+                    android:layout_marginLeft="90dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -144,15 +143,22 @@
 
                 <TextView
                     android:id="@+id/tv_designPayment3"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#000000"
-                    android:translationX="60dp"
+                    android:layout_marginLeft="62dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_priceInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="원"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#000000"
-                    android:translationX="35dp"
+                   android:layout_marginLeft="45dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
@@ -207,16 +213,23 @@
 
                 <EditText
                     android:id="@+id/tv_designPrice3"
-                    android:layout_width="200dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#000000"
-                    android:translationX="50dp"
+                    android:layout_marginLeft="45dp"
                     android:hint="10000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_price2Info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="원"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -232,23 +245,19 @@
                     android:layout_height="wrap_content"
                     android:text="건축 날짜"
                     android:textSize="14sp"
+                    android:layout_marginTop="30sp"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                <EditText
-                    android:id="@+id/tv_designDate3"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#000000"
-                    android:hint="2020-05-05"
-                    android:translationX="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <android.widget.DatePicker
+                    android:id="@+id/dp_fireInsuranceDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="45dp"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner" />
             </LinearLayout>
 
             <LinearLayout
@@ -271,16 +280,23 @@
 
                 <EditText
                     android:id="@+id/tv_designFloors3"
-                    android:layout_width="200dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     android:hint="50"
-                    android:translationX="50dp"
+                    android:layout_marginLeft="45dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_floorInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="층"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -303,16 +319,23 @@
 
                 <EditText
                     android:id="@+id/tv_designsite3"
-                    android:layout_width="200dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#000000"
                     android:hint="10"
-                    android:translationX="50dp"
+          android:layout_marginLeft="45dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_planInsuranceNameInfo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_insurancePlanSelectInfo" />
-
+                <TextView
+                    android:id="@+id/tv_m2Info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="m2"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout

@@ -78,7 +78,7 @@ public class DesignCarInsuranceFragment extends DogFootViewModelFragment {
             public void onClick(View view) {
                 String id = mBinding.tvDesignId.getText().toString();
                 String price = mBinding.tvDesignPrice.getText().toString();
-                String release = mBinding.tvDesignRelease.getText().toString();
+                String release = calculateDate();
                 String distance = mBinding.tvDesignDistance.getText().toString();
                 Constant constant = Constant.getInstance();
                 String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
@@ -100,7 +100,27 @@ public class DesignCarInsuranceFragment extends DogFootViewModelFragment {
         });
 
     }
+    private String calculateDate() {
 
+        String year;
+        String month;
+        String day;
+        year = Integer.toString(mBinding.dpCarInsuranceRelease.getYear());
+        if(mBinding.dpCarInsuranceRelease.getMonth()+1<10){
+            month = "0"+Integer.toString(mBinding.dpCarInsuranceRelease.getMonth()+1);
+        } else {
+            month = Integer.toString(mBinding.dpCarInsuranceRelease.getMonth()+1);
+        }
+        if(mBinding.dpCarInsuranceRelease.getDayOfMonth()<10){
+            day = "0"+Integer.toString(mBinding.dpCarInsuranceRelease.getDayOfMonth());
+        } else {
+            day = Integer.toString(mBinding.dpCarInsuranceRelease.getDayOfMonth());
+        }
+        String date = year+"-"
+                +month+"-"
+                +day;
+        return date;
+    }
 
     @Override
     protected int getLayoutId() {
