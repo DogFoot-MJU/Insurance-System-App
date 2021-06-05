@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.InsuranceSystemApp" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:fontFamily">@font/typo_ssangmundongb</item>
+        <item name="android:fontFamily">@font/arita_b</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/black</item>

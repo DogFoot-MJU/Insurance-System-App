@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="#9FA5AA" />
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tv_planInsuranceName"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
-            android:textColor="#9FA5AA" />
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/tv_planInsurancePayment"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
-            android:textColor="#9FA5AA" />
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/ib_clear"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
-            android:textColor="#9FA5AA"
+            android:textColor="#000000"
             android:text="삭제" />
 
     </LinearLayout>

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="120sp"
             android:text="인수정책 등록하기"
-            android:textColor="#9FA5AA"
+            android:textColor="#000000"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="21dp" />
@@ -267,7 +267,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_border"
                     android:text="인수 정책 등록하기"
-                    android:textColor="#9FA5AA" />
+                    android:textColor="#000000" />
 
 
                 <TextView

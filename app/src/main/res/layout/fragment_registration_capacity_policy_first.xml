@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="인수 정책"
                     android:layout_gravity="center"
-                    android:textColor="#9FA5AA"
+                    android:textColor="#000000"
                     android:textSize="18sp" />
             </androidx.appcompat.widget.Toolbar>
 
@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:background="@drawable/custom_border"
                 android:text="등록되어 있는 인수정책 리스트 입니다. \n 자세히 보려면 더블 클릭 해주세요."
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="20dp"
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="14dp"
                 android:background="@drawable/custom_border"
                 android:text="번호       정책 이름         보험 이름             삭제">
@@ -76,7 +76,7 @@
                 android:layout_marginBottom="25dp"
                 android:background="@drawable/custom_border"
                 android:text="인수 정책 등록하기"
-                android:textColor="#9FA5AA" />
+                android:textColor="#000000" />
         </LinearLayout>
     </ScrollView>
 

@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="보험 상품 신청하기"
                     android:layout_gravity="center"
-                    android:textColor="#9FA5AA"
+                    android:textColor="#000000"
                     android:textSize="18sp" />
             </androidx.appcompat.widget.Toolbar>
 
@@ -44,7 +44,7 @@
                 android:background="@drawable/custom_border"
                 android:text=" 보험 신청이 가능한 보헝 상품 리스트입니다.
                 \n 보험 신청을 하시려면 보험을 더블클릭 해주세요"
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="14sp" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="20dp"
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="14dp"
                 android:background="@drawable/custom_border"
                 android:text="번호                보험 이름                     삭제">
@@ -67,7 +67,7 @@
                 android:scrollbarSize="5dp"
                 android:scrollbarThumbVertical="@android:color/darker_gray"
                 android:scrollbars="vertical"
-                android:textColor="#9FA5AA" />
+                android:textColor="#000000"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_possibleDriverInsuranceApplication"
                 android:layout_width="match_parent"

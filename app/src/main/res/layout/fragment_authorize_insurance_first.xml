@@ -31,7 +31,7 @@
                     android:layout_marginLeft="120sp"
                     android:gravity="left"
                     android:text="보험 상품 인가"
-                    android:textColor="#9FA5AA"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="173dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -45,7 +45,7 @@
                 android:gravity="center"
                 android:background="@drawable/custom_border"
                 android:text="인가할 보험 상품을 두번 클릭해 주세요."
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <TextView
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="20dp"
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="14dp"
                 android:background="@drawable/custom_border"
                 android:text="번호       상품 이름           지불금             삭제">
@@ -68,7 +68,7 @@
                 android:scrollbarSize="5dp"
                 android:scrollbarThumbVertical="@android:color/darker_gray"
                 android:scrollbars="vertical"
-                android:textColor="#9FA5AA" />
+                android:textColor="#000000"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_driverInsuranceDesign"
@@ -90,7 +90,7 @@
                 android:background="@drawable/custom_border"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:textColor="#9FA5AA" />
+                android:textColor="#000000" />
         </LinearLayout>
     </ScrollView>
 

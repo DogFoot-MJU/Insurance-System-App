@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="인수 정책"
                     android:layout_gravity="center"
-                    android:textColor="#9FA5AA"
+                    android:textColor="#000000"
                     android:textSize="24sp" />
             </androidx.appcompat.widget.Toolbar>
 
@@ -45,14 +45,14 @@
                 android:background="@drawable/custom_border"
                 android:text="인수 정책이 가능한 보험 리스트들 입니다.
                 \n 인수 정책을 하시려면 보험을 더블클릭 해주세요"
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:textColor="#9FA5AA"
+                android:textColor="#000000"
                 android:textSize="14dp"
                 android:background="@drawable/custom_border"
                 android:text="번호       상품 이름           지불금             삭제">
