@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dogfoot.insurancesystemapp">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InsuranceSystemApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".isApp.jungwoo.domain.legitimateexamination.view.LegitimateExaminationFirstFragment" />
+        <activity android:name=".isApp.jungwoo.domain.legitimateexamination.view.LegitimateExaminationFirstFragment"
+            tools:ignore="Instantiatable" />
         <activity android:name=".isApp.jungwoo.JungWoo" />
         <activity android:name=".isApp.jungwoo.intro.IntroActivity">
             <intent-filter>
@@ -32,7 +34,9 @@
         <activity android:name=".isApp.dongwook.DongWookActivity" />
         <activity android:name=".isApp.dongwook.domain.login.view.LoginActivity" />
         <activity android:name=".isApp.dongwook.domain.signUp.view.SignUpActivity" />
-        <activity android:name=".isApp.dongwook.domain.imageUpload.view.ImageUploadActivity"/>
+        <activity android:name=".isApp.dongwook.domain.customerCompensation.view.CustomerCompensationUploadActivity"/>
+        <activity android:name=".isApp.dongwook.domain.customerCompensation.view.CustomerCompensationMainActivity"/>
+        <activity android:name=".isApp.dongwook.domain.salesCompensation.view.SalesCompensationMainActivity"/>
         <activity android:name=".isApp.MainActivity" />
     </application>
 

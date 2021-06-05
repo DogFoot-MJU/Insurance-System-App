@@ -66,7 +66,7 @@ public class SalesConsultingInputFragment extends DogFootViewModelFragment {
 
         } else {
             DogFootDialog.simplerAlertDialog(this.getActivity(),
-                    R.string.login_already_signed_dialog, R.string.login_already_signed_content_dialog,
+                    R.string.login_not_signed_dialog, R.string.login_not_signed_content_dialog,
                     (dialog, which) -> startMainActivity()
             );
         }

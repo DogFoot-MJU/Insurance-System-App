@@ -27,7 +27,9 @@
         tools:layout="@layout/fragment_customer_consulting_input" >
         <action
             android:id="@+id/action_customerConsultingInput_to_customerConsultingMain"
-            app:destination="@id/customerConsultingMainFragment" />
+            app:destination="@id/customerConsultingMainFragment"
+            app:popUpTo="@+id/customerConsultingMainFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

@@ -369,7 +369,7 @@ public class JungWoo extends DogFootViewModelActivity {
 
     @Override
     protected void initializeView() {
-        Log.d("디버그",dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
+
 
     }
 

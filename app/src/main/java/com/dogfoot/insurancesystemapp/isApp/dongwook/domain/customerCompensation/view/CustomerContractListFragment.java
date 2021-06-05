@@ -1,14 +1,11 @@
-package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view;
+package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,12 +17,10 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.DogFo
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.LoadingDialog;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CustomerContractListResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.adapter.ContractRecyclerAdapter;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingList.CustomerConsultingRecyclerAdapter;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingListResponse;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.salesConsultingList.SalesConsultingRecyclerAdapter;
-import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyUpdateFragment;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitCallback;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitTool;
 
@@ -39,20 +34,20 @@ import retrofit2.Response;
 import static com.dogfoot.insurancesystemapp.isApp.constants.Constant.LIST_FRAGMENT_FAILURE_DIALOG_TITLE;
 
 
-public class SalesConsultingListFragment extends DogFootViewModelFragment {
+public class CustomerContractListFragment extends DogFootViewModelFragment {
 
     // Associate
     int selectedItem;
     boolean valueInput = false;
     // View
 
-    private RecyclerView salesConsultingRecyclerView;
-    private Vector<SalesConsultingListResponse> items;
+    private RecyclerView customerContractRecyclerView;
+    private Vector<CustomerContractListResponse> items;
 
     // Component
     // View
     private LoadingDialog dialog;
-    private SalesConsultingRecyclerAdapter salesConsultingRecyclerAdapter;
+    private ContractRecyclerAdapter customerContractRecyclerAdapter;
     TextView sumText;
 
 
@@ -61,72 +56,64 @@ public class SalesConsultingListFragment extends DogFootViewModelFragment {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_sales_consulting_list;
+        return R.layout.fragment_customer_contract_list;
     }
 
     @Override
     protected void associateView(View view) {
-        this.salesConsultingRecyclerView = view.findViewById(R.id.customerConsultingRecyclerView);
-        this.sumText = view.findViewById(R.id.sumOfCustomerConsultingItems);
+        this.customerContractRecyclerView = view.findViewById(R.id.customerContractRecyclerView);
+        this.sumText = view.findViewById(R.id.sumOfCustomerContractItems);
     }
 
     @Override
     protected void initializeView() {
         View.OnClickListener listener = v -> {
-            if(v.getId()==R.id.consulting_item){
+            if(v.getId()==R.id.contract_item){
                 selectedItem=((Integer)v.getTag());
             }
-            dataset.put(DogFootEntity.EDogFootData.ID,items.get(selectedItem).getId().toString());
+            dataset.put(DogFootEntity.EDogFootData.ID,items.get(selectedItem).getContract_id().toString());
             this.valueInput=true;
             this.save();
-            if(valueInput) {Navigation.findNavController(getView()).navigate(R.id.action_salesConsultingList_to_salesConsultingView);}
+            if(valueInput) {
+                Intent intent = new Intent(this.getContext(), CustomerCompensationUploadActivity.class);
+                this.startActivity(intent);
+            }
         };
-        this.salesConsultingRecyclerAdapter = new SalesConsultingRecyclerAdapter(this.getActivity(), listener);
+        this.customerContractRecyclerAdapter = new ContractRecyclerAdapter(this.getActivity(),listener);
         this.dialog = new LoadingDialog(getContext());
-        this.salesConsultingRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        this.salesConsultingRecyclerView.setAdapter(this.salesConsultingRecyclerAdapter);
-        this.loadSearchResult();
+        this.customerContractRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        this.customerContractRecyclerView.setAdapter(this.customerContractRecyclerAdapter);
+        this.getCustomerContract();
 
     }
-
 
     @Override
     protected void dogFootEntityUpdated() {
-        if (this.dataset.containsKey(DogFootEntity.EDogFootData.AUTHORIZATION)) {
-
-        } else {
-            DogFootDialog.simplerAlertDialog(this.getActivity(),
-                    R.string.login_not_signed_dialog, R.string.login_not_signed_content_dialog,
-                    (dialog, which) -> startMainActivity()
-            );
-        }
 
     }
-    public void startMainActivity() {
-        this.startActivity(new Intent(this.getContext(), DongWookActivity.class));
-    }
-
-    private void loadSearchResult() {
 
 
-        RetrofitTool.getAPIWithAuthorizationToken(dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION)).getSalesConsultingList()
-                .enqueue(MainRetrofitTool.getCallback(new SalesConsultingListResponseCallback()));
+    private void getCustomerContract() {
+
+
+        RetrofitTool.getAPIWithAuthorizationToken(dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION)).getCustomerContract()
+                .enqueue(MainRetrofitTool.getCallback(new CustomerContractListResponseCallback()));
     }
 
     /**
      * Callback
      */
-    private class SalesConsultingListResponseCallback implements MainRetrofitCallback<Pagination<List<SalesConsultingListResponse>>> {
+    private class CustomerContractListResponseCallback implements MainRetrofitCallback<List<CustomerContractListResponse>> {
         @Override
-        public void onSuccessResponse(Response<Pagination<List<SalesConsultingListResponse>>> response) {
-            items = new Vector<>(response.body().getData());
-            salesConsultingRecyclerAdapter.setItems(items);
-            salesConsultingRecyclerView.setAdapter(salesConsultingRecyclerAdapter);
+        public void onSuccessResponse(Response<List<CustomerContractListResponse>> response) {
+            items = new Vector<>(response.body());
+            customerContractRecyclerAdapter.setItems(items);
+            customerContractRecyclerView.setAdapter(customerContractRecyclerAdapter);
             sumText.setText(" "+items.size() + "개");
         }
 
         @Override
-        public void onFailResponse(Response<Pagination<List<SalesConsultingListResponse>>> response) {
+        public void onFailResponse(Response<List<CustomerContractListResponse>> response) {
             Log.d("디버그", dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
             try {
 

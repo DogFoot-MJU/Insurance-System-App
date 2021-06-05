@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_activity_navigation_graph"
+    app:startDestination="@id/customerCompensationMainFragment">
+
+    <!-- 아이디 찾기, 비밀번호 찾기 네비게이션 추가!-->
+
+    <fragment
+        android:id="@+id/customerCompensationMainFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.CustomerCompensationMainFragment"
+        android:label="customerCompensationMain"
+        tools:layout="@layout/fragment_customer_compensation_main" >
+        <action
+            android:id="@+id/action_customerCompensationMain_to_customerContractList"
+            app:destination="@id/customerContractListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerContractListFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.CustomerContractListFragment"
+        android:label="customerContractList"
+        tools:layout="@layout/fragment_customer_contract_list" >
+        <action
+            android:id="@+id/action_customerContractList_to_customerCompensationMain"
+            app:destination="@id/customerCompensationMainFragment" />
+    </fragment>
+
+
+
+
+
+</navigation>

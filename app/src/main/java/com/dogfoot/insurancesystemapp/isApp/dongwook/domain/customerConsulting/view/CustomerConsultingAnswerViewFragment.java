@@ -1,5 +1,6 @@
 package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,8 +10,10 @@ import androidx.navigation.Navigation;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.DogFootDialog;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingAnsweredViewResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingViewResponse;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitCallback;
@@ -58,8 +61,17 @@ public class CustomerConsultingAnswerViewFragment extends DogFootViewModelFragme
 
     @Override
     public void dogFootEntityUpdated() {
+        if (this.dataset.containsKey(DogFootEntity.EDogFootData.AUTHORIZATION)) {
 
+        } else {
+            DogFootDialog.simplerAlertDialog(this.getActivity(),
+                    R.string.login_not_signed_dialog, R.string.login_not_signed_content_dialog,
+                    (dialog, which) -> Navigation.findNavController(getView()).navigate(R.id.action_customerConsultingAnswerView_to_customerConsultingView));
+
+        }
     }
+
+
 
 
     private void submit() {

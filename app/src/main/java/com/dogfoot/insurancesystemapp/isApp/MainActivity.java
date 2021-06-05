@@ -27,9 +27,10 @@ public class MainActivity extends DogFootViewModelActivity {
 
 
 
+
     }
     @Override protected void onDestroy() { super.onDestroy();
-        dataset.remove(DogFootEntity.EDogFootData.AUTHORIZATION);}
+        }
 
     @Override
     public void dogFootEntityUpdated() {
@@ -49,7 +50,6 @@ public class MainActivity extends DogFootViewModelActivity {
 
         // 2초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()(앱 종료)
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            dataset.remove(DogFootEntity.EDogFootData.AUTHORIZATION);
             finish();
         }
     }

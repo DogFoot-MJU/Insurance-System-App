@@ -1,11 +1,14 @@
 package com.dogfoot.insurancesystemapp.isApp.crossDomain.tech;
 
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CustomerContractListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingAnsweredViewResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingViewResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.ImageUploadResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationContractListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingInputRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingInputResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingListResponse;
@@ -75,14 +78,22 @@ public interface RestAPI {
     Call<CustomerConsultingAnsweredViewResponse> getCustomerConsultingAnsweredView(@Path("id") Long id);
 
     @Multipart
-    @POST("upload")
-    Call<ImageUploadResponse> uploadImage(@Part MultipartBody.Part uploadFile);
+    @POST("api/v1/user/accident/reception/{id}")
+    Call<ImageUploadResponse> uploadImage(@Part MultipartBody.Part uploadFile,@Path("id") Long id);
 
     @GET("api/v1/seller/consulting/list")
     Call<Pagination<List<SalesConsultingListResponse>>> getSalesConsultingList();
 
     @POST("api/v1/seller/consulting/answer")
     Call<SalesConsultingInputResponse> salesConsultingInput(@Body SalesConsultingInputRequest salesConsultingInputRequest);
+
+    @GET("api/v1/user/my/contract")
+    Call<List<CustomerContractListResponse>> getCustomerContract();
+
+    @GET("api/v1/compensation-handler/accident/list?state=WAIT")
+    Call<List<CompensationContractListResponse>> getCompensationContract();
+
+
 
     // 보험 상품을 기획한다
     @POST("api/v1/planner/car/product/development/plan")
