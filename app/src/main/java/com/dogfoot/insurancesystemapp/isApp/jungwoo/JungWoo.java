@@ -40,12 +40,11 @@ public class JungWoo extends DogFootViewModelActivity {
     private View drawerView;
     private Button btn_close;
     private TextView tv_insuranceDevInfo, tv_insuranceInitInfo, tv_insuranceDesignInfo, tv_insuranceSendInfo, tv_insuranceApproveInfo;
-    private TextView tv_uwInfo, tv_uwLossLateInfo, tv_uwAcquisitionPolicyInfo, tv_uwAppropriateExaminationInfo;
-    private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo;
-    private TextView tv_salesInfo, tv_salesInsuranceConclusionInfo, tv_userSalesCallManagementInfo;
-    private TextView tv_contractInfo, tv_contractManagementInfo, tv_managementOfContractManagementGuidelinesInfo, tv_managingExpirationContractsInfo;
-    private TextView tv_compensationInfo, tv_incidentReceptionInfo, tv_damageSituationInfo, tv_damageInvestigationInfo, tv_compensationPaidInfo,
-            tv_compensationManagementInfo, tv_compensationEvaluationManagementInfo;
+    private TextView tv_uwInfo, tv_uwAcquisitionPolicyInfo, tv_uwAppropriateExaminationInfo;
+    private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo, tv_userReceiptCounselingInfo;
+    private TextView tv_salesInfo, tv_userSalesCallManagementInfo;
+    //private TextView tv_contractInfo, tv_contractManagementInfo, tv_managementOfContractManagementGuidelinesInfo, tv_managingExpirationContractsInfo;
+    private TextView tv_compensationInfo, tv_incidentReceptionInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,31 +72,31 @@ public class JungWoo extends DogFootViewModelActivity {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fl_main, HomeFragment.newInstance()).commit();
-        mBinding.bottomNavi.setSelectedItemId(R.id.action_home);
+        //mBinding.bottomNavi.setSelectedItemId(R.id.action_home);
 
-        mBinding.bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.action_menu:
-                        openDrawerLayout();
-                        break;
-                    case R.id.action_search:
-                        setFrag(1);
-                        break;
-                    case R.id.action_home:
-                        setFrag(2);
-                        break;
-                    case R.id.action_myPage:
-                        setFrag(3);
-                        break;
-                    case R.id.action_setting:
-                        setFrag(4);
-                        break;
-                }
-                return true;
-            }
-        });
+//        mBinding.bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                switch (menuItem.getItemId()){
+//                    case R.id.action_menu:
+//                        openDrawerLayout();
+//                        break;
+//                    case R.id.action_search:
+//                        setFrag(1);
+//                        break;
+//                    case R.id.action_home:
+//                        setFrag(2);
+//                        break;
+//                    case R.id.action_myPage:
+//                        setFrag(3);
+//                        break;
+//                    case R.id.action_setting:
+//                        setFrag(4);
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
 
     }
 
@@ -171,30 +170,24 @@ public class JungWoo extends DogFootViewModelActivity {
         tv_insuranceApproveInfo = findViewById(R.id.tv_insuranceApproveInfo);
 
         tv_uwInfo = findViewById(R.id.tv_uwInfo);
-        tv_uwLossLateInfo = findViewById(R.id.tv_uwLossLateInfo);
         tv_uwAcquisitionPolicyInfo = findViewById(R.id.tv_uwAcquisitionPolicyInfo);
         tv_uwAppropriateExaminationInfo = findViewById(R.id.tv_uwAppropriateExaminationInfo);
 
         tv_userInfo = findViewById(R.id.tv_userInfo);
         tv_userApplicationInfo = findViewById(R.id.tv_userApplicationInfo);
         tv_userCounselingInfo = findViewById(R.id.tv_userCounselingInfo);
+        tv_userReceiptCounselingInfo = findViewById(R.id.tv_userReceiptCounselingInfo);
 
         tv_salesInfo = findViewById(R.id.tv_salesInfo);
-        tv_salesInsuranceConclusionInfo = findViewById(R.id.tv_salesInsuranceConclusionInfo);
         tv_userSalesCallManagementInfo = findViewById(R.id.tv_userSalesCallManagementInfo);
 
-        tv_contractInfo = findViewById(R.id.tv_contractInfo);
-        tv_contractManagementInfo = findViewById(R.id.tv_contractManagementInfo);
-        tv_managementOfContractManagementGuidelinesInfo = findViewById(R.id.tv_managementOfContractManagementGuidelinesInfo);
-        tv_managingExpirationContractsInfo = findViewById(R.id.tv_managingExpirationContractsInfo);
+//        tv_contractInfo = findViewById(R.id.tv_contractInfo);
+//        tv_contractManagementInfo = findViewById(R.id.tv_contractManagementInfo);
+//        tv_managementOfContractManagementGuidelinesInfo = findViewById(R.id.tv_managementOfContractManagementGuidelinesInfo);
+//        tv_managingExpirationContractsInfo = findViewById(R.id.tv_managingExpirationContractsInfo);
 
         tv_compensationInfo = findViewById(R.id.tv_compensationInfo);
         tv_incidentReceptionInfo = findViewById(R.id.tv_incidentReceptionInfo);
-        tv_damageSituationInfo = findViewById(R.id.tv_damageSituationInfo);
-        tv_damageInvestigationInfo = findViewById(R.id.tv_damageInvestigationInfo);
-        tv_compensationPaidInfo = findViewById(R.id.tv_compensationPaidInfo);
-        tv_compensationManagementInfo = findViewById(R.id.tv_compensationManagementInfo);
-        tv_compensationEvaluationManagementInfo = findViewById(R.id.tv_compensationEvaluationManagementInfo);
 
         tv_insuranceDevInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,13 +209,12 @@ public class JungWoo extends DogFootViewModelActivity {
         tv_uwInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(tv_uwLossLateInfo.getVisibility()==View.VISIBLE){
-                    tv_uwLossLateInfo.setVisibility(View.GONE);
+                if(tv_uwAcquisitionPolicyInfo.getVisibility()==View.VISIBLE){
                     tv_uwAcquisitionPolicyInfo.setVisibility(View.GONE);
                     tv_uwAppropriateExaminationInfo.setVisibility(View.GONE);
                 }
                 else{
-                    tv_uwLossLateInfo.setVisibility(View.VISIBLE);
+                    tv_uwAcquisitionPolicyInfo.setVisibility(View.VISIBLE);
                     tv_uwAcquisitionPolicyInfo.setVisibility(View.VISIBLE);
                     tv_uwAppropriateExaminationInfo.setVisibility(View.VISIBLE);
                 }
@@ -234,60 +226,51 @@ public class JungWoo extends DogFootViewModelActivity {
                 if(tv_userApplicationInfo.getVisibility()==View.VISIBLE){
                     tv_userApplicationInfo.setVisibility(View.GONE);
                     tv_userCounselingInfo.setVisibility(View.GONE);
+                    tv_userReceiptCounselingInfo.setVisibility(View.GONE);
                 }
                 else{
                     tv_userApplicationInfo.setVisibility(View.VISIBLE);
                     tv_userCounselingInfo.setVisibility(View.VISIBLE);
+                    tv_userReceiptCounselingInfo.setVisibility(View.VISIBLE);
                 }
             }
         });
         tv_salesInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(tv_salesInsuranceConclusionInfo.getVisibility()==View.VISIBLE){
-                    tv_salesInsuranceConclusionInfo.setVisibility(View.GONE);
+                if(tv_userSalesCallManagementInfo.getVisibility()==View.VISIBLE){
                     tv_userSalesCallManagementInfo.setVisibility(View.GONE);
                 }
                 else{
-                    tv_salesInsuranceConclusionInfo.setVisibility(View.VISIBLE);
+                    tv_userSalesCallManagementInfo.setVisibility(View.VISIBLE);
                     tv_userSalesCallManagementInfo.setVisibility(View.VISIBLE);
                 }
             }
         });
-        tv_contractInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(tv_contractManagementInfo.getVisibility()==View.VISIBLE){
-                    tv_contractManagementInfo.setVisibility(View.GONE);
-                    tv_managementOfContractManagementGuidelinesInfo.setVisibility(View.GONE);
-                    tv_managingExpirationContractsInfo.setVisibility(View.GONE);
-                }
-                else{
-                    tv_contractManagementInfo.setVisibility(View.VISIBLE);
-                    tv_managementOfContractManagementGuidelinesInfo.setVisibility(View.VISIBLE);
-                    tv_managingExpirationContractsInfo.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+//        tv_contractInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(tv_contractManagementInfo.getVisibility()==View.VISIBLE){
+//                    tv_contractManagementInfo.setVisibility(View.GONE);
+//                    tv_managementOfContractManagementGuidelinesInfo.setVisibility(View.GONE);
+//                    tv_managingExpirationContractsInfo.setVisibility(View.GONE);
+//                }
+//                else{
+//                    tv_contractManagementInfo.setVisibility(View.VISIBLE);
+//                    tv_managementOfContractManagementGuidelinesInfo.setVisibility(View.VISIBLE);
+//                    tv_managingExpirationContractsInfo.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
 
         tv_compensationInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(tv_incidentReceptionInfo.getVisibility()==View.VISIBLE){
                     tv_incidentReceptionInfo.setVisibility(View.GONE);
-                    tv_damageSituationInfo.setVisibility(View.GONE);
-                    tv_damageInvestigationInfo.setVisibility(View.GONE);
-                    tv_compensationPaidInfo.setVisibility(View.GONE);
-                    tv_compensationManagementInfo.setVisibility(View.GONE);
-                    tv_compensationEvaluationManagementInfo.setVisibility(View.GONE);
                 }
                 else{
                     tv_incidentReceptionInfo.setVisibility(View.VISIBLE);
-                    tv_damageSituationInfo.setVisibility(View.VISIBLE);
-                    tv_damageInvestigationInfo.setVisibility(View.VISIBLE);
-                    tv_compensationPaidInfo.setVisibility(View.VISIBLE);
-                    tv_compensationManagementInfo.setVisibility(View.VISIBLE);
-                    tv_compensationEvaluationManagementInfo.setVisibility(View.VISIBLE);
                 }
             }
         });
