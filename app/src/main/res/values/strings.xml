@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InsuranceSystemApp</string>
+    <string name="app_name">DogFootInsuranceSystemApp</string>
     <string name="title_activity_dong_wook">dongWook</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

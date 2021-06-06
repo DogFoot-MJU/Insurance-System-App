@@ -1,7 +1,10 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -10,10 +13,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
@@ -24,6 +29,8 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.v
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.logout.view.LogOutActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.view.SalesCompensationMainActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingMainActivity;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.advertisement.AdvertisementViewPagerAdapter;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.advertisement.ViewPagerTool;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyFirstFragment;
@@ -32,6 +39,9 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view.Insura
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.legitimateexamination.view.LegitimateExaminationFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 public class JungWoo extends DogFootViewModelActivity {
 
@@ -49,8 +59,15 @@ public class JungWoo extends DogFootViewModelActivity {
     private TextView tv_uwInfo, tv_uwAcquisitionPolicyInfo, tv_uwAppropriateExaminationInfo;
     private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo, tv_userReceiptCounselingInfo;
     private TextView tv_salesInfo, tv_userSalesCallManagementInfo;
-    //private TextView tv_contractInfo, tv_contractManagementInfo, tv_managementOfContractManagementGuidelinesInfo, tv_managingExpirationContractsInfo;
     private TextView tv_compensationInfo, tv_incidentReceptionInfo;
+    private CardView cardView_car, cardView_driver, cardView_fire, cardView_travel;
+    private ViewPager2 viewPager2;
+    @AllArgsConstructor
+    @Getter
+    public enum EAdImage{
+        first(R.drawable.insurance3),second(R.drawable.insurance4),third(R.drawable.fire_insurance),fourth(R.drawable.travel_insurance);
+        private int ImageId;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +79,146 @@ public class JungWoo extends DogFootViewModelActivity {
         setContentView(view);
 
         mainFragment = new HomeFragment();
-
         //initToolbar();
         mainInit();
         drawerInit();
         navigationBottomInit();
+
+        this.viewPager2 = findViewById(R.id.homeFragment_viewPager);
+        this.viewPager2.setAdapter(new AdvertisementViewPagerAdapter(EAdImage.values(), getApplicationContext()));
+        ViewPagerTool.setAutoSlide(this.viewPager2, 3000);
+        ViewPagerTool.setEffect(this.viewPager2);
+
+        cardView_car = findViewById(R.id.cardView_car);
+        cardView_driver = findViewById(R.id.cardView_driver);
+        cardView_fire = findViewById(R.id.cardView_fire);
+        cardView_travel = findViewById(R.id.cardView_travel);
+
+        cardView_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+
+                String strHtml =
+                        " <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
+                                "            <p>자동차 가격: 책정된 가격의 + 1천만, + 3천만, +5천만원, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>주행 거리: 책정된 거리의 + 10000km, + 50000km, +100000km, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>출고 일자: 책정된 일자의 + 365일, + 730일, +1095일, 나머지의 단계로 나뉩니다. </p>\n" +
+                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p>\n" +
+                                "            <p>ex) 기본금 * (1.0 + 0.4 + 0.2 + 0.3)</p>";
+                Spanned oHtml;
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+                    // noinspection deprecation
+                    oHtml = Html.fromHtml(strHtml);
+                }
+                else
+                {
+                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
+                }
+                oDialog.setTitle("자동차 보험 요율 기준")
+                        .setMessage(oHtml)
+                        .setIcon(R.drawable.dogfoot_icon)
+                        .setPositiveButton("ok", null)
+                        .setCancelable(false)
+                        .show();
+
+            }
+        });
+
+        cardView_driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+
+                String strHtml =
+                        "  <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
+                                "            <p>운전 면허: 운전 면허의 종류를 확인합니다. 1종 보통, 2종 보통의 단계로 나뉩니다.</p>\n" +
+                                "            <p>운전 면허 취득 일자: 책정된 일자의 + 365일, + 730일, +1095일, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p>\n" +
+                                "            <p>ex) 기본금 * (1.0 + 0.2 + 0.1)</p>";
+                Spanned oHtml;
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+                    // noinspection deprecation
+                    oHtml = Html.fromHtml(strHtml);
+                }
+                else
+                {
+                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
+                }
+                oDialog.setTitle("운전자 보험 요율 기준")
+                        .setMessage(oHtml)
+                        .setIcon(R.drawable.dogfoot_icon)
+                        .setPositiveButton("ok", null)
+                        .setCancelable(false)
+                        .show();
+
+            }
+        });
+
+        cardView_fire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+
+                String strHtml =
+                        "   <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
+                                "            <p>빌딩 가격: 책정된 가격의 + 3억, + 6억, +9억, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>건축 일자: 책정된 일자의 + 365일, + 1095일, +2190일, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>층수: 책정된 층수의 + 5층, + 10층, +15층, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>부지 면적: 책정된 면적의 + 30m2, + 60m2, + 90m2, 나머지의 단계로 나뉩니다.</p>\n" +
+                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p> \n" +
+                                "            <p>ex) 기본금 * (1.0 + 0.2 + 0.1 +0.4 +0.3)</p>";
+                Spanned oHtml;
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+                    // noinspection deprecation
+                    oHtml = Html.fromHtml(strHtml);
+                }
+                else
+                {
+                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
+                }
+                oDialog.setTitle("화재 보험 요율 기준")
+                        .setMessage(oHtml)
+                        .setIcon(R.drawable.dogfoot_icon)
+                        .setPositiveButton("ok", null)
+                        .setCancelable(false)
+                        .show();
+
+            }
+        });
+
+        cardView_travel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
+                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+
+                String strHtml =
+                        " <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
+                                "            <p>안전 등급: 안전 등급의 기준을 확인합니다. GREEN, BLUE, RED의 단계로 나뉩니다.</p>\n" +
+                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p>\n" +
+                                "            <p>ex) 기본금 * (1.0 + 0.2)</p>";
+                Spanned oHtml;
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+                    // noinspection deprecation
+                    oHtml = Html.fromHtml(strHtml);
+                }
+                else
+                {
+                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
+                }
+                oDialog.setTitle("여행 보험 요율 기준")
+                        .setMessage(oHtml)
+                        .setIcon(R.drawable.dogfoot_icon)
+                        .setPositiveButton("ok", null)
+                        .setCancelable(false)
+                        .show();
+
+            }
+        });
 
     }
 
@@ -78,31 +230,6 @@ public class JungWoo extends DogFootViewModelActivity {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fl_main, HomeFragment.newInstance()).commit();
-        //mBinding.bottomNavi.setSelectedItemId(R.id.action_home);
-
-//        mBinding.bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                switch (menuItem.getItemId()){
-//                    case R.id.action_menu:
-//                        openDrawerLayout();
-//                        break;
-//                    case R.id.action_search:
-//                        setFrag(1);
-//                        break;
-//                    case R.id.action_home:
-//                        setFrag(2);
-//                        break;
-//                    case R.id.action_myPage:
-//                        setFrag(3);
-//                        break;
-//                    case R.id.action_setting:
-//                        setFrag(4);
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
 
     }
 
@@ -111,27 +238,6 @@ public class JungWoo extends DogFootViewModelActivity {
         drawerLayout.openDrawer(drawerView);
     }
 
-    private void setFrag(int n) {
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-        switch (n) {
-            case 0:
-                break;
-            case 1:
-                replaceFragment(SearchFragment.newInstance());
-                break;
-            case 2:
-                replaceFragment(HomeFragment.newInstance());
-                break;
-            case 3:
-                replaceFragment(MyPageFragment.newInstance());
-                break;
-            case 4:
-//                ft.replace(R.id.fl_main, planInsuranceFragment);
-//                ft.commit();
-                break;
-        }
-    }
 
     public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -187,10 +293,6 @@ public class JungWoo extends DogFootViewModelActivity {
         tv_salesInfo = findViewById(R.id.tv_salesInfo);
         tv_userSalesCallManagementInfo = findViewById(R.id.tv_userSalesCallManagementInfo);
 
-//        tv_contractInfo = findViewById(R.id.tv_contractInfo);
-//        tv_contractManagementInfo = findViewById(R.id.tv_contractManagementInfo);
-//        tv_managementOfContractManagementGuidelinesInfo = findViewById(R.id.tv_managementOfContractManagementGuidelinesInfo);
-//        tv_managingExpirationContractsInfo = findViewById(R.id.tv_managingExpirationContractsInfo);
 
         tv_compensationInfo = findViewById(R.id.tv_compensationInfo);
         tv_incidentReceptionInfo = findViewById(R.id.tv_incidentReceptionInfo);

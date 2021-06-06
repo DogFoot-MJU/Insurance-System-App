@@ -83,6 +83,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // cardView
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
     // navigation drawer
 //    implementation 'com.androidx.support:design:28.0.0'
 //    implementation 'com.androidx.support:support-v4:26.1.0'
