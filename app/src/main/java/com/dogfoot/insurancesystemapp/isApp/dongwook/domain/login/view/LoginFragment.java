@@ -51,17 +51,10 @@ public class LoginFragment extends DogFootViewModelFragment {
 
     @Override
     protected void dogFootEntityUpdated() {
-        this.checkLogined();
+
     }
 
-    private void checkLogined() {
-        if(this.dataset.containsKey(DogFootEntity.EDogFootData.AUTHORIZATION)){
-            DogFootDialog.simplerAlertDialog(this.getActivity(),
-                    R.string.login_already_signed_dialog, R.string.login_already_signed_content_dialog,
-                    (dialog, which) -> startMainActivity()
-            );
-        }
-    }
+
 
     private void login(){
         LoginRequest loginRequest = new LoginRequest(this.idText.getText().toString(), this.pwText.getText().toString());
@@ -106,7 +99,7 @@ public class LoginFragment extends DogFootViewModelFragment {
 
     public void startMainActivity() {
 
-        this.startActivity(new Intent(this.getContext(), MainActivity.class)); }
+        this.startActivity(new Intent(this.getContext(), JungWoo.class)); }
 
 
 }

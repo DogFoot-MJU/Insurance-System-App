@@ -26,7 +26,7 @@ public class LogOutActivity extends DogFootViewModelActivity {
     }
     public void showOkDialog(){ this.showDialog(Constant.LOG_OUT_ACTIVITY_SUCCESSFUL_DIALOG_TITLE, Constant.LOG_OUT_ACTIVITY_SUCCESSFUL_DIALOG_MESSAGE); }
     public void showNoDialog(){ this.showDialog(Constant.LOG_OUT_ACTIVITY_FAILURE_DIALOG_TITLE, Constant.LOG_OUT_ACTIVITY_FAILURE_DIALOG_MESSAGE); }
-    public void showDialog(String title, String message){ DogFootDialog.simplerAlertDialog(this, title, message, (dialog, which) -> this.startActivity(MainActivity.class)); }
+    public void showDialog(String title, String message){ DogFootDialog.simplerAlertDialog(this, title, message, (dialog, which) -> finish()); }
 
     @Override
     public void dogFootEntityUpdated() {

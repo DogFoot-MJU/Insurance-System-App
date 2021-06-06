@@ -1,5 +1,6 @@
 package com.dogfoot.insurancesystemapp.isApp.jungwoo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,6 +19,11 @@ import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.CustomerCompensationMainActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.logout.view.LogOutActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.view.SalesCompensationMainActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingMainActivity;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.approveinsurance.view.ApproveInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.authorizeinsurance.view.AuthorizeInsuranceFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.capacitypolicy.view.RegistrationCapacityPolicyFirstFragment;
@@ -247,6 +253,11 @@ public class JungWoo extends DogFootViewModelActivity {
                 }
             }
         });
+
+
+
+
+
 //        tv_contractInfo.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -282,6 +293,49 @@ public class JungWoo extends DogFootViewModelActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fl_main, planInsuranceFirstFragment.newInstance());
                 transaction.commit();
+            }
+        });
+
+        tv_userReceiptCounselingInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerCompensationMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        tv_userCounselingInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerConsultingMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_userSalesCallManagementInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SalesConsultingMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_incidentReceptionInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SalesCompensationMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LogOutActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

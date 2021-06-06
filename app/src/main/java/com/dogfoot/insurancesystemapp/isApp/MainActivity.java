@@ -1,18 +1,25 @@
 package com.dogfoot.insurancesystemapp.isApp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.navigation.Navigation;
+
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntityTool;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.view.LoginActivity;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingMainActivity;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
 
 
 public class MainActivity extends DogFootViewModelActivity {
     private long backKeyPressedTime = 0;
+    private boolean valueInput=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,15 +29,31 @@ public class MainActivity extends DogFootViewModelActivity {
     @Override protected void associateView() { }
     @Override
     protected void initializeView() {
-        this.findViewById(R.id.btn_dongWook).setOnClickListener(v -> this.startActivity(DongWookActivity.class));
-        this.findViewById(R.id.btn_jungWoo).setOnClickListener(v -> this.startActivity(JungWoo.class));
 
-
-
-
+        dataset.remove(DogFootEntity.EDogFootData.AUTHORIZATION);
+        dataset.remove(DogFootEntity.EDogFootData.EMAIL);
+        dataset.remove(DogFootEntity.EDogFootData.PASSWORD);
+        this.valueInput=true;
+        this.save();
+        if(valueInput) {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
+
+
+
+
+
+
+
+
     @Override protected void onDestroy() { super.onDestroy();
         }
+
+    public void save(){
+        DogFootEntityTool.save(this.viewModelTool, this.entity);
+    }
 
     @Override
     public void dogFootEntityUpdated() {
