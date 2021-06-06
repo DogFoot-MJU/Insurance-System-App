@@ -10,6 +10,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AlignmentSpan;
 import android.text.style.StyleSpan;
+import android.widget.EditText;
 
 import androidx.annotation.ColorInt;
 
@@ -61,4 +62,5 @@ public class DogFootDialog extends AlertDialog.Builder{
         dogFootDialog.setColor(activity.getResources().getColor(R.color.dogFoot_yellow, activity.getTheme()));
         dogFootDialog.showDialog();
     }
+
 }

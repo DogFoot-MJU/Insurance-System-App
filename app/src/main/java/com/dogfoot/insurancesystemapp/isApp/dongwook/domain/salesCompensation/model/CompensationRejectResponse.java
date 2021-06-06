@@ -7,11 +7,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ImageUploadResponse {
+public class CompensationRejectResponse {
 
     @SerializedName("response_time")
     private String response_time;
 
     @SerializedName("message")
     private String message;
+
+
 }

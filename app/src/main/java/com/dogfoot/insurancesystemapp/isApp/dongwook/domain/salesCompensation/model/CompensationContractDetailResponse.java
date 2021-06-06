@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CompensationContractListResponse {
+public class CompensationContractDetailResponse<Files> {
 
     @SerializedName("accident_id")
     private Long accident_id;
@@ -28,6 +28,9 @@ public class CompensationContractListResponse {
 
     @SerializedName("state")
     private String state;
+
+    @SerializedName("files")
+    private Files files;
 
     @SerializedName("accident_apply_date")
     private String accident_apply_date;

@@ -1,4 +1,4 @@
-package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.view;
+package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view;
 
 import android.content.Intent;
 import android.util.Log;
@@ -15,8 +15,10 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.DogFo
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.dialog.LoadingDialog;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.DogFootViewModelFragment;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationContractListResponse;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.view.adapter.SalesContractRecyclerAdapter;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CompensationResultListResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CustomerContractListResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.adapter.ContractRecyclerAdapter;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.adapter.ContractResultRecyclerAdapter;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitCallback;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitTool;
 
@@ -30,20 +32,20 @@ import retrofit2.Response;
 import static com.dogfoot.insurancesystemapp.isApp.constants.Constant.LIST_FRAGMENT_FAILURE_DIALOG_TITLE;
 
 
-public class SalesContractListFragment extends DogFootViewModelFragment {
+public class CustomerContractResultListFragment extends DogFootViewModelFragment {
 
     // Associate
     int selectedItem;
     boolean valueInput = false;
     // View
 
-    private RecyclerView salesContractRecyclerView;
-    private Vector<CompensationContractListResponse> items;
+    private RecyclerView customerContractResultRecyclerView;
+    private Vector<CompensationResultListResponse> items;
 
     // Component
     // View
     private LoadingDialog dialog;
-    private SalesContractRecyclerAdapter salesContractRecyclerAdapter;
+    private ContractResultRecyclerAdapter contractResultRecyclerAdapter;
     TextView sumText;
 
 
@@ -52,33 +54,24 @@ public class SalesContractListFragment extends DogFootViewModelFragment {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_sales_contract_list;
+        return R.layout.fragment_customer_contract_list;
     }
 
     @Override
     protected void associateView(View view) {
-        this.salesContractRecyclerView = view.findViewById(R.id.salesContractRecyclerView);
-        this.sumText = view.findViewById(R.id.sumOfSalesContractItems);
+        this.customerContractResultRecyclerView = view.findViewById(R.id.customerContractRecyclerView);
+        this.sumText = view.findViewById(R.id.sumOfCustomerContractItems);
     }
 
     @Override
     protected void initializeView() {
         View.OnClickListener listener = v -> {
-            if(v.getId()==R.id.sales_contract_item){
-                selectedItem=((Integer)v.getTag());
-            }
-            dataset.put(DogFootEntity.EDogFootData.ID,items.get(selectedItem).getAccident_id().toString());
-            this.valueInput=true;
-            this.save();
-            if(valueInput) {
-                Intent intent = new Intent(this.getContext(), SalesCompensationViewActivity.class);
-                this.startActivity(intent);
-            }
+
         };
-        this.salesContractRecyclerAdapter = new SalesContractRecyclerAdapter(this.getActivity(),listener);
+        this.contractResultRecyclerAdapter = new ContractResultRecyclerAdapter(this.getActivity(),listener);
         this.dialog = new LoadingDialog(getContext());
-        this.salesContractRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        this.salesContractRecyclerView.setAdapter(this.salesContractRecyclerAdapter);
+        this.customerContractResultRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        this.customerContractResultRecyclerView.setAdapter(this.contractResultRecyclerAdapter);
         this.getCustomerContract();
 
     }
@@ -92,24 +85,21 @@ public class SalesContractListFragment extends DogFootViewModelFragment {
     private void getCustomerContract() {
 
 
-        RetrofitTool.getAPIWithAuthorizationToken(dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION)).getCompensationContract()
-                .enqueue(MainRetrofitTool.getCallback(new CompensationContractListResponseCallback()));
+        RetrofitTool.getAPIWithAuthorizationToken(dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION)).getCompensationResult()
+                .enqueue(MainRetrofitTool.getCallback(new CompensationResultListResponseCallback()));
     }
 
-    /**
-     * Callback
-     */
-    private class CompensationContractListResponseCallback implements MainRetrofitCallback<List<CompensationContractListResponse>> {
+    private class CompensationResultListResponseCallback implements MainRetrofitCallback<List<CompensationResultListResponse>>{
         @Override
-        public void onSuccessResponse(Response<List<CompensationContractListResponse>> response) {
+        public void onSuccessResponse(Response<List<CompensationResultListResponse>> response) {
             items = new Vector<>(response.body());
-            salesContractRecyclerAdapter.setItems(items);
-            salesContractRecyclerView.setAdapter(salesContractRecyclerAdapter);
+            contractResultRecyclerAdapter.setItems(items);
+            customerContractResultRecyclerView.setAdapter(contractResultRecyclerAdapter);
             sumText.setText(" "+items.size() + "개");
         }
 
         @Override
-        public void onFailResponse(Response<List<CompensationContractListResponse>> response) {
+        public void onFailResponse(Response<List<CompensationResultListResponse>> response) {
             Log.d("디버그", dataset.get(DogFootEntity.EDogFootData.AUTHORIZATION));
             try {
 
@@ -122,13 +112,14 @@ public class SalesContractListFragment extends DogFootViewModelFragment {
 
         @Override
         public void onConnectionFail(Throwable t) {
-
             DogFootDialog.simplerAlertDialog(getActivity(),
                     LIST_FRAGMENT_FAILURE_DIALOG_TITLE, t.getMessage(),
                     null
             );
         }
     }
+
+
 
 
 }

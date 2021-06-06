@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:textColor="#9FA5AA"
+        android:textColor="@color/black"
         android:text="보험 이름 : "
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:textColor="#9FA5AA"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/item_customer_contract_name"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="#9FA5AA"
+        android:textColor="@color/black"
         android:text="승인 여부 : "
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="#9FA5AA"
+        android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/item_customer_contract_isApprove"
         app:layout_constraintTop_toBottomOf="@+id/item_customer_contract_name" />
@@ -69,7 +69,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="#9FA5AA"
+        android:textColor="@color/black"
         android:text="만료 일자 : "
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/item_customer_contract_time_input"
@@ -83,17 +83,18 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="#9FA5AA"
+        android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_customer_contract_name" />
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="#9FA5AA"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
+
+        app:layout_constraintTop_toBottomOf="@+id/item_customer_contract_time_input"
+        android:layout_marginTop="10dp"
         tools:layout_editor_absoluteX="0dp" />
 
 

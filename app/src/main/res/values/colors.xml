@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="dogFoot_yellow">#F4F4F4</color>
-    <color name="dogFoot_gold">#F4F4F4</color>
+    <color name="dogFoot_yellow">#FACE89</color>
+    <color name="dogFoot_gold">#E9E49E</color>
 
 </resources>

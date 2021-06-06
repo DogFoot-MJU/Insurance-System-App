@@ -1,16 +1,13 @@
-package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model;
+package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.time.LocalDateTime;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CompensationContractListResponse {
-
+public class CompensationResultListResponse {
     @SerializedName("accident_id")
     private Long accident_id;
 

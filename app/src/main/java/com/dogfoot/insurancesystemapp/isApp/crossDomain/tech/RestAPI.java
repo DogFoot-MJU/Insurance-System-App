@@ -1,5 +1,6 @@
 package com.dogfoot.insurancesystemapp.isApp.crossDomain.tech;
 
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CompensationResultListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CustomerContractListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingAnsweredViewResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingInputRequest;
@@ -8,7 +9,12 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.m
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.model.CustomerConsultingViewResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.ImageUploadResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationContractDetailResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationContractListResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationPayRequest;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationPayResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationRejectResponse;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.Files;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingInputRequest;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingInputResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingListResponse;
@@ -92,6 +98,18 @@ public interface RestAPI {
 
     @GET("api/v1/compensation-handler/accident/list?state=WAIT")
     Call<List<CompensationContractListResponse>> getCompensationContract();
+
+    @GET("api/v1/compensation-handler/accident/detail/{id}")
+    Call<CompensationContractDetailResponse<List<Files>>> getCompensationContractDetail(@Path("id") Long id);
+
+    @POST("api/v1/compensation-handler/accident/approve")
+    Call<CompensationPayResponse> CompensationPay(@Body CompensationPayRequest compensationPayRequest);
+
+    @PUT("api/v1/compensation-handler/accident/reject/{id}")
+    Call<CompensationRejectResponse> CompensationReject(@Path("id") Long id);
+
+    @GET("api/v1/user/accident/list")
+    Call<List<CompensationResultListResponse>> getCompensationResult();
 
 
 

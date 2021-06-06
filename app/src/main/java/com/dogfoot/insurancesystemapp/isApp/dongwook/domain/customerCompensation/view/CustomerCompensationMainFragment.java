@@ -9,7 +9,7 @@ import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.Dog
 public class CustomerCompensationMainFragment extends DogFootViewModelFragment {
 
 
-    private Button  listButton;
+    private Button  listButton,resultButton;
 
     @Override
     protected int getLayoutId() {
@@ -21,11 +21,13 @@ public class CustomerCompensationMainFragment extends DogFootViewModelFragment {
     @Override
     protected void associateView(View view) {
         this.listButton=view.findViewById(R.id.customerCompensationMainFragment_listButton);
+        this.resultButton=view.findViewById(R.id.customerCompensationMainFragment_resultButton);
     }
 
     @Override
     protected void initializeView() {
         this.listButton.setOnClickListener(v->this.navigateTo(R.id.action_customerCompensationMain_to_customerContractList));
+        this.resultButton.setOnClickListener(v->this.navigateTo(R.id.action_customerCompensationMain_to_customerContractResultList));
 
     }
 

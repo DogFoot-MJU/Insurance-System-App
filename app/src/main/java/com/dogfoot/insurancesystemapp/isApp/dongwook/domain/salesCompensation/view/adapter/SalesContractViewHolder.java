@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.model.CompensationContractListResponse;
 
+import java.text.SimpleDateFormat;
+
 
 public class SalesContractViewHolder extends RecyclerView.ViewHolder {
 
@@ -50,7 +52,7 @@ public class SalesContractViewHolder extends RecyclerView.ViewHolder {
         this.itemView.setOnClickListener(listener);
         this.title.setText(response.getInsurance_name());
         this.isApprove.setText(response.getState());
-        this.applyDate.setText(response.getAccident_apply_date());
+        this.applyDate.setText(response.getAccident_apply_date().substring(0, response.getAccident_apply_date().indexOf("T")));
         this.userName.setText(response.getUser_name());
     }
 }

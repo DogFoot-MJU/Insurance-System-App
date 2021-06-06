@@ -28,6 +28,16 @@
         app:layout_constraintTop_toBottomOf="@+id/customerCompensationMainFragment_TitleTextView"
         tools:layout_editor_absoluteX="0dp" />
 
+    <Button
+        android:id="@+id/customerCompensationMainFragment_resultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/customer_Compensation_insurance_result"
+        android:backgroundTint="#e9e49e"
+        app:layout_constraintTop_toBottomOf="@+id/customerCompensationMainFragment_listButton"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 
 

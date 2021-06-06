@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_customerCompensationMain_to_customerContractList"
             app:destination="@id/customerContractListFragment" />
+        <action
+            android:id="@+id/action_customerCompensationMain_to_customerContractResultList"
+            app:destination="@id/customerContractResultListFragment" />
     </fragment>
 
     <fragment
@@ -24,6 +27,16 @@
         tools:layout="@layout/fragment_customer_contract_list" >
         <action
             android:id="@+id/action_customerContractList_to_customerCompensationMain"
+            app:destination="@id/customerCompensationMainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerContractResultListFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.CustomerContractResultListFragment"
+        android:label="customerContractResultList"
+        tools:layout="@layout/fragment_customer_contract_list" >
+        <action
+            android:id="@+id/action_customerContractResultList_to_customerCompensationMain"
             app:destination="@id/customerCompensationMainFragment" />
     </fragment>
 

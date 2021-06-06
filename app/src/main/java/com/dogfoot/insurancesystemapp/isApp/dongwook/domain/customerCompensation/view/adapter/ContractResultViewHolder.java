@@ -7,11 +7,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CompensationResultListResponse;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.model.CustomerContractListResponse;
-import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.model.SalesConsultingListResponse;
+
+import java.text.SimpleDateFormat;
 
 
-public class ContractViewHolder extends RecyclerView.ViewHolder {
+public class ContractResultViewHolder extends RecyclerView.ViewHolder {
 
 
 
@@ -24,18 +26,18 @@ public class ContractViewHolder extends RecyclerView.ViewHolder {
 
 
     // Constructor
-    public ContractViewHolder(View itemView, View.OnClickListener onClickListener, Activity activity) {
+    public ContractResultViewHolder(View itemView, View.OnClickListener onClickListener, Activity activity) {
         super(itemView);
 
         // Associate
         this.activity=activity;
 
         // Associate View
-
+        this.expirationDateText = itemView.findViewById(R.id.item_customer_contract_time);
         this.title = itemView.findViewById(R.id.item_customer_contract_name_input);
         this.isApprove = itemView.findViewById(R.id.item_customer_contract_isApprove_input);
         this.expirationDate = itemView.findViewById(R.id.item_customer_contract_time_input);
-        this.expirationDateText=itemView.findViewById(R.id.item_customer_contract_time);
+
         // Initialize View
         itemView.setOnClickListener(onClickListener);
 
@@ -45,13 +47,11 @@ public class ContractViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setValue(CustomerContractListResponse response, View.OnClickListener listener) {
-        this.expirationDateText.setText("만료 일자 : ");
-        this.itemView.setTag(getAdapterPosition());
-        this.itemView.setOnClickListener(listener);
+    public void setValue(CompensationResultListResponse response, View.OnClickListener listener) {
+        this.expirationDateText.setText("처리 일자 : ");
         this.title.setText(response.getInsurance_name());
-        this.isApprove.setText(response.getApprove_state());
-        this.expirationDate.setText(response.getExpiration_date().toString());
+        this.isApprove.setText(response.getState());
+        this.expirationDate.setText(response.getAccident_apply_date().substring(0, response.getAccident_apply_date().indexOf("T")));
 
     }
 }

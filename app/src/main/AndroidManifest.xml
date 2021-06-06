@@ -37,6 +37,7 @@
         <activity android:name=".isApp.dongwook.domain.customerCompensation.view.CustomerCompensationUploadActivity"/>
         <activity android:name=".isApp.dongwook.domain.customerCompensation.view.CustomerCompensationMainActivity"/>
         <activity android:name=".isApp.dongwook.domain.salesCompensation.view.SalesCompensationMainActivity"/>
+        <activity android:name=".isApp.dongwook.domain.salesCompensation.view.SalesCompensationViewActivity"/>
         <activity android:name=".isApp.MainActivity" />
     </application>
 
