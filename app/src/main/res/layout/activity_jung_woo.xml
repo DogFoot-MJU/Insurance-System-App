@@ -20,6 +20,7 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:menu="@menu/bottom_menu" />-->
 
+
         <FrameLayout
             android:id="@+id/fl_main"
             android:layout_width="match_parent"
@@ -32,17 +33,23 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <ImageView
+                            android:id="@+id/iv_menu"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_baseline_menu_24" />
+                        <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                           android:layout_marginLeft="20dp"
                             android:src="@drawable/dogfoot_icon">
                         </ImageView>
                         <TextView
@@ -65,14 +72,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#000000"
-                            android:text="김정우 uw님,"
+                            android:text="소중한 나와 가족을 위한 "
                             android:textSize="16dp">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#000000"
-                            android:text=" 방문을 환영합니다!"
+                            android:text="건강자산"
                             android:textSize="16dp">
                         </TextView>
                     </LinearLayout>
@@ -127,7 +134,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                app:riv_corner_radius="20dp"
+                                app:riv_corner_radius="15dp"
                                 app:riv_mutate_background="true"
                                 android:layout_gravity="center"
                                 app:riv_oval="false"
@@ -147,7 +154,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                app:riv_corner_radius="20dp"
+                                app:riv_corner_radius="15dp"
                                 app:riv_mutate_background="true"
                                 android:layout_gravity="center"
                                 app:riv_oval="false"
@@ -167,7 +174,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                app:riv_corner_radius="20dp"
+                                app:riv_corner_radius="15dp"
                                 app:riv_mutate_background="true"
                                 android:layout_gravity="center"
                                 app:riv_oval="false"
@@ -187,7 +194,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                app:riv_corner_radius="20dp"
+                                app:riv_corner_radius="15dp"
                                 app:riv_mutate_background="true"
                                 android:layout_gravity="center"
                                 app:riv_oval="false"

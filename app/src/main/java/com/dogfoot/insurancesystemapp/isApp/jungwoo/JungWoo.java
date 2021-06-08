@@ -22,8 +22,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.databinding.ActivityJungWooBinding;
+import com.dogfoot.insurancesystemapp.isApp.constants.Constant;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.activity.DogFootViewModelActivity;
+import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerCompensation.view.CustomerCompensationMainActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.logout.view.LogOutActivity;
@@ -38,10 +40,14 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view.
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.insurance.view.InsuranceApplicationFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.legitimateexamination.view.LegitimateExaminationFirstFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.view.PlanInsuranceFirstFragment;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.user.model.UserResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class JungWoo extends DogFootViewModelActivity {
 
@@ -55,6 +61,7 @@ public class JungWoo extends DogFootViewModelActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
     private Button btn_close;
+    private TextView tv_userName, tv_userRole;
     private TextView tv_insuranceDevInfo, tv_insuranceInitInfo, tv_insuranceDesignInfo, tv_insuranceSendInfo, tv_insuranceApproveInfo;
     private TextView tv_uwInfo, tv_uwAcquisitionPolicyInfo, tv_uwAppropriateExaminationInfo;
     private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo, tv_userReceiptCounselingInfo;
@@ -69,11 +76,59 @@ public class JungWoo extends DogFootViewModelActivity {
         private int ImageId;
     }
 
+    private void setRole(Response<UserResponse> response) {
+        if(response.body().getRole_name().equals(Constant.UserRoleType.ROLE_INSURANCE_PLANNER.getName())){
+            tv_uwInfo.setVisibility(View.GONE);
+            tv_userInfo.setVisibility(View.GONE);
+            tv_salesInfo.setVisibility(View.GONE);
+            tv_compensationInfo.setVisibility(View.GONE);
+        }  else if(response.body().getRole_name().equals(Constant.UserRoleType.ROLE_UW.getName())){
+            tv_insuranceDevInfo.setVisibility(View.GONE);
+            tv_userInfo.setVisibility(View.GONE);
+            tv_salesInfo.setVisibility(View.GONE);
+            tv_compensationInfo.setVisibility(View.GONE);
+        } else if(response.body().getRole_name().equals(Constant.UserRoleType.ROLE_USER.getName())){
+            tv_insuranceDevInfo.setVisibility(View.GONE);
+            tv_uwInfo.setVisibility(View.GONE);
+            tv_salesInfo.setVisibility(View.GONE);
+            tv_compensationInfo.setVisibility(View.GONE);
+        }else if(response.body().getRole_name().equals(Constant.UserRoleType.ROLE_INSURANCE_SELLER.getName())){
+            tv_insuranceDevInfo.setVisibility(View.GONE);
+            tv_userInfo.setVisibility(View.GONE);
+            tv_uwInfo.setVisibility(View.GONE);
+            tv_compensationInfo.setVisibility(View.GONE);
+        } else if(response.body().getRole_name().equals(Constant.UserRoleType.ROLE_INSURANCE_COMPENSATION_HANDLER.getName())){
+            tv_insuranceDevInfo.setVisibility(View.GONE);
+            tv_userInfo.setVisibility(View.GONE);
+            tv_salesInfo.setVisibility(View.GONE);
+            tv_uwInfo.setVisibility(View.GONE);
+        }
+        tv_userName.setText(response.body().getName());
+        tv_userRole.setText(response.body().getRole_name());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // set Binding
+        // set user
+        Constant constant = Constant.getInstance();
+        String token = constant.getDataset().get(DogFootEntity.EDogFootData.AUTHORIZATION);
+        RetrofitTool.getAPIWithAuthorizationToken(token).getRole().enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                setRole(response);
+            }
+
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
+
+
+            // set Binding
         mBinding = ActivityJungWooBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
@@ -93,6 +148,13 @@ public class JungWoo extends DogFootViewModelActivity {
         cardView_driver = findViewById(R.id.cardView_driver);
         cardView_fire = findViewById(R.id.cardView_fire);
         cardView_travel = findViewById(R.id.cardView_travel);
+
+        mBinding.ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDrawerLayout();
+            }
+        });
 
         cardView_car.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,6 +337,9 @@ public class JungWoo extends DogFootViewModelActivity {
             }
         });
 
+        tv_userName = findViewById(R.id.tv_name);
+        tv_userRole = findViewById(R.id.tv_role);
+
         tv_insuranceDevInfo = findViewById(R.id.tv_insuranceDevInfo);
         tv_insuranceInitInfo = findViewById(R.id.tv_insuranceInitInfo);
         tv_insuranceDesignInfo = findViewById(R.id.tv_insuranceDesignInfo);
@@ -292,7 +357,6 @@ public class JungWoo extends DogFootViewModelActivity {
 
         tv_salesInfo = findViewById(R.id.tv_salesInfo);
         tv_userSalesCallManagementInfo = findViewById(R.id.tv_userSalesCallManagementInfo);
-
 
         tv_compensationInfo = findViewById(R.id.tv_compensationInfo);
         tv_incidentReceptionInfo = findViewById(R.id.tv_incidentReceptionInfo);

@@ -53,6 +53,7 @@ import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.F
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.Pagination;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceResponse;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.planinsurance.model.TravelPlanInsuranceRequest;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.user.model.UserResponse;
 
 import java.util.List;
 
@@ -313,4 +314,7 @@ public interface RestAPI {
     @PUT("api/v1/uw/contract/travel/reject/{id}")
     Call<Void> rejectLegitimateExaminationTravel(@Path("id") Long id);
 
+    // 유저 롤 받기
+    @GET("api/v1/user/info")
+    Call<UserResponse> getRole();
 }
