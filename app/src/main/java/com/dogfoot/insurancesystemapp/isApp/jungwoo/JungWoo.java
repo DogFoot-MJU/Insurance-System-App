@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -69,6 +70,7 @@ public class JungWoo extends DogFootViewModelActivity {
     private TextView tv_compensationInfo, tv_incidentReceptionInfo;
     private CardView cardView_car, cardView_driver, cardView_fire, cardView_travel;
     private ViewPager2 viewPager2;
+    private ImageView iv_menu;
     @AllArgsConstructor
     @Getter
     public enum EAdImage{
@@ -148,8 +150,8 @@ public class JungWoo extends DogFootViewModelActivity {
         cardView_driver = findViewById(R.id.cardView_driver);
         cardView_fire = findViewById(R.id.cardView_fire);
         cardView_travel = findViewById(R.id.cardView_travel);
-
-        mBinding.ivMenu.setOnClickListener(new View.OnClickListener() {
+        iv_menu = findViewById(R.id.iv_menu);
+        iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDrawerLayout();
