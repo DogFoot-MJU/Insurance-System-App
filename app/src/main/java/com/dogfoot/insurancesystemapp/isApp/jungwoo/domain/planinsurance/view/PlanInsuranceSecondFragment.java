@@ -211,7 +211,7 @@ public class PlanInsuranceSecondFragment extends DogFootViewModelFragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                replaceFragment(HomeFragment.newInstance());
+                replaceFragment(PlanInsuranceFirstFragment.newInstance());
                 break;
         }
         return super.onOptionsItemSelected(item);

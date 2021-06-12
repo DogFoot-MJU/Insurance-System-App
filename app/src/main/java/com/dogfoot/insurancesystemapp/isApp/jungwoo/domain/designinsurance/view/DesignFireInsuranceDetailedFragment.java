@@ -2,6 +2,7 @@ package com.dogfoot.insurancesystemapp.isApp.jungwoo.domain.designinsurance.view
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -99,6 +100,7 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
             mBinding.buttonAuthorizeNApprove.setText("보험 상품 인가하기");
             mBinding.tvFireAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
             mBinding.tvFireAuthorizeNApproveToolbarInfo.setText("보험 상품 인가하기");
+            mBinding.buttonAuthorizeNApprove.setTextColor(Color.BLACK);
             mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -119,6 +121,7 @@ public class DesignFireInsuranceDetailedFragment extends DogFootViewModelFragmen
             mBinding.buttonAuthorizeNApprove.setText("보험 상품 승인하기");
             mBinding.tvFireAuthorizeNApproveInfo.setText("선택한 보험 상품의 상세한 내용입니다.");
             mBinding.tvFireAuthorizeNApproveToolbarInfo.setText("보험 상품 승인하기");
+            mBinding.buttonAuthorizeNApprove.setTextColor(Color.BLACK);
             mBinding.buttonAuthorizeNApprove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

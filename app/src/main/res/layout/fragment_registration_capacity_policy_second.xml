@@ -21,7 +21,6 @@
                 android:id="@+id/tb_capacityPolicyToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
                 android:background="@drawable/custom_border"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme">

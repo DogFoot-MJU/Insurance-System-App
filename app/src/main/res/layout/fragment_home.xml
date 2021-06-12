@@ -10,19 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
-        <!--        android:id="@+id/bottomNavi"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:background="@drawable/custom_border"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:menu="@menu/bottom_menu" />-->
-
-
         <FrameLayout
-            android:id="@+id/fl_main"
+            android:id="@+id/fl_main2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,15 +30,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <ImageView
-                            android:id="@+id/iv_menu"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/ic_baseline_menu_24" />
+
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="55dp"
                             android:src="@drawable/dogfoot_icon">
                         </ImageView>
                         <TextView
@@ -88,11 +73,20 @@
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/homeFragment_viewPager"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/insurance3">
+
+
+                    </ImageView>
+<!--                    <androidx.viewpager2.widget.ViewPager2-->
+<!--                        android:id="@+id/homeFragment_viewPager"-->
+<!--                        android:layout_marginHorizontal="8dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="200dp" />-->
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,15 +175,12 @@
                                 android:src="@drawable/fire">
                             </com.makeramen.roundedimageview.RoundedImageView>
                         </androidx.cardview.widget.CardView>
-
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardView_travel"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_marginLeft="10dp"
                             app:cardCornerRadius="30dp">
-
-
                             <com.makeramen.roundedimageview.RoundedImageView
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
@@ -202,7 +193,15 @@
                             </com.makeramen.roundedimageview.RoundedImageView>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
 
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dogfoot.insurancesystemapp.R;
+import com.dogfoot.insurancesystemapp.isApp.jungwoo.HomeFragment;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
 
 public class AdvertisementViewPagerAdapter extends RecyclerView.Adapter<AdvertisementViewHolder> {
 
-    private final JungWoo.EAdImage[] values;
+    private final HomeFragment.EAdImage[] values;
     private final Context context;
 
-    public AdvertisementViewPagerAdapter(JungWoo.EAdImage[] values, Context context) {
+    public AdvertisementViewPagerAdapter(HomeFragment.EAdImage[] values, Context context) {
    this.values=values;
    this.context=context;
     }
@@ -28,8 +29,8 @@ public class AdvertisementViewPagerAdapter extends RecyclerView.Adapter<Advertis
 
     @Override
     public void onBindViewHolder(AdvertisementViewHolder holder, int position) {
-//        holder.setText(position);
         holder.setImage(this.context.getDrawable(values[position].getImageId()));
+        holder.itemView.setTag(position);
     }
 
     @Override public int getItemCount() { return this.values.length; }

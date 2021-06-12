@@ -17,7 +17,6 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:layout_marginTop="30dp"
                     android:id="@+id/tb_planInsuranceToolbar2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

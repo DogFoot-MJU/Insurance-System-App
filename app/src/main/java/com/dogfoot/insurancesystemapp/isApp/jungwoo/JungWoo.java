@@ -68,15 +68,6 @@ public class JungWoo extends DogFootViewModelActivity {
     private TextView tv_userInfo, tv_userApplicationInfo, tv_userCounselingInfo, tv_userReceiptCounselingInfo;
     private TextView tv_salesInfo, tv_userSalesCallManagementInfo;
     private TextView tv_compensationInfo, tv_incidentReceptionInfo;
-    private CardView cardView_car, cardView_driver, cardView_fire, cardView_travel;
-    private ViewPager2 viewPager2;
-    private ImageView iv_menu;
-    @AllArgsConstructor
-    @Getter
-    public enum EAdImage{
-        first(R.drawable.insurance3),second(R.drawable.insurance4),third(R.drawable.fire_insurance),fourth(R.drawable.travel_insurance);
-        private int ImageId;
-    }
 
     private void setRole(Response<UserResponse> response) {
         if(response.body().getRole_name().equals(Constant.UserRoleType.ROLE_INSURANCE_PLANNER.getName())){
@@ -112,6 +103,15 @@ public class JungWoo extends DogFootViewModelActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // set Binding
+        mBinding = ActivityJungWooBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
+
+        //initToolbar();
+        drawerInit();
+        navigationBottomInit();
 
         // set user
         Constant constant = Constant.getInstance();
@@ -129,164 +129,7 @@ public class JungWoo extends DogFootViewModelActivity {
             }
         });
 
-
-            // set Binding
-        mBinding = ActivityJungWooBinding.inflate(getLayoutInflater());
-        View view = mBinding.getRoot();
-        setContentView(view);
-
         mainFragment = new HomeFragment();
-        //initToolbar();
-        mainInit();
-        drawerInit();
-        navigationBottomInit();
-
-        this.viewPager2 = findViewById(R.id.homeFragment_viewPager);
-        this.viewPager2.setAdapter(new AdvertisementViewPagerAdapter(EAdImage.values(), getApplicationContext()));
-        ViewPagerTool.setAutoSlide(this.viewPager2, 3000);
-        ViewPagerTool.setEffect(this.viewPager2);
-
-        cardView_car = findViewById(R.id.cardView_car);
-        cardView_driver = findViewById(R.id.cardView_driver);
-        cardView_fire = findViewById(R.id.cardView_fire);
-        cardView_travel = findViewById(R.id.cardView_travel);
-        iv_menu = findViewById(R.id.iv_menu);
-        iv_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDrawerLayout();
-            }
-        });
-
-        cardView_car.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
-                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
-
-                String strHtml =
-                        " <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
-                                "            <p>자동차 가격: 책정된 가격의 + 1천만, + 3천만, +5천만원, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>주행 거리: 책정된 거리의 + 10000km, + 50000km, +100000km, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>출고 일자: 책정된 일자의 + 365일, + 730일, +1095일, 나머지의 단계로 나뉩니다. </p>\n" +
-                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p>\n" +
-                                "            <p>ex) 기본금 * (1.0 + 0.4 + 0.2 + 0.3)</p>";
-                Spanned oHtml;
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
-                    // noinspection deprecation
-                    oHtml = Html.fromHtml(strHtml);
-                }
-                else
-                {
-                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
-                }
-                oDialog.setTitle("자동차 보험 요율 기준")
-                        .setMessage(oHtml)
-                        .setIcon(R.drawable.dogfoot_icon)
-                        .setPositiveButton("ok", null)
-                        .setCancelable(false)
-                        .show();
-
-            }
-        });
-
-        cardView_driver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
-                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
-
-                String strHtml =
-                        "  <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
-                                "            <p>운전 면허: 운전 면허의 종류를 확인합니다. 1종 보통, 2종 보통의 단계로 나뉩니다.</p>\n" +
-                                "            <p>운전 면허 취득 일자: 책정된 일자의 + 365일, + 730일, +1095일, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p>\n" +
-                                "            <p>ex) 기본금 * (1.0 + 0.2 + 0.1)</p>";
-                Spanned oHtml;
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
-                    // noinspection deprecation
-                    oHtml = Html.fromHtml(strHtml);
-                }
-                else
-                {
-                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
-                }
-                oDialog.setTitle("운전자 보험 요율 기준")
-                        .setMessage(oHtml)
-                        .setIcon(R.drawable.dogfoot_icon)
-                        .setPositiveButton("ok", null)
-                        .setCancelable(false)
-                        .show();
-
-            }
-        });
-
-        cardView_fire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
-                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
-
-                String strHtml =
-                        "   <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
-                                "            <p>빌딩 가격: 책정된 가격의 + 3억, + 6억, +9억, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>건축 일자: 책정된 일자의 + 365일, + 1095일, +2190일, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>층수: 책정된 층수의 + 5층, + 10층, +15층, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>부지 면적: 책정된 면적의 + 30m2, + 60m2, + 90m2, 나머지의 단계로 나뉩니다.</p>\n" +
-                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p> \n" +
-                                "            <p>ex) 기본금 * (1.0 + 0.2 + 0.1 +0.4 +0.3)</p>";
-                Spanned oHtml;
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
-                    // noinspection deprecation
-                    oHtml = Html.fromHtml(strHtml);
-                }
-                else
-                {
-                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
-                }
-                oDialog.setTitle("화재 보험 요율 기준")
-                        .setMessage(oHtml)
-                        .setIcon(R.drawable.dogfoot_icon)
-                        .setPositiveButton("ok", null)
-                        .setCancelable(false)
-                        .show();
-
-            }
-        });
-
-        cardView_travel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder oDialog = new AlertDialog.Builder(JungWoo.this,
-                        android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
-
-                String strHtml =
-                        " <p>기준 가격: 관리자가 책정할 기준을 명시합니다. 비율은 순서대로 0.1 ~ 0.4씩 올라갑니다.</p>\n" +
-                                "            <p>안전 등급: 안전 등급의 기준을 확인합니다. GREEN, BLUE, RED의 단계로 나뉩니다.</p>\n" +
-                                "            <p>기본 요율 1.0에 책정된 비율을 합산한 후 기본금을 곱하여 계산합니다. </p>\n" +
-                                "            <p>ex) 기본금 * (1.0 + 0.2)</p>";
-                Spanned oHtml;
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
-                    // noinspection deprecation
-                    oHtml = Html.fromHtml(strHtml);
-                }
-                else
-                {
-                    oHtml = Html.fromHtml(strHtml, Html.FROM_HTML_MODE_LEGACY);
-                }
-                oDialog.setTitle("여행 보험 요율 기준")
-                        .setMessage(oHtml)
-                        .setIcon(R.drawable.dogfoot_icon)
-                        .setPositiveButton("ok", null)
-                        .setCancelable(false)
-                        .show();
-
-            }
-        });
-
-    }
-
-    private void mainInit() {
 
     }
 
@@ -425,22 +268,6 @@ public class JungWoo extends DogFootViewModelActivity {
 
 
 
-
-//        tv_contractInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(tv_contractManagementInfo.getVisibility()==View.VISIBLE){
-//                    tv_contractManagementInfo.setVisibility(View.GONE);
-//                    tv_managementOfContractManagementGuidelinesInfo.setVisibility(View.GONE);
-//                    tv_managingExpirationContractsInfo.setVisibility(View.GONE);
-//                }
-//                else{
-//                    tv_contractManagementInfo.setVisibility(View.VISIBLE);
-//                    tv_managementOfContractManagementGuidelinesInfo.setVisibility(View.VISIBLE);
-//                    tv_managingExpirationContractsInfo.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        });
 
         tv_compensationInfo.setOnClickListener(new View.OnClickListener() {
             @Override
