@@ -90,6 +90,9 @@ public class RegisterResidentFragmentEditText extends AbstractFragment_1EditText
         signUpRequest.setPhone_number(this.dataset.get(DogFootEntity.EDogFootData.PHONE));
         signUpRequest.setAddress(this.dataset.get(DogFootEntity.EDogFootData.ADDRESS));
         signUpRequest.setResident_registration_number(this.dataset.get(DogFootEntity.EDogFootData.RESIDENT));
+        Log.d("디버그",signUpRequest.getEmail());
+        Log.d("디버그",signUpRequest.getPassword());
+        Log.d("디버그",signUpRequest.getName());
         RetrofitTool.getAPI().signup(signUpRequest).enqueue(MainRetrofitTool.getCallback(new SignUpRequestCallback()));
     }
 }

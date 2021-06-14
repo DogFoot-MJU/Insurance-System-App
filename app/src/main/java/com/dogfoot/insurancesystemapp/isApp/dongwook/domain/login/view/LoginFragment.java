@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.dogfoot.insurancesystemapp.R;
 
@@ -17,6 +18,7 @@ import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.login.model.LoginRequest;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.tech.RetrofitTool;
 
+import com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view.SignUpActivity;
 import com.dogfoot.insurancesystemapp.isApp.jungwoo.JungWoo;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.domain.model.room.entity.MainEntity;
 import com.dogfoot.insurancesystemapp.mainCrossDomain.tech.retrofit.MainRetrofitCallback;
@@ -35,6 +37,7 @@ public class LoginFragment extends DogFootViewModelFragment {
 
     private EditText idText, pwText;
     private Button loginButton,  signInButton;
+    private TextView signUp;
     @Override
     protected int getLayoutId() { return R.layout.fragment_login; }
     @Override
@@ -42,11 +45,15 @@ public class LoginFragment extends DogFootViewModelFragment {
         this.idText = view.findViewById(R.id.loginActivity_idText);
         this.pwText = view.findViewById(R.id.loginActivity_pwText);
         this.loginButton = view.findViewById(R.id.loginActivity_loginButton);
+        this.signUp = view.findViewById(R.id.loginActivity_registerTextView);
 
     }
     @Override
     protected void initializeView() {
         this.loginButton.setOnClickListener(v->this.login());
+        this.signUp.setOnClickListener(v-> this.startActivity(new Intent(this.getContext(), SignUpActivity.class)));
+
+
     }
 
     @Override

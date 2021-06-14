@@ -54,6 +54,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginActivity_pwText" />
 
+    <TextView
+        android:id="@+id/loginActivity_areYouNewMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아직 회원이 아니신가요? "
+        android:layout_marginTop="16dp"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/loginActivity_registerTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginActivity_loginButton" />
+
+    <TextView
+        android:id="@+id/loginActivity_registerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textColor="#E53154"
+        android:layout_marginTop="16dp"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/loginActivity_areYouNewMessageTextView"
+        app:layout_constraintTop_toBottomOf="@+id/loginActivity_loginButton" />
+
 
 
 

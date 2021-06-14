@@ -2,6 +2,7 @@ package com.dogfoot.insurancesystemapp.isApp.jungwoo;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -38,6 +39,8 @@ public class HomeFragment extends DogFootViewModelFragment {
     private Context context;
     private CardView cardView_car, cardView_driver, cardView_fire, cardView_travel;
     private ViewPager2 viewPager2;
+    private ImageView main_image;
+
 
     @AllArgsConstructor
     @Getter
@@ -52,11 +55,19 @@ public class HomeFragment extends DogFootViewModelFragment {
         mBinding = FragmentHomeBinding.inflate(getLayoutInflater());
         context = container.getContext();
         View view = mBinding.getRoot();
+        main_image=view.findViewById(R.id.main_image);
+        main_image.setBackground(context.getDrawable(R.drawable.background_rounding));
+        main_image.setClipToOutline(true);
+
 
 //        this.viewPager2 = mBinding.homeFragmentViewPager;
 //        this.viewPager2.setAdapter(new AdvertisementViewPagerAdapter(EAdImage.values(), context));
 //        ViewPagerTool.setAutoSlide(this.viewPager2, 3000);
 //        ViewPagerTool.setEffect(this.viewPager2);
+
+
+
+
 
         cardView_car = mBinding.cardViewCar;
         cardView_driver = mBinding.cardViewDriver;

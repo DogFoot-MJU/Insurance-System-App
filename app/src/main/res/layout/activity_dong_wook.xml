@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/dongWook_btn_login"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/DongWookActivity_TitleTextView"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/dongWook_btn_signup"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_loginButton"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/dongWook_btn_logout"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_signUpButton"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/customer_consulting_main"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_logoutButton"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/admin_consulting_main"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_customerConsultingButton"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/customer_Compensation"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_adminConsultingButton"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/sales_Compensation"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/dongWookActivity_customerCompensation_Button"
         tools:layout_editor_absoluteX="0dp" />
 

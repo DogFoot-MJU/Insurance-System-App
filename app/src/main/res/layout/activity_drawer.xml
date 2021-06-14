@@ -19,23 +19,28 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@drawable/custom_round_border"
-            android:layout_height="wrap_content">
+            android:background="@drawable/custom_border"
+            android:layout_height="wrap_content"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_compensation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cl_contract">
+                app:layout_constraintTop_toBottomOf="@+id/cl_contract"
+                >
 
 
                 <TextView
@@ -61,7 +66,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginRight="0dp"
-                    android:background="#ffffff"
+                    android:background="@drawable/custom_border"
                     android:padding="7dp"
                     android:text="보상"
                     android:textColor="#000000"
@@ -78,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_sales">
@@ -153,7 +158,7 @@
                 android:id="@+id/cl_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -181,11 +186,13 @@
                     android:id="@+id/tv_salesInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
+                    android:background="@drawable/custom_border"
                     android:text="영업"
                     android:padding="7dp"
                     android:textColor="#000000"
                     android:textSize="18sp"
+
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +204,7 @@
                 android:id="@+id/cl_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_uw">
@@ -253,7 +260,7 @@
                     android:id="@+id/tv_userInfo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
+                    android:background="@drawable/custom_border"
                     android:padding="7dp"
                     android:text="고객"
                     android:textColor="#000000"
@@ -269,7 +276,7 @@
                 android:id="@+id/cl_uw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_insuranceDev">
@@ -316,7 +323,7 @@
                     android:id="@+id/tv_uwInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
+                    android:background="@drawable/custom_border"
                     android:padding="7dp"
                     android:text="UW"
                     android:textColor="#000000"
@@ -332,7 +339,7 @@
                 android:id="@+id/cl_insuranceDev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_categoryInfo">
@@ -403,7 +410,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="#ffffff"
+                    android:background="@drawable/custom_border"
                     android:padding="7dp"
                     android:text="보험상품개발"
                     android:textColor="#000000"
@@ -419,7 +426,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:background="#ffffff"
+                android:background="@drawable/custom_border"
                 android:padding="7dp"
                 android:text="카테고리"
                 android:textColor="#000000"
@@ -433,7 +440,7 @@
                 android:id="@+id/cl_userInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_round_border"
+                android:background="@drawable/custom_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -441,18 +448,21 @@
                 <LinearLayout
                     android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_welcomeMessage"
+                    android:layout_height="match_parent"
+
+
+
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
 
                     <TextView
                         android:id="@+id/tv_role"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/custom_border"
+                        android:layout_marginTop="7dp"
+
                         android:gravity="center"
                         android:text="홍길동"
                         android:textColor="#000000"
@@ -463,8 +473,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/custom_border"
+                        android:layout_marginTop="7dp"
+
                         android:gravity="center"
                         android:text="홍길동"
                         android:textColor="#000000"
@@ -475,8 +485,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/custom_border"
+                        android:layout_marginTop="7dp"
+
                         android:gravity="center"
                         android:text="님"
                         android:textColor="#000000"
@@ -496,6 +506,7 @@
                 android:text="DogFoot 보험사 시스템에 오신걸 환영합니다!"
                 android:textColor="#000000"
                 android:textSize="12sp"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_userInfo" />
@@ -508,7 +519,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_border"
         android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
-        android:text="메뉴닫기"
+        android:text="로그 아웃"
         android:gravity="center"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"

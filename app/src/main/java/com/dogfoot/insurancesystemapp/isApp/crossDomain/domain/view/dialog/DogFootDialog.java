@@ -51,7 +51,7 @@ public class DogFootDialog extends AlertDialog.Builder{
         dogFootDialog.setTitle(activity.getString(titleId));
         dogFootDialog.setMessage(activity.getString(messageId));
         dogFootDialog.setPositiveButton("확인", listener);
-        dogFootDialog.setColor(activity.getResources().getColor(R.color.dogFoot_yellow, activity.getTheme()));
+        dogFootDialog.setColor(activity.getResources().getColor(R.color.black, activity.getTheme()));
         dogFootDialog.showDialog();
     }
     public static void simplerAlertDialog(Activity activity, String title, String message, DialogInterface.OnClickListener listener){
@@ -59,7 +59,7 @@ public class DogFootDialog extends AlertDialog.Builder{
         dogFootDialog.setTitle(title);
         dogFootDialog.setMessage(message);
         dogFootDialog.setPositiveButton("확인", listener);
-        dogFootDialog.setColor(activity.getResources().getColor(R.color.dogFoot_yellow, activity.getTheme()));
+        dogFootDialog.setColor(activity.getResources().getColor(R.color.black, activity.getTheme()));
         dogFootDialog.showDialog();
     }
 

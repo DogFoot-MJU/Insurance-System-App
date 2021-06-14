@@ -25,7 +25,7 @@ public class CustomerConsultingMainFragment extends DogFootViewModelFragment {
     protected void associateView(View view) {
         this.inputButton=view.findViewById(R.id.customerConsultingMainFragment_inputButton);
         this.listButton=view.findViewById(R.id.customerConsultingMainFragment_listButton);
-        this.resultButton=view.findViewById(R.id.customerConsultingMainFragment_resultButton);
+
 
 
     }
@@ -34,6 +34,7 @@ public class CustomerConsultingMainFragment extends DogFootViewModelFragment {
     protected void initializeView() {
         this.inputButton.setOnClickListener(v->this.navigateTo(R.id.action_customerConsultingMain_to_customerConsultingInput));
         this.listButton.setOnClickListener(v->this.navigateTo(R.id.action_customerConsultingMain_to_customerConsultingList));
+
 
     }
 

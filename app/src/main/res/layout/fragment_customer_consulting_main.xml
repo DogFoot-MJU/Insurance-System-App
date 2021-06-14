@@ -38,15 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/customerConsultingMainFragment_inputButton"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/customerConsultingMainFragment_resultButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="@string/customer_consulting_result"
-        android:background="@drawable/custom_border"
-        app:layout_constraintTop_toBottomOf="@+id/customerConsultingMainFragment_listButton"
-        tools:layout_editor_absoluteX="0dp" />
+    
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

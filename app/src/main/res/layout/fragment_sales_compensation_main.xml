@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/sales_Compensation_insurance_list"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         app:layout_constraintTop_toBottomOf="@+id/salesCompensationMainFragment_TitleTextView"
         tools:layout_editor_absoluteX="0dp" />
 

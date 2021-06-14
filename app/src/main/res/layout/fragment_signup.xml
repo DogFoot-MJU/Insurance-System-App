@@ -96,7 +96,7 @@
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
-        android:backgroundTint="#e9e49e"
+        android:backgroundTint="#DDDDDD"
         android:text="@string/singup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

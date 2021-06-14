@@ -87,15 +87,7 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_customer_contract_name" />
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/black"
 
-        app:layout_constraintTop_toBottomOf="@+id/item_customer_contract_time_input"
-        android:layout_marginTop="10dp"
-        tools:layout_editor_absoluteX="0dp" />
 
 
 

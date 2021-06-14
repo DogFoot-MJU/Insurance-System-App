@@ -2,10 +2,14 @@ package com.dogfoot.insurancesystemapp.isApp.dongwook.domain.signUp.view;
 
 import android.view.View;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.dogfoot.insurancesystemapp.R;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.model.DogFootEntity;
 import com.dogfoot.insurancesystemapp.isApp.crossDomain.domain.view.fragment.AbstractFragment_1EditText;
 import com.dogfoot.insurancesystemapp.isApp.dongwook.DongWookActivity;
+
+import java.util.Objects;
 
 
 public class RegisterFinishedFragmentEditText extends AbstractFragment_1EditText {
@@ -27,6 +31,9 @@ public class RegisterFinishedFragmentEditText extends AbstractFragment_1EditText
      */
     @Override
     protected void buttonClicked() {
-        this.startActivity(DongWookActivity.class);
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction().remove(this).commit();
+        fragmentManager.popBackStack();
+
     }
 }

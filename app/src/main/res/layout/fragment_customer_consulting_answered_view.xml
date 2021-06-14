@@ -13,7 +13,7 @@
         android:text="답변 내용 확인"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/user_consult_view_answer_subTextView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -26,7 +26,7 @@
         android:text="제목 : "
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_consult_view_answer_mainTextView" />
@@ -39,7 +39,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/user_consult_view_answer_subTextView1"
         app:layout_constraintTop_toBottomOf="@+id/user_consult_view_answer_mainTextView" />
 
@@ -51,7 +51,7 @@
         android:text="답변자 : "
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_consult_view_answer_subTextView1" />
@@ -64,7 +64,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/user_consult_view_answer_subTextView2"
         app:layout_constraintTop_toBottomOf="@+id/user_consult_view_answer_subTextView1" />
     <TextView
@@ -75,7 +75,7 @@
         android:text="작성 일자 : "
         android:textColor="@color/black"
         android:textSize="10sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_consult_view_answer_subTextView2" />
     <TextView
@@ -86,7 +86,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="10sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/user_consult_view_answer_subTextView3"
         app:layout_constraintTop_toBottomOf="@+id/user_consult_view_answer_subTextView2" />
     <TextView
@@ -97,7 +97,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 

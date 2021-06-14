@@ -36,8 +36,8 @@ public class MainActivity extends DogFootViewModelActivity {
         this.valueInput=true;
         this.save();
         if(valueInput) {
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
         }
     }
 
