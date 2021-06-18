@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sales_Consulting_navigation_graph"
+    app:startDestination="@id/salesConsultingMainFragment">
+
+    <!-- 아이디 찾기, 비밀번호 찾기 네비게이션 추가!-->
+
+    <fragment
+        android:id="@+id/salesConsultingMainFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingMainFragment"
+        android:label="salesConsultingMain"
+        tools:layout="@layout/fragment_sales_consulting_main" >
+        <action
+            android:id="@+id/action_salesConsultingMain_to_salesConsultingList"
+            app:destination="@id/salesConsultingListFragment" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/salesConsultingListFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingListFragment"
+        android:label="salesConsultingList"
+        tools:layout="@layout/fragment_sales_consulting_list" >
+
+        <action
+            android:id="@+id/action_salesConsultingList_to_salesConsultingMain"
+            app:destination="@id/salesConsultingMainFragment"
+            app:popUpTo="@+id/salesConsultingMainFragment"
+            app:popUpToInclusive="true"
+            />
+
+        <action
+            android:id="@+id/action_salesConsultingList_to_salesConsultingView"
+            app:destination="@id/salesConsultingViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/salesConsultingViewFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingViewFragment"
+        android:label="salesConsultingView"
+        tools:layout="@layout/fragment_sales_consulting_view" >
+        <action
+            android:id="@+id/action_salesConsultingView_to_salesConsultingList"
+            app:destination="@id/salesConsultingListFragment"
+            app:popUpTo="@+id/salesConsultingListFragment"
+            app:popUpToInclusive="true"
+            />
+        <action android:id="@+id/action_salesConsultingView_to_salesConsultingInput"
+            app:destination="@id/salesConsultingInputFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/salesConsultingInputFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesConsulting.view.SalesConsultingInputFragment"
+        android:label="salesConsultingInput"
+        tools:layout="@layout/fragment_customer_consulting_input" >
+        <action
+            android:id="@+id/action_salesConsultingInput_to_salesConsultingList"
+            app:destination="@id/salesConsultingListFragment"
+            app:popUpTo="@+id/salesConsultingListFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+
+
+</navigation>

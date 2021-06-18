@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_activity_navigation_graph"
+    app:startDestination="@id/customerConsultingMainFragment">
+
+    <!-- 아이디 찾기, 비밀번호 찾기 네비게이션 추가!-->
+
+    <fragment
+        android:id="@+id/customerConsultingMainFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingMainFragment"
+        android:label="customerConsultingMain"
+        tools:layout="@layout/fragment_customer_consulting_main" >
+        <action
+            android:id="@+id/action_customerConsultingMain_to_customerConsultingInput"
+            app:destination="@id/customerConsultingInputFragment" />
+        <action
+            android:id="@+id/action_customerConsultingMain_to_customerConsultingList"
+            app:destination="@id/customerConsultingListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerConsultingInputFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingInputFragment"
+        android:label="customerConsultingInput"
+        tools:layout="@layout/fragment_customer_consulting_input" >
+        <action
+            android:id="@+id/action_customerConsultingInput_to_customerConsultingMain"
+            app:destination="@id/customerConsultingMainFragment"
+            app:popUpTo="@+id/customerConsultingMainFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerConsultingListFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingListFragment"
+        android:label="customerConsultingList"
+        tools:layout="@layout/fragment_customer_consulting_list" >
+
+        <action
+            android:id="@+id/action_customerConsultingList_to_customerConsultingMain"
+            app:destination="@id/customerConsultingMainFragment"
+            app:popUpTo="@+id/customerConsultingMainFragment"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_customerConsultingList_to_customerConsultingView"
+            app:destination="@id/customerConsultingViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerConsultingViewFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingViewFragment"
+        android:label="customerConsultingView"
+        tools:layout="@layout/fragment_customer_consulting_view" >
+
+        <action
+            android:id="@+id/action_customerConsultingView_to_customerConsultingList"
+            app:destination="@id/customerConsultingListFragment"
+            app:popUpTo="@+id/customerConsultingListFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_customerConsultingView_to_customerConsultingAnswerView"
+            app:destination="@id/customerConsultingAnswerViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerConsultingAnswerViewFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.customerConsulting.view.CustomerConsultingAnswerViewFragment"
+        android:label="customerConsultingAnswerView"
+        tools:layout="@layout/fragment_customer_consulting_answered_view" >
+
+        <action
+            android:id="@+id/action_customerConsultingAnswerView_to_customerConsultingView"
+            app:destination="@id/customerConsultingViewFragment"
+            app:popUpTo="@+id/customerConsultingViewFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+
+
+</navigation>

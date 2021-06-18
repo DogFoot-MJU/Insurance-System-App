@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="insurance_select">
+        <item>자동차 보험 </item>
+        <item>운전자 보험</item>
+        <item>화재 보험</item>
+        <item>여행 보험</item>
+    </string-array>
+</resources>

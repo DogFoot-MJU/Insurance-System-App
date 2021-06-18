@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_activity_navigation_graph"
+    app:startDestination="@id/salesCompensationMainFragment">
+
+    <!-- 아이디 찾기, 비밀번호 찾기 네비게이션 추가!-->
+
+    <fragment
+        android:id="@+id/salesCompensationMainFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.view.SalesCompensationMainFragment"
+        android:label="salesCompensationMain"
+        tools:layout="@layout/fragment_sales_compensation_main" >
+        <action
+            android:id="@+id/action_salesCompensationMain_to_salesContractList"
+            app:destination="@id/salesContractListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/salesContractListFragment"
+        android:name="com.dogfoot.insurancesystemapp.isApp.dongwook.domain.salesCompensation.view.SalesContractListFragment"
+        android:label="salesContractList"
+        tools:layout="@layout/fragment_sales_contract_list" >
+        <action
+            android:id="@+id/action_salesContractList_to_salesCompensationMain"
+            app:destination="@id/salesCompensationMainFragment" />
+    </fragment>
+
+
+
+
+
+</navigation>

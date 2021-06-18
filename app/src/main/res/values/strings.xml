@@ -1,3 +1,99 @@
 <resources>
-    <string name="app_name">InsuranceSystemApp</string>
+    <string name="app_name">DogFootInsuranceSystemApp</string>
+    <string name="title_activity_dong_wook">dongWook</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="loadingDialog_textView_text">Loading...</string>
+
+
+    <!-- 동욱 액티비티 !-->
+    <string name="dongWook_title">동욱 기능 테스트</string>
+    <string name="dongWook_btn_login">로그인</string>
+    <string name="dongWook_btn_signup">회원 가입</string>
+    <string name="dongWook_btn_logout">로그 아웃</string>
+
+    <!-- 로그인 프래그먼트 !-->
+    <string name="id_hint">아이디 입력</string>
+    <string name="pw_hint">비밀번호 입력</string>
+    <string name="login_button">로그인</string>
+    <string name="id_auto_save_checkbox">아이디 저장</string>
+    <string name="auto_login_checkbox">자동 로그인</string>
+    <string name="find_id_button">아이디 찾기</string>
+    <string name="find_pw_button">비밀번호 찾기</string>
+    <string name="singup_button">회원가입</string>
+    <string name="button_ok">확인</string>
+    <string name="login_already_signed_dialog">이미 로그인 되어 있습니다.</string>
+    <string name="login_already_signed_content_dialog">로그인 되어 있습니다.</string>
+    <string name="login_not_signed_dialog">로그인 되어있지 않습니다.</string>
+    <string name="login_not_signed_content_dialog">로그인 되어있지 않습니다.</string>
+    <string name="login_success_dialog">성공적으로 로그인하였습니다.</string>
+    <string name="login_success_content_dialog">성공적으로 로그인되었습니다.</string>
+    <string name="login_failed_dialog">해당하는 유저가 없습니다.</string>
+    <string name="login_failed_content_dialog">잘못 입력하였거나 해당하는 유저를 찾을 수 없습니다.</string>
+    <string name="title_activity_log_out">LogOutActivity</string>
+
+
+    <!-- 회원가입 프래그먼트 !-->
+    <string name="register_email_maintext">이메일을 입력해주세요</string>
+    <string name="register_email_hint">example@dogfoot.com</string>
+
+    <string name="welcome_start">환영합니다</string>
+    <string name="welcome_end">님!</string>
+    <string name="register_finish_subtext">메일을 확인하면 가입 절차가 끝납니다!</string>
+
+    <string name="register_name_maintext">이름을 알려주세요</string>
+    <string name="register_name_hint">당신의 닉네임을 알려주세요!</string>
+
+    <string name="register_password_maintext">비밀번호를 입력해주세요</string>
+    <string name="register_password_hint">6자리 이상, 숫자+알파벳 조합</string>
+
+    <string name="register_phone_maintext">연락처를 알려주세요</string>
+    <string name="register_phone_hint">당신의 연락처를 알려주세요!</string>
+
+    <string name="register_address_maintext">주소를 알려주세요</string>
+    <string name="register_address_hint">당신의 주소를 알려주세요!</string>
+
+    <string name="register_resident_maintext">주민등록번호를 알려주세요</string>
+    <string name="register_resident_hint">당신의 주민등록번호를 알려주세요!</string>
+
+    <!-- 고객 상담 액티비티 !-->
+    <string name="customer_consulting_main">고객 상담</string>
+    <string name="customer_consulting_input">상담 신청</string>
+    <string name="customer_consulting_list">상담 리스트</string>
+    <string name="customer_consulting_result">상담 결과</string>
+
+    <!-- 고객 상담리스트 액티비티 !-->
+    <string name="customer_consulting_list_connection_fail">서버에 연결할 수 없습니다.</string>
+
+    <!-- 영업 상담 액티비티 !-->
+    <string name="admin_consulting_main">상담 관리</string>
+
+    <!-- 고객 보상 신청 액티비티 !-->
+    <string name="customer_Compensation">사고 접수</string>
+    <string name="sales_Compensation">사고 접수 처리</string>
+    <string name="customer_Compensation_insurance_list">계약 리스트 확인</string>
+    <string name="customer_Compensation_insurance_result">접수 결과 확인</string>
+    <string name="sales_Compensation_insurance_list">보상 접수 리스트 확인</string>
+
+
+
 </resources>
